@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components {
+	.z-background {
+		@apply z-[0]
+	}
+
+	.z-modal {
+		@apply z-[1000]
+	}
+
+	.z-layout {
+		@apply z-[400]
+	}
+
+	.z-content {
+		@apply z-[50]
+	}
+
+	.trans-ease {
+		@apply transition duration-300 ease-in-out; 
+	}
+
+	.trans-ease-md {
+		@apply transition duration-1000 ease-in-out;
+	}
+
+	.trans-ease-all {
+		@apply transition-all duration-300 ease-in-out;
+	}
+
+	.trans-ease-all-md {
+		@apply transition-all duration-1000 ease-in-out;
+	}
+
+}

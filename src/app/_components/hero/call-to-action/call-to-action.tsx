@@ -1,0 +1,93 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import ctaData from '@data/ctaData.json'
+import TextStream from './text-stream.tsx'
+import FadeIntoText from './fade-into-text.tsx'
+import AppTitle from '@components/common/app-title/app-title.tsx'
+import CtaButton from './cta-button.tsx'
+
+
+const SHOW_QUESTION_TIMER = 1000
+const SHOW_ANSWER_TIMER = 2000
+const CTA_CYCLE_TIMER = 1000
+const SHOW_CTA_TIMER = 2000
+const INTERVAL_TIMER = SHOW_QUESTION_TIMER + SHOW_ANSWER_TIMER + CTA_CYCLE_TIMER + SHOW_CTA_TIMER + 500
+
+
+
+
+export default function CallToAction() {
+	const [ ctaIndex, setCtaIndex ] = useState(0)
+	const [ ctaVisible, setCtaVisible ] = useState(true)
+    	const [ questionVisible, setQuestionVisible ] = useState(false)
+	const [ answerVisible, setAnswerVisible ] = useState(false)
+
+	const callToActions = ctaData.callToActions
+
+	useEffect(() => {
+		const showCallToAction = () => {
+			setCtaVisible(true)
+            		setTimeout(showQuestion, SHOW_QUESTION_TIMER) // Short delay before showing next question
+		}
+
+        	const showQuestion = () => {
+        		setQuestionVisible(true)
+            		setTimeout(() => { setAnswerVisible(true) }, SHOW_ANSWER_TIMER) // Show answer 2 seconds after question
+        	}
+
+        	const cycleToNextCTA = () => {
+			setCtaVisible(false)
+
+			setTimeout(()=>{
+	        	   	setQuestionVisible(false)
+        	    		setAnswerVisible(false)
+            			setCtaIndex((prevIndex) => (prevIndex + 1) % callToActions.length)
+			}, CTA_CYCLE_TIMER)
+        	}
+
+        	showQuestion()
+
+        	const cycleInterval = setInterval(() => {
+            		cycleToNextCTA()
+			setTimeout(showCallToAction, SHOW_CTA_TIMER)
+        	}, INTERVAL_TIMER) // Cycle every 5 seconds
+
+        	return () => clearInterval(cycleInterval)
+    	}, [ctaIndex])
+
+    	const currentCTA = callToActions[ctaIndex]
+
+    	return (
+		<div id="call-to-action" className={`flex flex-col space-y-[2rem]`}>
+			<div id="cta-action" className={`flex items-center justify-center space-x-[2rem]`}>
+				<AppTitle animated={true}/>
+				<span 
+				 id="divider" 
+				 className="w-[.25rem] h-[4rem] bg-white bg-opacity-50 rounded-xl"
+				/>
+				<CtaButton message={"Start Here!"}/>
+			</div>
+
+	        	<div 
+			 id="cta-message" 
+			 className={`
+				 transform transition-all duration-1000 ease-in-out 
+				 ${ ctaVisible ? "opacity-100" : "opacity-0 translate-y-[25%]" } 
+				 flex flex-col items-center justify-center space-x-5
+			`}>
+	            		<div id="question-handler" className="flex h-16 items-center justify-center">
+	                	{questionVisible && <FadeIntoText text={currentCTA.question} />}
+	            		</div>
+	
+	
+	           	 	<div id="answer-handler" className="flex h-16 items-center justify-center">
+	           	     	{answerVisible && <TextStream text={currentCTA.action} />}
+	           	 	</div>
+	        	</div>
+
+		</div>
+	)
+}
+
+
