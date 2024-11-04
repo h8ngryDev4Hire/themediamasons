@@ -22,7 +22,7 @@ export default function PricingTiers() {
 				 price={tier.price.discounted}
 				 perks={tier.perks}
 				 description={tier.description}
-				 animated={{ introDelay: id * .1 }} 
+				 animated={ id * .1 } 
 				 discounted={
 					 <PricingDeal discount={tier.price.original}/>
 				}/>

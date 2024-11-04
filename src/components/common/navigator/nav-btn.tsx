@@ -11,17 +11,14 @@ interface Params  {
 
 
 export default function NavBtn({ name, href } : Params ) : JSX.Element {
-	const [ isFloating ] = useContext<Array<boolean>>(NavigatorContext)
+	const [ isFloating ] = useContext(NavigatorContext)
 
-	const handleButtonClick = (e) => {
 
-	}
 
 	return (
 		<button 
 		 id="navigator-btn" 
 		 className="h-full w-[6rem] p-[0.4rem]"
-		 onClick={handleButtonClick}
 		>
 
 			<Link href={href}>

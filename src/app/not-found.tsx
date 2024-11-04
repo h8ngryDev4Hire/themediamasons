@@ -5,8 +5,10 @@ import { useState, useEffect } from 'react'
 export default function NotFound()  {
 	const [ msg, setMsg ] = useState<string>('')
 
+	//const requestedResource = document ? `"${document.location.pathname}"` : "" 
+
 	useEffect(()=>{
-		setMsg(`The page "${document.location.pathname}" your system requested is non-existent.`)
+		setMsg(`The page your system requested is non-existent.`)
 	},[])
 
 	return (

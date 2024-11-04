@@ -1,19 +1,17 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import useModal from '@api/hooks/useModal.ts'
+import dynamic from 'next/dynamic'
 
 import Navigator from '@components/common/navigator/navigator.tsx'
-import ThreeObject from '@components/three/cube.tsx'
 import ContentBlock from '@components/common/content-block/content-block.tsx'
 import Transitioner from '@components/common/transitioner/transitioner.tsx'
-import Laptop from '@components/three/laptop.tsx'
 
 import Hero from './_components/hero/hero.tsx' 
-import ContentFactory from '@components/three/contentFactory/contentFactory.tsx'
 import ServicesList from './_components/services-list/services-list.tsx'
-import Process from './_components/process/process.tsx'
 
+
+const ThreeObject = dynamic(() => import('@components/three/cube.tsx'), { ssr: false })
 
 export default function Home() : JSX.Element {
 	const heroRef = useRef(null)

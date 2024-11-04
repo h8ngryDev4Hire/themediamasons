@@ -1,5 +1,8 @@
-import MatrixScape from '@components/three/matrixscape.tsx'
+import dynamic from 'next/dynamic'
+
 import CallToAction from './call-to-action/call-to-action.tsx'
+
+const MatrixScape = dynamic(() => import('@components/three/matrixscape.tsx'), { ssr: false })
 
 export default function Hero() {
 	return (

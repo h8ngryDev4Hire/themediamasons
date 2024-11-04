@@ -1,7 +1,8 @@
-import Matrix from '@components/three/matrix.tsx'
+//import Matrix from '@components/three/matrix.tsx'
+import dynamic from 'next/dynamic'
 import Transitioner from '@components/common/transitioner/transitioner.tsx'
 
-
+const Matrix = dynamic(() => import('@components/three/matrix.tsx'), { ssr: false })
 
 export default function Splash() {
 	return (

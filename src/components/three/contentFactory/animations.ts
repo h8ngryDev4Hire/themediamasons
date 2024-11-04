@@ -26,14 +26,14 @@ export function startAnimation(scene: THREE.Scene, camera: THREE.Camera, compose
   animate(scene, camera, composer);
 }
 
-export function setAnimating(value: boolean): boolean {
-  isAnimating = value;
-  if (isAnimating) {
-    lastTime = performance.now();
-    animate(cube.scene, cube.scene.camera, cube.scene.composer);
-  }
-  return isAnimating;
-}
+//export function setAnimating(value: boolean): boolean {
+//  isAnimating = value;
+//  if (isAnimating) {
+//    lastTime = performance.now();
+//    animate(cube.scene, cube.scene.camera, cube.scene.composer);
+//  }
+//  return isAnimating;
+//}
 
 function animate(scene: THREE.Scene, camera: THREE.Camera, composer: EffectComposer) {
   if (isAnimating) {

@@ -53,7 +53,7 @@ export default function Pricing() {
 						<>
 						Pricing That Fits 
 						<b><em className={``}> Every </em></b> 
-						Creator's Needs!
+						Creator&apos;s Needs!
 						</> 
 					}/>
 
@@ -76,6 +76,7 @@ export default function Pricing() {
 						}/>				
 					}
 						<div id="" className={`flex w-full h-[5rem]`}>
+						
 						</div>
 					</section>
 

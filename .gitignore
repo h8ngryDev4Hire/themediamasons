@@ -1,3 +1,11 @@
+# Node Modules folder
 node_modules/
+
+# Next folder
 .next/
+
+
+# Local Netlify folder
+.netlify/
+
 

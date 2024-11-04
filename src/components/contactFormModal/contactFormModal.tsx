@@ -12,7 +12,7 @@ interface Params {
 }
 
 
-export const contactFormModalStateContext = createContext()
+export const contactFormModalStateContext = createContext(undefined)
 
 export default function ContactFormModal() {
 	const { closeModal } = useModal()
@@ -63,7 +63,7 @@ export default function ContactFormModal() {
 						<h2 
 						 id="modal-title"
 						 className={`${bangers.className} text-3xl`}
-						>Let's Get In Touch!
+						>Let&apos;s Get In Touch!
 						</h2>
 
 						<button 

@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, useCallback } from 'react';
 
 const OPEN_MODAL_EVENT = 'openContactForm';
@@ -17,11 +19,11 @@ export default function useModal() {
   	useEffect(() => {
   	  	const openHandler = () => {
 			setIsModalOpen(true);
-			document.body.style.overflow = "hidden"
+			//if (document) document.body.style.overflow = "hidden"
 		}
   	  	const closeHandler = () => {
 			setIsModalOpen(false);
-			document.body.style.overflow = "auto"
+			//if (document) document.body.style.overflow = "auto"
 		}
 
   	  	window.addEventListener(OPEN_MODAL_EVENT, openHandler);

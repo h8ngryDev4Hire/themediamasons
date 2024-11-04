@@ -9,13 +9,13 @@ interface Params {
 }
 
 
-export const NavigatorContext = createContext()
+export const NavigatorContext = createContext([true])
 
 
 export default function Navigator({floating} : Params ): JSX.Element {
 	const [ isFloating, setFloatState ] = useState<boolean>(floating)
 
-	useEffect(()=>{ setFloatState(floating) })
+	useEffect(()=>{ setFloatState(floating) }, [])
 
 	return (
 		<div
