@@ -38,7 +38,7 @@ export default function Tier( { name, price, perks, description, animated = fals
 			 md:space-x-0 space-x-[4.5rem]
 			 flex md:flex-col 
 			 md:items-center md:justify-center  
-			 bg-zinc-900 rounded-xl text-white
+			 bg-zinc-800 rounded-xl text-white
 			 trans-ease-md-all    
 			 ${ animated 
 				 ? `${ introStarted ? "" : "-translate-y-[50%] opacity-0" }` 

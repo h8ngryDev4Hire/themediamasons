@@ -1,10 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import '@ui/globals.css'
 import Background from '@components/background/background.tsx'
 import useModal from '@api/hooks/useModal'
-import ContactFormModal from '@components/contactFormModal/contactFormModal.tsx'
+import  ContactFormModal from '@components/modals/contactFormModal/contactFormModal.tsx'
+import  { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
+import NewsletterModal, { signature } from '@components/modals/newsletterModal/newsletterModal'
 
 
 interface RootLayoutProps {
@@ -13,7 +15,18 @@ interface RootLayoutProps {
 
 
 export default function RootLayout({children} : RootLayoutProps ) : JSX.Element {
-	const { modalState } = useModal()
+	const { modalState, openModal } = useModal()
+
+	useEffect(()=>{
+		console.log('modalState: ', modalState)
+	},[modalState])
+
+	useEffect(()=>{
+		setTimeout(()=> {
+			openModal({ signature: signature })
+		}, 2000)
+	},[])
+
 
 	
 	return (
@@ -22,7 +35,8 @@ export default function RootLayout({children} : RootLayoutProps ) : JSX.Element 
 			<body className="bg-black">
 				<Background/>
 				{children}
-				{ modalState && <ContactFormModal/> }
+				{ modalState && modalState.name === SIGNATURE && <ContactFormModal/> }
+				{ modalState && modalState.name === signature && <NewsletterModal/> }
 			</body>
 		</html>
 	)

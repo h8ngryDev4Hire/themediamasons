@@ -1,14 +1,22 @@
-
 import useModal from '@api/hooks/useModal.ts'
 import { gudeaBold } from '@ui/fonts.ts'
 
 
 interface Props {
-	message : string
+	message : string,
+	modalId: string
 }
 
-export default function CtaButton({ message } : Props ) {
-	const { openModal } = useModal()	
+export default function CtaButton({ message, modalId } : Props ) {
+	const { openModal, closeModal, modalState } = useModal()	
+
+	const handleButtonClick = () => {
+		if (modalState) closeModal()
+			openModal({ 
+				signature: modalId,
+				disableScroll: true
+			})
+	}
 
 	return (
 		<button 
@@ -19,7 +27,7 @@ export default function CtaButton({ message } : Props ) {
 			 text-white text-xl
 			 ${gudeaBold.className}
 		 `}
-		 onClick={openModal}
+		 onClick={ handleButtonClick }
 		>
 		{message}
 		</button>

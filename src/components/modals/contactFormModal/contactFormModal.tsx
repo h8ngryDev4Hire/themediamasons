@@ -7,10 +7,7 @@ import ContactForm from './contactForm/contactForm.tsx'
 import ContactCta from './contact-cta.tsx'
 
 
-interface Params {
-	activator : boolean
-}
-
+export const SIGNATURE = 'contact-modal'
 
 export const contactFormModalStateContext = createContext(undefined)
 
@@ -24,13 +21,24 @@ export default function ContactFormModal() {
 	const exitModal = () => {
 		setContentState(false)
 		setModalState(false)
-		setTimeout(closeModal,1000)	
+		closeModal({ 
+			timeout: 1000
+		})
 	}
 
+	const registerKeystroke = ( event: KeyboardEvent ) => {
+		if (event.key === 'Escape') {
+			exitModal()
+		}
+	}
 	
 	useEffect(()=>{
 		setModalState(true)
 		setTimeout( ()=>{ setContentState(true) } ,500)
+
+		window.addEventListener('keydown', registerKeystroke)
+
+		return () => window.removeEventListener('keydown', registerKeystroke)
 	},[])
 
 
@@ -47,11 +55,12 @@ export default function ContactFormModal() {
 			 id="contact-form-modal" 
 			 className={`
 				  ${gudeaBold.className}
-				  ${modalState ? "md:h-[30rem] h-[45rem]" : "h-0"}
+				  ${modalState ? "md:h-[30rem] h-[40rem]" : "h-0"}
 				  trans-ease-all-md
 				  flex  md:w-[50%] w-[95vw] 
-				  bg-zinc-700 text-white rounded-xl p-[1rem]`
-			 }>
+				  bg-zinc-700 text-white rounded-xl p-[1rem]
+				  overflow-hidden
+			`}>
 				<div 
 				 id="contact-form-content"
 				 className={`trans-ease ${contentState ? "" : "opacity-0"} flex flex-col flex-grow mb-[1rem]`}
@@ -101,7 +110,7 @@ export default function ContactFormModal() {
 						<section 
 						 id="contact-form-section" 
 						 className={`
-							 flex h-full p-[2rem] items-center justify-center flex-grow
+							 flex h-full md:p-[2rem] items-center justify-center flex-grow
 						`}>
 							<ContactForm/>
 						</section>

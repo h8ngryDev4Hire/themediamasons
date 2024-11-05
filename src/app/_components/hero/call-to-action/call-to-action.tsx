@@ -5,8 +5,8 @@ import ctaData from '@data/ctaData.json'
 import TextStream from './text-stream.tsx'
 import FadeIntoText from './fade-into-text.tsx'
 import AppTitle from '@components/common/app-title/app-title.tsx'
-import CtaButton from './cta-button.tsx'
-
+import CtaButton from '@components/common/call-to-action/call-to-action-btn.tsx'
+import { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
 
 const SHOW_QUESTION_TIMER = 1000
 const SHOW_ANSWER_TIMER = 2000
@@ -22,6 +22,7 @@ export default function CallToAction() {
 	const [ ctaVisible, setCtaVisible ] = useState(true)
     	const [ questionVisible, setQuestionVisible ] = useState(false)
 	const [ answerVisible, setAnswerVisible ] = useState(false)
+	const [ introEffect, setIntroEffect ] = useState(false)
 
 	const callToActions = ctaData.callToActions
 
@@ -54,19 +55,30 @@ export default function CallToAction() {
         	}, INTERVAL_TIMER) // Cycle every 5 seconds
 
         	return () => clearInterval(cycleInterval)
+
     	}, [ctaIndex])
+
+	useEffect(()=> { setTimeout( () => setIntroEffect(true), 1500 ) },[])
 
     	const currentCTA = callToActions[ctaIndex]
 
     	return (
 		<div id="call-to-action" className={`flex flex-col space-y-[2rem]`}>
 			<div id="cta-action" className={`flex items-center justify-center space-x-[2rem]`}>
-				<AppTitle animated={true}/>
+				<span 
+				 id="app-title-container" 
+				 className={`trans-ease-lg ${introEffect ? "opacity-100" : "opacity-0"}
+				`}>
+					<AppTitle animated={true}/>
+				</span>
 				<span 
 				 id="divider" 
 				 className="w-[.25rem] h-[4rem] bg-white bg-opacity-50 rounded-xl"
 				/>
-				<CtaButton message={"Start Here!"}/>
+				<CtaButton 
+				 message={"Start Here!"}
+				 modalId={SIGNATURE}
+				/>
 			</div>
 
 	        	<div 

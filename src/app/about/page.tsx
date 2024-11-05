@@ -18,22 +18,23 @@ export default function About() {
 			<div 
 			 id="about-container" 
 			 className={`
-				 relative z-content flex  w-screen h-screen  items-center justify-center
+				 relative z-content flex  w-screen md:h-screen h-[90rem] items-center justify-center
+				 py-[12rem] md:py-[5rem]
 			`}>
 
 				<main 
 				 id="main-content" 
 				 className={`
 					trans-ease-all
-					flex w-[60vw] h-[40rem] items-center justify-center bg-white
+					flex w-[60vw] h-full items-center justify-center bg-white
 					p-[3rem] rounded-xl   
-					${transition ? "bg-opacity-25" : "bg-opacity-50"}
-					md:space-x-[5rem] mt-[5rem]
+					${transition ? "bg-opacity-10" : "bg-opacity-50"}
+					md:space-x-[5rem] md:mt-[7rem]
 				`}>
 					<div 
 					 id="about-section" 
 					 className={`
-						 h-full w-full flex items-center justify-center
+						  w-full flex items-center justify-center
 						 mb-[10rem]
 					`}>
 						<TextContent/>

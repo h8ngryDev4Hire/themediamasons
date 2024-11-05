@@ -1,16 +1,17 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Headline from './_components/headline/headline.tsx'
+import Headline from './_components/call-to-action/headline.tsx'
 import Navigator from '@components/common/navigator/navigator.tsx'
 import PricingTiers from './_components/pricing-tiers/pricing-tiers.tsx'
 import Splash from './_components/splash/spash.tsx'
+import CallToAction from './_components/call-to-action/call-to-action.tsx'
 
 
 export default function Pricing() {
 	const [ demoIsVisible, setDemoState ] = useState(false)
 
-	const demoSectionRef = useRef(null)
+	const demoSectionRef = useRef<HTMLElement>(null)
 
 	
 	useEffect(()=>{
@@ -40,8 +41,10 @@ export default function Pricing() {
 
 			<div 
 			 id="pricing-container" 
-			 className={`flex flex-col top-0 left-0 h-full w-screen items-center justify-center my-[10rem]`}
-			>
+			 className={`
+				 flex flex-col h-full md:min-h-[1564px] min-h-[2387px] w-screen items-center justify-center 
+				 my-[10rem] top-0 left-0
+			`}>
 
 			
 				
@@ -59,29 +62,10 @@ export default function Pricing() {
 
 					<PricingTiers/>
 
-
-
-					<section 
-					 id="demo-section" 
-					 className={`w-full flex flex-col items-center justify-center p-[1rem] space-y-[5rem]`} 
-					 ref={demoSectionRef}
-					>
-					{demoIsVisible && 
-						<Headline message={
-							<>
-							Intrigued but 
-							<b><em> STILL </em></b> 
-							not sold? Get a free demo scheduled with us!
-							</>
-						}/>				
-					}
-						<div id="" className={`flex w-full h-[5rem]`}>
-						
-						</div>
-					</section>
-
-
-
+					<CallToAction 
+					 ref={demoSectionRef} 
+					 visible={demoIsVisible}
+					/>
 				</main>
 			</div>
 		</>

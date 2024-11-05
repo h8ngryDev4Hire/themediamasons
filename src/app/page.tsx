@@ -2,16 +2,15 @@
 
 import { useState, useRef, useEffect } from 'react'
 import dynamic from 'next/dynamic'
-
 import Navigator from '@components/common/navigator/navigator.tsx'
 import ContentBlock from '@components/common/content-block/content-block.tsx'
 import Transitioner from '@components/common/transitioner/transitioner.tsx'
-
 import Hero from './_components/hero/hero.tsx' 
 import ServicesList from './_components/services-list/services-list.tsx'
 
-
 const ThreeObject = dynamic(() => import('@components/three/cube.tsx'), { ssr: false })
+
+
 
 export default function Home() : JSX.Element {
 	const heroRef = useRef(null)

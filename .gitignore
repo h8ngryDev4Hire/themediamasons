@@ -8,4 +8,5 @@ node_modules/
 # Local Netlify folder
 .netlify/
 
-
+# Old files to be removed
+*.old
