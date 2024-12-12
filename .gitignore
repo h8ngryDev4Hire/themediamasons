@@ -1,12 +1,29 @@
 # Node Modules folder
 node_modules/
 
+# env
+.env
+
 # Next folder
 .next/
 
+# Build folder
+production/
 
 # Local Netlify folder
 .netlify/
 
-# Old files to be removed
+# Database
+database/
+*.sqlite
+*.db
+
+# ESLint
+.eslintrc
+
+# Backup
+backups/
+
+# misc
 *.old
+.DS_Store

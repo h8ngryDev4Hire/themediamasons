@@ -23,6 +23,7 @@ const nextConfig = {
     );
     return config;
   },
+  distDir: 'production'
 };
  
 module.exports = nextConfig

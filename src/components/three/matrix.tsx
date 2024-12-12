@@ -21,7 +21,6 @@ export default function Matrix() {
     const updateDimensions = () => {
       if (mountRef.current && mountRef.current.parentElement) {
         const { clientWidth, clientHeight } = mountRef.current.parentElement
-        console.log('client dimensions: ', clientWidth, clientHeight)
         setDimensions({ width: clientWidth, height: clientHeight })
       }
     }

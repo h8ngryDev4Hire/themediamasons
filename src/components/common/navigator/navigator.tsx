@@ -3,6 +3,7 @@
 import { useState, createContext, useEffect } from 'react'
 import NavBtn from './nav-btn.tsx'
 import NavCenter from './nav-center.tsx'
+import ProgressBar from '@components/progress-bar/progress-bar.tsx'
 
 interface Params {
 	floating: boolean
@@ -22,7 +23,9 @@ export default function Navigator({floating} : Params ): JSX.Element {
 		 id="navigator-container"
 		 className={`
 			 ${ isFloating ? "p-[1rem] " : "" } 
-			 trans-ease-all fixed flex top-0 w-full h-[5rem] z-layout 
+			 trans-ease-all fixed top-0 w-screen h-[5rem] 
+			 z-layout flex flex-col
+			 overflow-x-hidden
 		`}>
 	      		<nav 
 	        	 id="navigator-top" 
@@ -43,8 +46,8 @@ export default function Navigator({floating} : Params ): JSX.Element {
 							"hidden md:flex space-x-[4rem]" 
 						} flex h-full flex-grow items-center justify-center
 					`}>
-	          				<NavBtn name={"Pricing"} href={"/pricing"}/>
-	          				<NavBtn name={"About"} href={"/about"}/>
+	          				<NavBtn name={"Pricing"} href={"/#pricing"}/>
+	          				<NavBtn name={"About"} href={"/#about"}/>
 	        			</section>
 	        			<section 
 					 id="nav-center-section" 
@@ -66,11 +69,13 @@ export default function Navigator({floating} : Params ): JSX.Element {
 							"hidden md:flex space-x-[4rem]" 
 						} flex h-full flex-grow items-center justify-center
 					`}>
-	          				<NavBtn name={"Services"} href={"/services"}/>
-	          				<NavBtn name={"Blog"} href={""}/>
+	          				<NavBtn name={"Services"} href={"/#services"}/>
+	          				<NavBtn name={"Contact"} href={"/#contact"}/>
 	        			</section>
 				</NavigatorContext.Provider>
 	      		</nav>
+
+			{!isFloating && <ProgressBar/>}
 		</div>
 	)
 }

@@ -32,7 +32,6 @@ export default function MatrixScape() {
 	    	const updateDimensions = () => {
 	      		if (mountRef.current && mountRef.current.parentElement) {
 	        		const { clientWidth, clientHeight } = mountRef.current.parentElement
-				console.log('client dimensions: ', clientWidth, clientHeight)
 	        		setDimensions({ width: clientWidth, height: clientHeight })
 	      		}
 	    	}
@@ -99,7 +98,6 @@ export default function MatrixScape() {
 
 
 	useEffect(()=>{
-		console.log('client changed')
 	},[mountRef?.current?.parentElement?.clientWidth, mountRef?.current?.parentElement?.clientHeight])
 	
 	return <div ref={mountRef} id="matrixscape" aria-hidden="true" style={dimensions}></div>

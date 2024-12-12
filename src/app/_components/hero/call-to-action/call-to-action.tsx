@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import ctaData from '@data/ctaData.json'
+import ctaData from '@data/json/ctaData.json'
 import TextStream from './text-stream.tsx'
 import FadeIntoText from './fade-into-text.tsx'
 import AppTitle from '@components/common/app-title/app-title.tsx'
 import CtaButton from '@components/common/call-to-action/call-to-action-btn.tsx'
 import { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
+import { ServicePackage } from '@def/definitions.ts'
 
 const SHOW_QUESTION_TIMER = 1000
 const SHOW_ANSWER_TIMER = 2000
@@ -78,6 +79,7 @@ export default function CallToAction() {
 				<CtaButton 
 				 message={"Start Here!"}
 				 modalId={SIGNATURE}
+				 metadata={"cta" as ServicePackage}
 				/>
 			</div>
 

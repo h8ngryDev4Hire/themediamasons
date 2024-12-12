@@ -9,16 +9,20 @@
 		@apply z-[0]
 	}
 
-	.z-modal {
-		@apply z-[1000]
+	.z-content {
+		@apply z-[50]
+	}
+
+	.z-foreground {
+		@apply z-[250]
 	}
 
 	.z-layout {
 		@apply z-[400]
 	}
 
-	.z-content {
-		@apply z-[50]
+	.z-modal {
+		@apply z-[1000]
 	}
 
 	.trans-ease {

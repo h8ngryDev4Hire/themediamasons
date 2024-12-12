@@ -19,10 +19,24 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-	"@components/*" : ["./src/components/*"],
-	"@api/*" : ["./src/api/*"],
-	"@ui/*" : ["./src/ui/*"],
-	"@data/*" : ["./src/data/*"]
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ],
+      "@ui/*": [
+        "./src/ui/*"
+      ],
+      "@data/*": [
+        "./src/data/*"
+      ],
+      "@def/*": [
+        "./src/definitions/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ]
     },
     "plugins": [
       {
@@ -34,7 +48,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "prod/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

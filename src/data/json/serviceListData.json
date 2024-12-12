@@ -1,0 +1,34 @@
+{
+  "services": [
+    {
+      "name": "Rapid Development",
+      "desc": "Quality work delivered quick. We don't just promise results, we deliver them.",
+      "imgSrc": "/svg/turnaround.svg"
+    },
+    {
+      "name": "Mobile First Approach",
+      "desc": "Your sites are built to work best with mobile first. Ensuring the best user experience!",
+      "imgSrc": "/svg/iphone.svg"
+    },
+    {
+      "name": "Accessible From Any Device",
+      "desc": "Don't cap your audience size based on what device they have! Our tools support them all!",
+      "imgSrc": "/svg/imac.svg"
+    },
+    {
+      "name": "Collaborative Design Process",
+      "desc": "Your vision matters. We work through structured revision cycles to achieve your perfect look.",
+      "imgSrc": "/svg/chat-bubble-convo.svg"
+    },
+    {
+      "name": "Full-Stack Solutions",
+      "desc": "We cover both frontend and backend needs and can handle everything in between!",
+      "imgSrc": "/svg/multi-user.svg"
+    },
+    {
+      "name": "Tailored Web Presence",
+      "desc": "We adapt to your unique brand style, ensuring consistency across all your content.",
+      "imgSrc": "/svg/paint.svg"
+    }
+  ]
+}

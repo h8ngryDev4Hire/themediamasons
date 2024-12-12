@@ -1,20 +1,22 @@
-import useModal from '@api/hooks/useModal.ts'
+import useModal from '@hooks/useModal.ts'
 import { gudeaBold } from '@ui/fonts.ts'
 
 
 interface Props {
 	message : string,
-	modalId: string
+	modalId: string,
+	metadata?: any
 }
 
-export default function CtaButton({ message, modalId } : Props ) {
+export default function CtaButton({ message, modalId, metadata } : Props ) {
 	const { openModal, closeModal, modalState } = useModal()	
 
 	const handleButtonClick = () => {
 		if (modalState) closeModal()
 			openModal({ 
 				signature: modalId,
-				disableScroll: true
+				disableScroll: true,
+				metadata: metadata
 			})
 	}
 

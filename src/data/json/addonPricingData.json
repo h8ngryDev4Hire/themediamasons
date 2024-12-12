@@ -1,0 +1,164 @@
+{
+  "addons": [
+    {
+      "category": "Design & UX",
+      "options": [
+        {
+          "name": "Additional Design Revisions",
+          "description": "Extra rounds of design revisions to perfect your vision",
+          "pricing": {
+            "start": 199.99,
+            "minimum": 149.99
+          },
+          "svg": "/svg/pencil-edit.svg"
+        },
+        {
+          "name": "Custom Animations Package",
+          "description": "Advanced animations and micro-interactions for enhanced user engagement",
+          "pricing": {
+            "start": 299.99,
+            "minimum": 249.99
+          },
+          "svg": "/svg/fx.svg"
+        },
+        {
+          "name": "Brand Style Guide",
+          "description": "Comprehensive digital brand guidelines for consistent presentation",
+          "pricing": {
+            "start": 249.99,
+            "minimum": 199.99
+          },
+          "svg": "/svg/brand-style.svg"
+        }
+      ]
+    },
+    {
+      "category": "Performance & Analytics",
+      "options": [
+        {
+          "name": "Analytics Dashboard",
+          "description": "Custom dashboard setup for tracking key business metrics",
+          "pricing": {
+            "start": 199.99,
+            "minimum": 149.99
+          },
+          "svg": "/svg/analytics.svg"
+        },
+        {
+          "name": "Performance Optimization",
+          "description": "Advanced speed and performance tuning for optimal user experience",
+          "pricing": {
+            "start": 299.99,
+            "minimum": 249.99
+          },
+          "svg": "/svg/spedometer.svg"
+        },
+        {
+          "name": "Monthly Performance Reports",
+          "description": "Regular insights and recommendations for continuous improvement",
+          "pricing": {
+            "start": 99.99,
+            "minimum": 79.99
+          },
+          "svg": "/svg/report.svg"
+        }
+      ]
+    },
+    {
+      "category": "Forms & Data Collection",
+      "options": [
+        {
+          "name": "Advanced Lead Forms",
+          "description": "Multi-step forms optimized for conversion",
+          "pricing": {
+            "start": 199.99,
+            "minimum": 149.99
+          },
+          "svg": "/svg/data-collection.svg"
+        },
+        {
+          "name": "Survey & Feedback System",
+          "description": "Custom forms for gathering customer insights",
+          "pricing": {
+            "start": 249.99,
+            "minimum": 199.99
+          },
+          "svg": "/svg/questionaire.svg"
+        },
+        {
+          "name": "Integration Forms",
+          "description": "Forms connected to your existing business tools",
+          "pricing": {
+            "start": 299.99,
+            "minimum": 249.99
+          },
+          "svg": "/svg/jigsaw.svg"
+        }
+      ]
+    },
+    {
+      "category": "Support & Maintenance",
+      "options": [
+        {
+          "name": "Extended Support Package",
+          "description": "Additional priority support coverage",
+          "pricing": {
+            "start": 399.99,
+            "minimum": 349.99
+          },
+          "svg": "/svg/support.svg"
+        },
+        {
+          "name": "Content Updates Package",
+          "description": "Regular content updates and maintenance",
+          "pricing": {
+            "start": 149.99,
+            "minimum": 99.99
+          },
+          "svg": "/svg/notification-bell.svg"
+        },
+        {
+          "name": "Priority Support",
+          "description": "Fast-track support response for critical issues",
+          "pricing": {
+            "start": 299.99,
+            "minimum": 249.99
+          },
+          "svg": "/svg/badge.svg"
+        }
+      ]
+    },
+    {
+      "category": "SEO & Marketing",
+      "options": [
+        {
+          "name": "Advanced SEO Package",
+          "description": "Comprehensive SEO setup and optimization",
+          "pricing": {
+            "start": 399.99,
+            "minimum": 349.99
+          },
+          "svg": "/svg/magnifying-glass.svg"
+        },
+        {
+          "name": "Content Strategy Plan",
+          "description": "Strategic content planning and optimization",
+          "pricing": {
+            "start": 299.99,
+            "minimum": 249.99
+          },
+          "svg": "/svg/kanban.svg"
+        },
+        {
+          "name": "Social Media Integration",
+          "description": "Advanced social media platform integration",
+          "pricing": {
+            "start": 199.99,
+            "minimum": 149.99
+          },
+          "svg": "/svg/at-symbol.svg"
+        }
+      ]
+    }
+  ]
+}

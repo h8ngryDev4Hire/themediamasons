@@ -10,9 +10,9 @@ interface ModelViewerProps {
   height?: number
 }
 
-const MODEL = './models/iphone.glb' // Replace this with your actual model path
+const MODEL = './models/Laptop.glb' 
 
-export default function ModelViewer({ width = 400, height = 400 }: ModelViewerProps) {
+export default function Laptop3D({ width = 400, height = 400 }: ModelViewerProps) {
   const mountRef = useRef<HTMLDivElement>(null)
   const modelRef = useRef<THREE.Group | null>(null)
   const [model, setModel] = useState<THREE.Group | null>(null)
@@ -21,13 +21,13 @@ export default function ModelViewer({ width = 400, height = 400 }: ModelViewerPr
     if (!mountRef.current) return
 
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000)
+    const camera = new THREE.PerspectiveCamera(30, width / height, 0.1, 1000)
     const renderer = new THREE.WebGLRenderer({ alpha: true })
 
     renderer.setSize(width, height)
     mountRef.current.appendChild(renderer.domElement)
 
-    // Lighting	
+    // Lighting
     const ambientLight = new THREE.AmbientLight(0x404040)
     scene.add(ambientLight)
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
@@ -57,15 +57,15 @@ loader.setDRACOLoader( dracoLoader );
     )
 
     camera.position.z = 10 
-    camera.position.y = 0 
+    camera.position.y = .5 
     
 
     function animate() {
       requestAnimationFrame(animate)
 	const model = modelRef?.current
       if (model) {
-	      model.rotation.y += 0.01
-      } else console.log(model)
+	      model.rotation.y += 0.005
+      } 
       renderer.render(scene, camera)
     }
 
@@ -80,5 +80,5 @@ loader.setDRACOLoader( dracoLoader );
     }
   }, [width, height])
 
-  return <div ref={mountRef}></div>
+  return <div ref={mountRef}/>
 }

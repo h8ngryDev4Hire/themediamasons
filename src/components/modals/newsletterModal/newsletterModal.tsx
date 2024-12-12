@@ -2,7 +2,7 @@
 
 import { bangers, gudeaThin } from "@ui/fonts";
 import NewsletterInvite from "./newsletterInvite";
-import useModal from "@api/hooks/useModal";
+import useModal from "@hooks/useModal";
 import { useEffect, useState } from "react";
 
 
@@ -10,7 +10,7 @@ export const signature = 'newsletter-modal'
 
 export default function NewsletterModal() {
 	const message = `
-		Need constant updates / insights / tips about the Video Industry?
+		Need constant Updates / Insights / Tips about the Web Development Industry?
 		Sign up today to join our emailing list!
 	`
 
