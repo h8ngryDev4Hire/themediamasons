@@ -1,4 +1,3 @@
-# The Media Masons ~ A Next.js Demo Website
+# The Media Masons ~ Business Site Built using Next.JS
 
-This is a demo site for a mock company called 'The Media Masons' who specialize in Video Editing Services for Content Creators! 
-
+The Media Masons platform frontend built entirely using Next.JS, TailwindCSS, & Typescript
