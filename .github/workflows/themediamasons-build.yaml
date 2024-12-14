@@ -35,6 +35,7 @@ jobs:
       - name: Build Node assets
         env:
           CI: true
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SITE_URL: ${{ inputs.site-url }}
         run: |
           npm install --global pnpm
@@ -47,7 +48,7 @@ jobs:
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-us.ionos.space
-          project-id: 36d7ac5f-23b0-4035-a54f-8ba951af9313
+          project-id: 969794b8-aca9-44ff-9233-c3f573c2c98c
           branch-id: ${{ inputs.branch-id }}
           version: ${{ github.sha }}
           folder: ${{ env.DEPLOYMENT_FOLDER }}
