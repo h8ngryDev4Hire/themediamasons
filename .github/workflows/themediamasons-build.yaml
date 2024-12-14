@@ -35,7 +35,7 @@ jobs:
       - name: Build Node assets
         env:
           CI: true
-          DATABASE_URL: "file:./dev.db"
+          DATABASE_URL: file:./dev.db
           SITE_URL: ${{ inputs.site-url }}
         run: |
           npm i
@@ -47,7 +47,7 @@ jobs:
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-us.ionos.space
-          project-id: 3ae16aa7-629b-4fbd-96b1-a371c01a75bb
+          project-id: 90f461fa-0c81-4ffc-8318-b9924d4bc9c1
           branch-id: ${{ inputs.branch-id }}
           version: ${{ github.sha }}
           folder: ${{ env.DEPLOYMENT_FOLDER }}
