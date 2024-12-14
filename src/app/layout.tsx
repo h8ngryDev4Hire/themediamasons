@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import '@ui/globals.css'
 import Background from '@components/background/background.tsx'
 import useModal from '@hooks/useModal'

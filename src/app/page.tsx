@@ -9,6 +9,7 @@ import About from './_components/about/about.tsx'
 import Pricing from './_components/pricing/pricing.tsx'
 import Services from './_components/services/services.tsx'
 import Contact from './_components/contact/contact.tsx'
+import { bangers } from '@ui/fonts.ts'
 
 const ThreeObject = dynamic(() => import('@components/three/cube.tsx'), { ssr: false })
 
