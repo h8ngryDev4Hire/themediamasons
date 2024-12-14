@@ -14,7 +14,7 @@ on:
         type: string
 
 env:
-  DEPLOYMENT_FOLDER: ./production
+  DEPLOYMENT_FOLDER: public
 
 jobs:
 # Please do not rename this job
@@ -35,11 +35,11 @@ jobs:
       - name: Build Node assets
         env:
           CI: true
-          DATABASE_URL: file:./dev.db
           SITE_URL: ${{ inputs.site-url }}
         run: |
-          npm i
-          npm run build
+          npm install --global pnpm
+          pnpm install
+          pnpm build
 
 # Please do not touch the following action
       - name: Store deployment content
@@ -47,7 +47,7 @@ jobs:
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-us.ionos.space
-          project-id: c29b9808-0e4b-41a8-8943-094f1c8d7a55
+          project-id: 92be994a-7273-44d4-9bfc-d35cb5ca7544
           branch-id: ${{ inputs.branch-id }}
           version: ${{ github.sha }}
           folder: ${{ env.DEPLOYMENT_FOLDER }}
