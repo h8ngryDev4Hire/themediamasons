@@ -52,7 +52,7 @@ export default function Home() : JSX.Element {
          mb-[5rem] sm:mb-[7rem] md:mb-[10rem] 
          mt-[8rem] sm:mt-[10rem] md:mt-[15rem] 
          space-y-[12rem] sm:space-y-[15rem] md:space-y-[25rem]
-         snap-x overflow-x-hidden
+         snap-x 
 			`}>
 
 				<div 
