@@ -1,6 +1,5 @@
 'use client'
 
-import ThreeObject from "@components/three/cube";
 import Laptop3D from "@components/three/laptop";
 import { gudeaBold, gudeaThin } from "@ui/fonts";
 import { useEffect, useState } from "react";
@@ -10,18 +9,23 @@ export default function TextContent() {
 	const [ mission, setMission ] = useState<string>('')
 	const [ values, setValues ] = useState<string>('')
 
-	const getQueryParams = (param : string) : string => {
-		return '/api/fetch-text-content?filename=' + param
+
+
+	const getTextContent = async ( directive : 'mission' | 'values' ) => {
+		try {
+			const response : Response = await fetch(`/text/${directive}.txt`)
+			const file = await response.text()
+
+			directive === 'mission' ? setMission(file) : setValues(file)
+		} catch(error) {
+			setMission('')
+			setValues('')
+		}
 	}
 
 	useEffect(()=> {
-		fetch(getQueryParams('mission'))
-			.then( res => res.json() ) 
-			.then( data => setMission( data.successful ? data.content : '' ))
-
-		fetch(getQueryParams('values'))
-			.then( res => res.json() )
-			.then( data => setValues( data.successful ? data.content : '' ))
+		getTextContent('mission')
+		getTextContent('values')
 	},[])
 
 	return (
