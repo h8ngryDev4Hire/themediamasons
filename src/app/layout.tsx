@@ -9,6 +9,7 @@ import  { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal
 import NewsletterModal, { signature } from '@components/modals/newsletterModal/newsletterModal'
 import LayoutFooter from '@components/footer/footer'
 import { ServicePackage } from '@def/definitions'
+import Responsiveness from './responsiveness'
 
 
 interface RootLayoutProps {

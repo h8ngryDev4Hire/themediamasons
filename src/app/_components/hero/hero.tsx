@@ -7,7 +7,13 @@ const MatrixScape = dynamic(() => import('@components/three/matrixscape.tsx'), {
 export default function Hero() {
 	return (
 		<header id="hero" className=" w-full min-h-[45rem] z-content items-center justify-center">
-			<div id="cta-container" className="absolute inset-0 md:mb-[20rem] mb-[5rem] flex w-auto items-center justify-center">
+			<div 
+			 id="cta-container" 
+			 className={`
+			 absolute inset-0 
+			 md:mb-[20rem] mb-[15rem] 
+			 flex w-auto items-center justify-center
+			`}>
 				<CallToAction/>
 			</div>
 

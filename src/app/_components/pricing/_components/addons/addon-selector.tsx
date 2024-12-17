@@ -37,7 +37,12 @@ export default function AddonSelector() {
 
 	return (
  		<>
- 	 		<h1 className={`${gudeaBold.className} text-white text-3xl`}>
+ 	 		<h1 
+			 className={`
+			 ${gudeaBold.className} 
+			 text-white 
+			 text-2xl lg:text-3xl xl:text-3xl
+			`}>
  	 	      	Enhance Your Package 🚀
  	 	    	</h1>
  	 	    	<div className="flex items-center justify-center space-x-4">

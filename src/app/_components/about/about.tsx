@@ -18,7 +18,7 @@ export default function About() {
 			<div 
 			 id="about" 
 			 className={`
-			 relative z-content md:h-screen h-[90rem] 
+			 relative z-content md:h-screen h-auto 
 			 flex flex-col
 			 items-center justify-center
 			 py-[12rem] md:py-[1rem]
@@ -30,7 +30,8 @@ export default function About() {
 				 className={`
 				 ${bangers.className} 
 				 w-full
-				 text-5xl text-white
+				 text-white
+				 text-4xl md:text-4xl lg:text-5xl xl:text-5xl 
 				`}>About The Media Masons
 				</h1>
 
@@ -38,7 +39,7 @@ export default function About() {
 				 id="main-content" 
 				 className={`
 					trans-ease-all
-					flex w-[75vw] h-full items-center justify-center bg-white
+					flex w-[75vw] h-auto items-center justify-center bg-white
 					px-[3rem] py-[1rem] rounded-xl   
 					${transition ? "bg-opacity-10" : "bg-opacity-50"}
 					md:space-x-[5rem] 

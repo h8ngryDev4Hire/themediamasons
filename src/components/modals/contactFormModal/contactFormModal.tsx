@@ -94,9 +94,10 @@ export default function ContactFormModal({ metadata } : Props) {
 				 id="contact-form-modal" 
 				 className={`
 				 ${gudeaBold.className}
-				 ${formState ? "md:h-[30rem] h-[40rem]" : "h-0"}
+				 ${formState ? "h-[42rem] md:h-[35rem] lg:h-[30rem] xl:h-[30rem]" : "h-0"}
 				 trans-ease-all-md
-				 flex  md:w-[50%] w-[95vw] 
+				 flex  
+				 w-[95vw] lg:w-[85%] xl:w-[55%]
 				 text-white rounded-xl p-[1rem]
 				 bg-gradient-to-bl from-zinc-800 to-zinc-900
 				 overflow-hidden

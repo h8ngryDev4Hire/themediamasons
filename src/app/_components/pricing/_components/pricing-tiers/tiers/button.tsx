@@ -24,7 +24,9 @@ export default function Button( { selectedPlan } : Props )  {
 		 id="cta-button" 
 		 onClick={handleButtonClick}
 		 className={`
-		 trans-ease w-[10rem] h-[4rem] 
+		 trans-ease 
+		 sm:w-[7.5rem] md:w-[8rem] lg:w-[10rem] xl:w-[10rem] 
+		 sm:h-[3rem] md:h-[3.5rem] lg:h-[4rem] xl:h-[4rem] 
 		 hover:scale-[.85] relative
 		 flex flex-col items-center justify-center
 		`}>
@@ -32,7 +34,8 @@ export default function Button( { selectedPlan } : Props )  {
 			 id="pricing-btn" 
 			 className={`
 			 ${gudeaBold.className} 
-			 text-center text-xl text-white
+			 text-center text-white 
+			 sm:text-base md:text-lg lg:text-xl xl:text-xl 
 			 bg-zinc-600
 			 w-full h-full rounded-xl p-1
 			 z-foreground

@@ -51,15 +51,19 @@ export default function Services() {
 			<section 
 			 id="services-list" 
 			 className={`
-				md:flex-col flex-row flex 
-				md:space-y-[5rem] space-x-[4rem] md:space-x-0
+				flex items-center justify-center
+				flex-row md:flex-row lg:flex-col xl:flex-col 
+				md:space-y-0 lg:space-y-[3rem]
+				space-x-[4rem] md:space-x-[2rem] lg:space-x-0
 				w-screen
 				${ isVisible ? "" : "opacity-0" } 
 			`}>
 				<section 
 				 id="top-row" 
 				 className={`
-					 md:flex-row flex-col md:space-x-[5rem] space-y-[2rem] md:space-y-0 
+					 md:flex-col lg:flex-row xl:flex-row flex-col 
+					 space-y-[2rem] md:space-y-[2rem] lg:space-y-0
+					 lg:space-x-[3rem]
 					 flex items-center justify-center h-[65%]
 				`}>
 					{TOP_ROW_SERVICE_DATA.map( (service, id) => {
@@ -76,7 +80,9 @@ export default function Services() {
 				<section 
 				 id="bottom-row" 
 				 className={`
-					 md:flex-row flex-col md:space-x-[5rem] space-y-[2rem] md:space-y-0 
+					 md:flex-col lg:flex-row xl:flex-row flex-col 
+					 space-y-[2rem] md:space-y-[2rem] lg:space-y-0
+					 lg:space-x-[3rem]
 					 flex items-center justify-center h-[65%]
 				`}>
 					{BOTTOM_ROW_SERVICE_DATA.map( (service, id) => {

@@ -10,8 +10,10 @@ export default function PricingTiers() {
 		<div 
 		 id="pricing-tier-wrapper" 
 		 className={`
-			 flex md:flex-row flex-col md:space-x-[3rem] space-x-0
-			 md:space-y-0 space-y-[3rem]
+			 flex 
+			 flex-col md:flex-col lg:flex-col xl:flex-row  
+			 space-x-0 md:space-x-0 lg:space-x-0 xl:space-x-[3rem] 
+			 space-y-[3rem] md:space-y-[2rem] lg:space-y-[4rem] xl:space-y-0 
 			 items-center justify-center
 		`}>
 		{pricingData.tiers.map( (tier : PricingTier, id : number) => {

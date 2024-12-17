@@ -15,8 +15,10 @@ export default function ServiceBlock( { name, desc, imgSrc } : Params ) {
 		 className={`
 			 flex flex-col md:w-[18rem] w-[15rem] md:h-[18rem] h-[15rem]
 			 items-center justify-center
-			 bg-white bg-opacity-20 rounded-xl py-auto px-[1rem]
-			 md:space-y-[.5rem] space-y-[.25rem]
+			 bg-white bg-opacity-20 rounded-xl 
+			 py-auto px-[1rem]
+			 md:space-y-[.5rem] 
+			 space-y-[.25rem]
 		`}>
 			<h1 
 			 id="service-title" 

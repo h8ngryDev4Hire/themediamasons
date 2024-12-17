@@ -14,7 +14,8 @@ export default function SubmissionView() {
 		<div 
 		 id="submission-view" 
 		 className={`
-		 flex flex-col items-center justify-start
+		 flex flex-col items-center 
+		 justify-between  lg:justify-start xl:justify-start
 		 w-full h-full p-[2rem]
 		 space-y-[2rem] trans-ease-all
 		 ${contentState ? "" : "opacity-0"}

@@ -19,13 +19,18 @@ const CallToAction = forwardRef<HTMLElement, Props>( function CallToAction(
 	return (
 		<section 
 		 id="demo-section" 
-		 className={`w-full flex flex-col items-center justify-center p-[1rem] space-y-[5rem]`} 
 		 ref={ref}
-		>
+		 className={`
+		 md:w-[90%] lg:w-full xl:w-full 
+		 flex flex-col items-center justify-center p-[1rem] space-y-[5rem]
+		`}>
 		{ visible ? ( 
 			<>
 			<Headline message={
- 				<div className="flex flex-col">
+ 				<div 
+				 className={`
+				 flex flex-col
+				`}>
  					<span>
 					{`Didn't see a package that`} 
  					<b><em> FITS </em></b> 

@@ -54,9 +54,11 @@ export default function Pricing() {
 			 id="main-content-container" 
 			 className={`
 				 flex flex-col 
-				 h-full md:min-h-[1564px] min-h-[2387px] 
+				 h-full 
+				 md:min-h-[1564px] min-h-[2387px] 
 				 w-screen items-center justify-center 
-				 my-[10rem] top-0 left-0
+				 my-[5rem] md:my-[7rem] lg:my-[10rem] xl:my-[10rem] 
+				 top-0 left-0
 			`}>
 
 			
@@ -67,7 +69,8 @@ export default function Pricing() {
 				 z-content   md:w-[75%] w-full space-y-[4rem]
 				 flex flex-col items-center justify-center
 				`}>
-					<Headline message={
+					<Headline 
+					 message={
 						<>
 						Pricing That Fits 
 						<b><em className={``}> Every </em></b> 

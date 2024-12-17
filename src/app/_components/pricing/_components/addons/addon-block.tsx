@@ -18,16 +18,24 @@ export default function AddonBlock( { name, description, svg } : Props ) {
 		<div 
 		 id="addon-block" 
 		 className={`
-		 h-[14rem] w-[14rem] p-[1rem]
+		 h-[9rem] md:h-[11rem] lg:h-[14rem] xl:h-[14rem] 
+		 w-[9rem] md:w-[11rem] lg:w-[14rem] xl:w-[14rem] 
+		 p-1 md:p-[1rem] lg:p-[1rem] xl:p-[1rem]
 		 rounded-xl 
 		 bg-white bg-opacity-10
 		 flex flex-col 
-		 items-center justify-between
+		 items-center 
+		 justify-center lg:justify-between xl:justify-between
+		 sm:space-y-[1rem] md:space-y-[1rem] space-y-0
 		 text-white text-center
 		 trans-ease-all
 		 ${ transitionState ? "blur scale-50" : "scale-100 blur-none" }
 		`}>	
-			<h2 className={`${bangers.className} text-lg`}>{name}</h2>
+			<h2 
+			 className={`
+			 ${bangers.className} 
+			 text-base md:text-lg lg:text-lg xl:text-lg
+			`}>{name}</h2>
 			<Image 
 			 src={svg}
 			 height={50}
@@ -35,7 +43,11 @@ export default function AddonBlock( { name, description, svg } : Props ) {
 			 alt={""}
 			 className=""
 			/>
-			<span className={`${gudeaBold.className} text-base`}>{description}</span>
+			<span 
+			 className={`
+			 ${gudeaBold.className} text-base
+			 sm:hidden md:hidden lg:block xl:block
+			`}>{description}</span>
 		</div>
 	)
 }

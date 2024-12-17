@@ -22,7 +22,10 @@ export default function Headline( { message } : Params ) {
 		`}>
 			<h1 
 			 id="pricing-catcher" 
-			 className={`${gudeaThin.className} text-white text-center text-4xl
+			 className={`
+			 ${gudeaThin.className} 
+			 text-white text-center 
+			 text-3xl md:text-3xl lg:text-4xl xl:text-4xl
 			`}>
 				{message}				
 			</h1>

@@ -18,8 +18,11 @@ export default function NavBtn({ name, href } : Params ) : JSX.Element {
 	return (
 		<button 
 		 id="navigator-btn" 
-		 className="h-full w-[6rem] p-[0.4rem]"
-		>
+		 className={`
+		 h-full 
+		 w-[6rem] 
+		 ${ isFloating ? "p-[0.2rem]" : "p-[0.4rem]" }
+		`}>
 
 			<Link href={href}>
 			<span 

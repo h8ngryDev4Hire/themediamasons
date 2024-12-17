@@ -21,7 +21,8 @@ export default function CtaView( { contentState } : Props ) {
 		 id="contact-form-content"
 		 className={`
 		 trans-ease ${contentState ? "" : "opacity-0"} 
-		 flex flex-col flex-grow mb-[1rem]
+		 flex flex-col flex-grow 
+		 mb-0 md:mb-[1rem] lg:mb-[1rem] xl:mb-[1rem]
 		`}>
 			<section 
 			 id="modal-title-section" 
@@ -52,13 +53,15 @@ export default function CtaView( { contentState } : Props ) {
 			 id="content-section" 
 			 className={`
 			 flex md:flex-row flex-col flex-grow 
-			 space-x-[1rem] mb-[1rem] 
+			 space-x-[1rem] 
+			 mb-0 md:mb-[1rem] lg:mb-[1rem] xl:mb-[1rem] 
 			 items-center justify-center
 			`}>
 				<section 
 				 id="cta-section" 
 				 className={`
-				 md:h-full h-[50%] w-full 
+				 md:h-full h-[50%] 
+				 w-full lg:w-[60%]
 				 space-y-[1rem] p-[1rem]
 				`}>
 					<ContactCta/>
