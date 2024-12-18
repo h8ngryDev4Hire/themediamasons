@@ -36,7 +36,6 @@ export default function RootLayout({children} : RootLayoutProps ) : JSX.Element 
 				<ContactFormModal metadata={modalState.metadata as ServicePackage}/> }
 				{ modalState && modalState.name === signature && <NewsletterModal/> }
 				<LayoutFooter/>
-				<Responsiveness/>
 			</body>
 		</html>
 	)
