@@ -1,4 +1,15 @@
+import { useEffect, useState } from "react"
+
 export default function Responsiveness() {
+	const [ viewportX, setViewportX ] = useState<number>(window.innerWidth)
+
+	useEffect(()=>{
+		const handleViewportChange = () => setViewportX(window.innerWidth)
+		window.addEventListener('resize', handleViewportChange)	
+
+		return () => window.addEventListener('resize', handleViewportChange)
+	},[])
+
 	return (
 		<div 
 		 id="responsive-modal" 
@@ -14,13 +25,24 @@ export default function Responsiveness() {
 			 className={`
 			 w-[50%] h-[3rem]
 			 rounded-full
+			 bg-zinc-600
+			 absolute
+			 text-center text-white text-2xl
+			 opacity-100 sm:opacity-0 md:opacity-0 lg:opacity-0 xl:opacity-0
+			`}>
+			{`Breakpoint | ${viewportX}`}
+			</div>
+			<div 
+			 className={`
+			 w-[50%] h-[3rem]
+			 rounded-full
 			 bg-red-600
 			 absolute
 			 text-center text-white text-2xl
 			 opacity-0
 			 sm:opacity-100 md:opacity-0 lg:opacity-0 xl:opacity-0
 			`}>
-			SM Breakpoint
+			{`SM Breakpoint | ${viewportX}`}
 			</div>
 			<div 
 			 className={`
@@ -32,7 +54,7 @@ export default function Responsiveness() {
 			 opacity-0
 			 sm:opacity-0 md:opacity-100 lg:opacity-0 xl:opacity-0
 			`}>
-			MD Breakpoint
+			{`MD Breakpoint | ${viewportX}`}
 			</div>
 			<div 
 			 className={`
@@ -44,7 +66,7 @@ export default function Responsiveness() {
 			 opacity-0
 			 sm:opacity-0 md:opacity-0 lg:opacity-100 xl:opacity-0
 			`}>
-			LG Breakpoint
+			{`LG Breakpoint | ${viewportX}`}
 			</div>
 			<div 
 			 className={`
@@ -56,7 +78,7 @@ export default function Responsiveness() {
 			 opacity-0
 			 sm:opacity-0 md:opacity-0 lg:opacity-0 xl:opacity-100
 			`}>
-			XL Breakpoint
+			{`XL Breakpoint | ${viewportX}`}
 			</div>
 		</div>
 	)
