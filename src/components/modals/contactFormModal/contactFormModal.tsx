@@ -97,7 +97,7 @@ export default function ContactFormModal({ metadata } : Props) {
 				 ${formState ? "h-[42rem] md:h-[35rem] lg:h-[30rem] xl:h-[30rem]" : "h-0"}
 				 trans-ease-all-md
 				 flex  
-				 w-[95vw] lg:w-[85%] xl:w-[55%]
+				 w-[95vw] lg:w-[85%] xl:w-[60%]
 				 text-white rounded-xl p-[1rem]
 				 bg-gradient-to-bl from-zinc-800 to-zinc-900
 				 overflow-hidden

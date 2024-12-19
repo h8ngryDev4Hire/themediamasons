@@ -54,10 +54,9 @@ export default function Pricing() {
 			 id="main-content-container" 
 			 className={`
 				 flex flex-col 
-				 h-full 
-				 md:min-h-[1564px] min-h-[2387px] 
-				 w-screen items-center justify-center 
-				 my-[5rem] md:my-[7rem] lg:my-[10rem] xl:my-[10rem] 
+				 max-sm:h-auto sm:min-h-[1564px] md:min-h-[1564px] lg:min-h-[2387px] xl:min-h-[2387px] 
+				 w-screen items-center max-sm:justify-center 
+				 max-sm:my-[7rem] my-[5rem] md:my-[7rem] lg:my-[10rem] xl:my-[10rem] 
 				 top-0 left-0
 			`}>
 
@@ -79,7 +78,12 @@ export default function Pricing() {
 					}/>
 
 					<PricingTiers/>
+					<div 
+					 className={`
+					 max-sm:hidden
+					`}>
 					<Addons/>	
+					</div>
 					<CallToAction 
 					 ref={demoSectionRef} 
 					 visible={demoIsVisible}

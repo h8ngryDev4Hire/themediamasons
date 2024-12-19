@@ -17,14 +17,19 @@ export default function LayoutFooter() {
 			<section 
 			 id="main-content" 
 			 className={`
-			 flex items-center justify-center
-			 space-x-[3rem] h-[75%]
+			 flex 
+			 max-sm:flex-col
+			 items-center justify-center
+			 max-sm:space-x-0 space-x-[3rem] 
+			 max-sm:space-y-[1rem] space-y-0
+			 h-[75%]
 			`}>
 				<AppTitle/>
 				<div 
 				 id="divider" 
 				 className={`
-				 w-[.25rem] h-[20%]
+				 max-sm:w-[80%] w-[.25rem] 
+				 max-sm:h-[.25rem] h-[20%]
 				 rounded-xl bg-white
 				 bg-opacity-40
 				`}/>
@@ -32,7 +37,8 @@ export default function LayoutFooter() {
 				 id="email" 
 				 href={"mailto:letswork@themediamasons.com"}
 				 className={`
-				 text-2xl text-white flex-shrink
+				 max-sm:text-xl text-2xl 
+				 text-white flex-shrink
 				 ${bangers.className}
 				 trans-ease-all
 				 hover:text-purple-400
@@ -43,7 +49,8 @@ export default function LayoutFooter() {
 			 className={`
 			 w-full flex-shrink
 			 text-white text-opacity-40
-			 text-base font-sans
+			 max-sm:text-sm text-base 
+			 font-sans
 			`}>
 			 <i>Copyright The Media Masons 2024 &copy;</i>
 			</span>

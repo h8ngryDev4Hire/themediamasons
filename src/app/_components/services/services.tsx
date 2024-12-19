@@ -52,9 +52,9 @@ export default function Services() {
 			 id="services-list" 
 			 className={`
 				flex items-center justify-center
-				flex-row md:flex-row lg:flex-col xl:flex-col 
-				md:space-y-0 lg:space-y-[3rem]
-				space-x-[4rem] md:space-x-[2rem] lg:space-x-0
+				max-sm:flex-col flex-row md:flex-row lg:flex-col xl:flex-col 
+				max-sm:space-y-[2rem] md:space-y-0 lg:space-y-[3rem]
+				max-sm:space-x-0 space-x-[4rem] md:space-x-[2rem] lg:space-x-0
 				w-screen
 				${ isVisible ? "" : "opacity-0" } 
 			`}>
@@ -62,7 +62,7 @@ export default function Services() {
 				 id="top-row" 
 				 className={`
 					 md:flex-col lg:flex-row xl:flex-row flex-col 
-					 space-y-[2rem] md:space-y-[2rem] lg:space-y-0
+					 max-sm:space-y-[2rem] space-y-[2rem] md:space-y-[2rem] lg:space-y-0
 					 lg:space-x-[3rem]
 					 flex items-center justify-center h-[65%]
 				`}>
@@ -81,7 +81,7 @@ export default function Services() {
 				 id="bottom-row" 
 				 className={`
 					 md:flex-col lg:flex-row xl:flex-row flex-col 
-					 space-y-[2rem] md:space-y-[2rem] lg:space-y-0
+					 max-sm:space-y-[2rem] space-y-[2rem] md:space-y-[2rem] lg:space-y-0
 					 lg:space-x-[3rem]
 					 flex items-center justify-center h-[65%]
 				`}>

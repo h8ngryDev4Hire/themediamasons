@@ -9,7 +9,7 @@ import  { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal
 import NewsletterModal, { signature } from '@components/modals/newsletterModal/newsletterModal'
 import LayoutFooter from '@components/footer/footer'
 import { ServicePackage } from '@def/definitions'
-import Responsiveness from './responsiveness'
+import dynamic from 'next/dynamic'
 
 
 interface RootLayoutProps {
@@ -17,14 +17,13 @@ interface RootLayoutProps {
 }
 
 
+const Responsiveness = dynamic(() => import('./responsiveness'), { ssr: false })
+
+
 export default function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 	const { modalState, openModal } = useModal()
 
-//	useEffect(()=>{
-//		setTimeout(()=> {
-//			openModal({ signature: signature })
-//		}, 2000)
-//	},[])
+
 
 	return (
 		<html lang="en">

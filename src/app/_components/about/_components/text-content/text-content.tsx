@@ -69,7 +69,7 @@ export default function TextContent() {
       			 text-white 
       			 text-sm sm:text-base
       			 text-opacity-80 whitespace-pre-wrap
-      			 text-center md:text-left
+      			 text-left indent-8
 			`}>{mission}</p>
 
 			<blockquote 
@@ -95,7 +95,7 @@ export default function TextContent() {
        			 text-white 
 			 text-sm sm:text-base
 			 text-opacity-80 whitespace-pre-wrap
-		 	 text-center md:text-left
+      			 text-left indent-8
 			`}>{values}</p>
 		</section>
 	)

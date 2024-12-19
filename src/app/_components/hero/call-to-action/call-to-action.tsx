@@ -64,18 +64,38 @@ export default function CallToAction() {
     	const currentCTA = callToActions[ctaIndex]
 
     	return (
-		<div id="call-to-action" className={`flex flex-col space-y-[2rem]`}>
-			<div id="cta-action" className={`flex items-center justify-center space-x-[2rem]`}>
+		<div 
+		 id="call-to-action" 
+		 className={`
+		 flex flex-col 
+		 max-sm:space-y-[1rem] space-y-[2rem]
+		`}>
+			<div 
+			 id="cta-action" 
+			 className={`
+			 flex items-center justify-center 
+			 max-sm:flex-col
+			 max-sm:space-x-0 space-x-[2rem]
+			 max-sm:space-y-[1rem] space-y-0
+			`}>
 				<span 
 				 id="app-title-container" 
-				 className={`trans-ease-lg ${introEffect ? "opacity-100" : "opacity-0"}
+				 className={`
+				 trans-ease-lg ${introEffect ? "opacity-100" : "opacity-0"}
 				`}>
 					<AppTitle animated={true}/>
 				</span>
 				<span 
 				 id="divider" 
-				 className="w-[.25rem] h-[4rem] bg-white bg-opacity-50 rounded-xl"
-				/>
+				 className={`
+				 max-sm:w-[15rem] w-[.25rem] 
+				 max-sm:h-[.25rem] h-[4rem] 
+				 bg-white bg-opacity-50 rounded-xl
+				 trans-ease-all-md
+				 ${ introEffect 
+				 ? "max-sm:scale-x-100 scale-y-100" 
+				 : "max-sm:scale-x-0 scale-y-0" }
+				`}/>
 				<CtaButton 
 				 message={"Start Here!"}
 				 modalId={SIGNATURE}
@@ -88,9 +108,15 @@ export default function CallToAction() {
 			 className={`
 				 transform transition-all duration-1000 ease-in-out 
 				 ${ ctaVisible ? "opacity-100" : "opacity-0 translate-y-[25%]" } 
-				 flex flex-col items-center justify-center space-x-5
+				 flex flex-col items-center justify-center 
+				 max-sm:space-x-0 space-x-5
 			`}>
-	            		<div id="question-handler" className="flex h-16 items-center justify-center">
+	            		<div 
+				 id="question-handler" 
+				 className={`
+				 flex h-16 items-center justify-center
+				 max-sm:w-[75%] w-full
+				`}>
 	                	{questionVisible && <FadeIntoText text={currentCTA.question} />}
 	            		</div>
 	

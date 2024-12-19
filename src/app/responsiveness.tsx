@@ -1,7 +1,9 @@
+'use client'
+
 import { useEffect, useState } from "react"
 
 export default function Responsiveness() {
-	const [ viewportX, setViewportX ] = useState<number>(window.innerWidth)
+	const [ viewportX, setViewportX ] = useState(window.innerWidth)
 
 	useEffect(()=>{
 		const handleViewportChange = () => setViewportX(window.innerWidth)

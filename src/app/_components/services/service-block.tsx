@@ -13,11 +13,15 @@ export default function ServiceBlock( { name, desc, imgSrc } : Params ) {
 		<span 
 		 id="service-block" 
 		 className={`
-			 flex flex-col md:w-[18rem] w-[15rem] md:h-[18rem] h-[15rem]
-			 items-center justify-center
+			 max-sm:block flex flex-col 
+			 max-sm:w-[85vw] md:w-[18rem] w-[15rem] 
+			 max-sm:h-[10rem] md:h-[18rem] h-[15rem]
+			 items-center 
+			 max-sm:justify-between justify-center
 			 bg-white bg-opacity-20 rounded-xl 
-			 py-auto px-[1rem]
-			 md:space-y-[.5rem] 
+			 max-sm:py-[1rem] py-auto 
+			 px-[1rem]
+			 max-sm:space-y-[1rem] md:space-y-[.5rem] 
 			 space-y-[.25rem]
 		`}>
 			<h1 
@@ -25,23 +29,33 @@ export default function ServiceBlock( { name, desc, imgSrc } : Params ) {
 			 className={`
 				 ${bangers.className}
 				 text-white md:text-2xl text-lg
-				 text-center
+				 max-sm:text-start text-center
+				 max-sm:px-[1rem] 
 			`}>
 				{name}
 			</h1>	
 			
-			<Image
-			 src={imgSrc}
-			 width={100}
-			 height={100}
-			 alt={""}
-			/>
+				<Image
+				 src={imgSrc}
+				 width={100}
+				 height={100}
+				 alt={""}
+				 className={`
+			 max-sm:w-[40%]
+			 max-sm:h-[50%]
+			 float-left
+				`}/>
+
+
+
 
 			<article 
 			 id="service-desc" 
 			 className={`
 				${gudeaThin.className}
-				text-white md:text-base text-[0.75rem] text-center
+				text-white 
+				max-sm:text-sm sm:text-sm md:text-base  
+				max-sm:text-start text-center
 			`}>
 			{desc}
 			</article>	

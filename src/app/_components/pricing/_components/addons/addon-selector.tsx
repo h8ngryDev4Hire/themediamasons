@@ -36,16 +36,28 @@ export default function AddonSelector() {
 	},[selectedCategory])
 
 	return (
- 		<>
+ 		<div 
+		 className={`
+		 w-full
+		 max-sm:flex-col flex-row
+		 flex
+		 max-sm:space-y-[.5rem]
+		`}>
  	 		<h1 
 			 className={`
 			 ${gudeaBold.className} 
 			 text-white 
 			 text-2xl lg:text-3xl xl:text-3xl
+			 w-full
+			 max-sm:text-center
 			`}>
  	 	      	Enhance Your Package 🚀
  	 	    	</h1>
- 	 	    	<div className="flex items-center justify-center space-x-4">
+ 	 	    	<div 
+			 className={`
+			 flex 
+			 items-center justify-center space-x-4
+			`}>
  	 	      		<button
  	 	        	 onClick={() => handleCategoryChange('prev')}
 				 className={`
@@ -83,6 +95,6 @@ export default function AddonSelector() {
  	 	        	→
  	 	      		</button>
  	 	    	</div>
- 		</>
+ 		</div>
 	)
 }

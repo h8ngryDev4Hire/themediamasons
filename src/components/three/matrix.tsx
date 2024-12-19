@@ -16,18 +16,19 @@ export default function Matrix() {
   const [dimensions, setDimensions] = useState<RendererDimensions>({ width: 400, height: 400 })
 
   useEffect(() => {
-    if (!mountRef.current) return
+    const ref = mountRef.current
+    if (!ref) return
 
     const updateDimensions = () => {
-      if (mountRef.current && mountRef.current.parentElement) {
-        const { clientWidth, clientHeight } = mountRef.current.parentElement
+      if (ref && ref.parentElement) {
+        const { clientWidth, clientHeight } = ref.parentElement
         setDimensions({ width: clientWidth, height: clientHeight })
       }
     }
 
     const resizeObserver = new ResizeObserver(updateDimensions)
-    if (mountRef.current.parentElement) {
-      resizeObserver.observe(mountRef.current.parentElement)
+    if (ref.parentElement) {
+      resizeObserver.observe(ref.parentElement)
     }
 
     updateDimensions() // Initial dimension set
@@ -36,7 +37,8 @@ export default function Matrix() {
   }, [])
 
   useEffect(() => {
-    if (!mountRef.current) return
+    const ref = mountRef.current
+    if (!ref) return
 
     const { width, height } = dimensions
 
@@ -44,7 +46,7 @@ export default function Matrix() {
     camera.aspect = width / height
     camera.updateProjectionMatrix()
 
-    mountRef.current.appendChild(renderer.domElement)
+    ref.appendChild(renderer.domElement)
 
     const gridSize = 20 
     const spacing = 2
@@ -121,7 +123,7 @@ export default function Matrix() {
     animate()
 
     return () => {
-      mountRef.current?.removeChild(renderer.domElement)
+      ref?.removeChild(renderer.domElement)
     }
   }, [dimensions])
 

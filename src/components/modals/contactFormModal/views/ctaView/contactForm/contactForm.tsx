@@ -51,22 +51,28 @@ export default function ContactForm() {
 
 	return (
 		<contactFormContext.Provider value={[contactContextPayload, setContactContextPayload]}>
-			<form id="contact-form" className={`flex flex-col items-end pb-[1rem] space-y-[1rem]`}>
-				<div className={`space-x-2`}>
-					<label className={`after:content-['*'] after:text-red-500 after:ml-1`}>Name</label>
+			<form id="contact-form" className={`flex flex-col pb-[1rem] space-y-[1rem]`}>
+				<div className={`
+				 space-y-1
+				 max-sm:text-sm
+				`}>
+					<label className={` after:content-['*'] after:text-red-500 after:ml-1`}>Name</label>
 					<input
 					 id="name"
 					 type="text"
 					 name="name"
 					 placeholder="John Smith"
 					 className={`
+					 	w-full
 						trans-ease-all text-gray-800 rounded-lg px-2 border-transparent border-2 
-						focus:border-purple-100 focus:ring-4 focus:ring-indigo-300 focus:outline-none`}
+						focus:border-purple-100 focus:ring-4 focus:ring-indigo-300 focus:outline-none
+
+					 `}
 					 required
 					 onChange={handleFieldChange}
 					/>
 				</div>
-				<div className={`space-x-2`}>
+				<div className={`space-y-1`}>
 					<label className={`after:content-['*'] after:text-red-500 after:ml-1`}>Email</label>
 					<input
 					 id="email"
@@ -74,6 +80,7 @@ export default function ContactForm() {
 					 name="email"
 					 placeholder="john.smith@email.com"
 					 className={`
+					 	w-full
 						trans-ease-all text-gray-800 rounded-lg px-2 border-transparent border-2 
 						focus:border-purple-100 focus:ring-4 focus:ring-indigo-300 focus:outline-none`}
 
@@ -81,7 +88,7 @@ export default function ContactForm() {
 					 onChange={handleFieldChange}
 					/>
 				</div>
-				<div className={`space-x-2`}>
+				<div className={`space-y-1`}>
 					<label className={`after:content-['*'] after:text-red-500 after:ml-1`}>Phone</label>
 					<input
 					 id="phone"
@@ -89,13 +96,14 @@ export default function ContactForm() {
 					 name="phone"
 					 placeholder="(000) 000 - 0000"
 					 className={` 
+					 	w-full
 						trans-ease-all text-gray-800 rounded-lg px-2 border-transparent border-2 
 						focus:border-purple-100 focus:ring-4 focus:ring-indigo-300 focus:outline-none`}
 					 required
 					 onChange={handleFieldChange}
 					/>
 				</div>
-				<div className={`space-x-2`}>
+				<div className={`space-y-1`}>
 					<label>Company</label>
 					<input
 					 id="company"
@@ -103,6 +111,7 @@ export default function ContactForm() {
 					 name="company"
 					 placeholder="ACME.Inc (Optional)"
 					 className={` 
+					 	w-full
 						trans-ease-all text-gray-800 rounded-lg px-2 border-transparent border-2 
 						focus:border-purple-100 focus:ring-4 focus:ring-indigo-300 focus:outline-none`}
 					 onChange={handleFieldChange}

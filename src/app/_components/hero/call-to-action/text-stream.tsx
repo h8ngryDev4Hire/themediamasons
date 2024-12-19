@@ -40,7 +40,12 @@ export default function TextStream( { text, typingSpeed = 30 } : ChatResponsePro
 	);
 	
 	return (
-		<div className="relative flex font-mono text-lg text-white text-center">
+		<div 
+		 className={`
+		 relative flex font-mono 
+		 max-sm:text-base text-lg 
+		 text-white text-center
+		`}>
 	      		<p>{displayResponse}</p>
 	      		{!completedTyping && <CursorSVG/>}
 	    	</div>

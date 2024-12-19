@@ -40,11 +40,11 @@ export default function Navigator({floating} : Params ): JSX.Element {
 	        			<section 
 					 id="nav-left-section" 
 					 className={`
-					 	transition-transform duration-300 ease-in-out transform
-					 	${ isFloating ? 
-							"space-x-[3rem] md:space-x-[10rem]" : 
-							"hidden md:flex space-x-[4rem]" 
-						} flex h-full flex-grow items-center justify-center
+					 transition-transform duration-300 ease-in-out transform
+					 ${ isFloating ? 
+						"max-sm:space-x-1 space-x-[3rem] md:space-x-[10rem]" : 
+						"hidden md:flex space-x-[4rem]" 
+					 } flex h-full flex-grow items-center justify-center
 					`}>
 	          				<NavBtn name={"Pricing"} href={"/#pricing"}/>
 	          				<NavBtn name={"About"} href={"/#about"}/>
@@ -63,11 +63,11 @@ export default function Navigator({floating} : Params ): JSX.Element {
 	        			<section 
 					 id="nav-right-section" 
 					 className={`
-					 	transition-transform duration-300 ease-in-out transform
-					 	${ isFloating ? 
-							"space-x-[3rem] md:space-x-[10rem]" : 
-							"hidden md:flex space-x-[4rem]" 
-						} flex h-full flex-grow items-center justify-center
+					 transition-transform duration-300 ease-in-out transform
+					 ${ isFloating ? 
+						"max-sm:space-x-1 space-x-[3rem] md:space-x-[10rem]" : 
+						"hidden md:flex space-x-[4rem]" 
+					 } flex h-full flex-grow items-center justify-center
 					`}>
 	          				<NavBtn name={"Services"} href={"/#services"}/>
 	          				<NavBtn name={"Contact"} href={"/#contact"}/>

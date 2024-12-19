@@ -11,13 +11,18 @@ export default function Hero() {
 			 id="cta-container" 
 			 className={`
 			 absolute inset-0 
-			 md:mb-[20rem] mb-[15rem] 
+			 mb-[20rem] sm:mb-[25rem] md:mb-[10rem] lg:mb-[10rem] xl:mb-[10rem]  
 			 flex w-auto items-center justify-center
 			`}>
 				<CallToAction/>
 			</div>
 
-			<div id="matrixscape-container" className="min-h-[45rem]">
+			<div 
+			 id="matrixscape-container" 
+			 className={`
+			 max-sm:min-h-[30rem] min-h-[35rem] lg:min-h-[40rem]  xl:min-h-[45rem]
+			 max-sm:mt-[7rem]
+			`}>
 				<MatrixScape/>
 			</div>
 

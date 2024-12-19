@@ -39,11 +39,11 @@ export default function Tier( { name, codeName, price, perks, description, anima
 			 w-[80vw] xl:w-[25vw]
 			 h-auto xl:h-[50rem] 
 			 space-y-0 md:space-y-[1rem] 
-			 space-x-[3rem] lg:space-x-[4.5rem] xl:space-x-0 
+			 max-sm:space-x-0 space-x-[3rem] lg:space-x-[4.5rem] xl:space-x-0 
 			 flex 
-			 md:flex-row lg:flex-row xl:flex-col 
-			 md:items-center 
-			 md:justify-center  
+			 max-sm:flex-col md:flex-row lg:flex-row xl:flex-col 
+			 max-sm:items-center md:items-center 
+			 max-sm:justify-center md:justify-center  
 			 bg-zinc-800 rounded-xl text-white
 			 trans-ease-md-all    
 			 ${ animated 
@@ -59,7 +59,7 @@ export default function Tier( { name, codeName, price, perks, description, anima
 			 space-y-[1.5rem]
 			 justify-center 
 			 sm:pb-[10rem] md:pb-[12rem] lg:pb-[15rem] xl:pb-[2rem]
-			 pl-[1rem] md:pl-[4rem] lg:pl-[4rem] xl:pl-0
+			 max-sm:pl-0 pl-[1rem] md:pl-[4rem] lg:pl-[4rem] xl:pl-0
 			`}>
 				<section 
 				 id="tier-name-section" 
@@ -93,12 +93,18 @@ export default function Tier( { name, codeName, price, perks, description, anima
 				>
 					<h1 
 					 id="dollar-amt" 
-					 className={`${gudeaBold.className} text-6xl`}
-					>${dollars}</h1>
+					 className={`
+					 ${gudeaBold.className} 
+					 max-sm:text-5xl text-6xl
+					`}>
+					 ${dollars}
+					</h1>
 					<h6 
 					 id="cent-amt" 
-					 className={`${gudeaBold.className} text-base mt-1`}
-					>{cents}</h6>
+					 className={`
+					 ${gudeaBold.className} text-base mt-1
+					`}>
+					 {cents}</h6>
 					<span 
 					 id="discount-wrapper" 
 					 className={`
@@ -117,7 +123,8 @@ export default function Tier( { name, codeName, price, perks, description, anima
 			 className={`
 			 flex flex-col 
 			 space-y-[2rem]
-			 md:w-[45%] lg:w-[45%] xl:w-auto
+			 max-sm:w-full md:w-[45%] lg:w-[45%] xl:w-auto
+			 max-sm:items-center max-sm:justify-center
 			 py-[1rem] xl:py-0
 			`}>
 				<section 
@@ -126,6 +133,7 @@ export default function Tier( { name, codeName, price, perks, description, anima
 				 flex
 				 items-center xl:items-baseline
 				 justify-end xl:justify-normal
+				 max-sm:hidden
 				`}>
 					<ol 
 					 className={`
@@ -155,6 +163,7 @@ export default function Tier( { name, codeName, price, perks, description, anima
 				 className={`
 				 text-base text-center
 				 md:-translate-x-[45%] lg:-translate-x-[40%] xl:-translate-x-[0%]
+				 max-sm:hidden
 				`}>{description}</span>
 				
 				<span 

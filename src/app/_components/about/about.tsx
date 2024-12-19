@@ -31,6 +31,7 @@ export default function About() {
 				 ${bangers.className} 
 				 w-full
 				 text-white
+				 max-sm:text-center text-start
 				 text-4xl md:text-4xl lg:text-5xl xl:text-5xl 
 				`}>About The Media Masons
 				</h1>
@@ -39,8 +40,11 @@ export default function About() {
 				 id="main-content" 
 				 className={`
 					trans-ease-all
-					flex w-[75vw] h-auto items-center justify-center bg-white
-					px-[3rem] py-[1rem] rounded-xl   
+					flex 
+					max-sm:w-full w-[75vw] 
+					h-auto items-center justify-center bg-white
+					px-[3rem] 
+					py-[1rem] rounded-xl   
 					${transition ? "bg-opacity-10" : "bg-opacity-50"}
 					md:space-x-[5rem] 
 				`}>

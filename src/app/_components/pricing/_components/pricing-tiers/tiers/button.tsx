@@ -25,8 +25,8 @@ export default function Button( { selectedPlan } : Props )  {
 		 onClick={handleButtonClick}
 		 className={`
 		 trans-ease 
-		 sm:w-[7.5rem] md:w-[8rem] lg:w-[10rem] xl:w-[10rem] 
-		 sm:h-[3rem] md:h-[3.5rem] lg:h-[4rem] xl:h-[4rem] 
+		 max-sm:w-[7rem]  sm:w-[7.5rem] md:w-[8rem] lg:w-[10rem] xl:w-[10rem] 
+		 max-sm:h-[3rem] sm:h-[3rem] md:h-[3.5rem] lg:h-[4rem] xl:h-[4rem] 
 		 hover:scale-[.85] relative
 		 flex flex-col items-center justify-center
 		`}>

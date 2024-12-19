@@ -27,18 +27,19 @@ export default function MatrixScape() {
 	const [ dimensions, setDimensions ] = useState<rendererDimensions>({ width: 800, height: 400 })
 
 	useEffect(()=>{
-		if (!mountRef.current) return
+		const ref = mountRef.current
+		if (!ref) return
 	
 	    	const updateDimensions = () => {
-	      		if (mountRef.current && mountRef.current.parentElement) {
-	        		const { clientWidth, clientHeight } = mountRef.current.parentElement
+	      		if (ref && ref.parentElement) {
+	        		const { clientWidth, clientHeight } = ref.parentElement
 	        		setDimensions({ width: clientWidth, height: clientHeight })
 	      		}
 	    	}
 	
 	    	const resizeObserver = new ResizeObserver(updateDimensions)
-	    	if (mountRef.current.parentElement) {
-	      		resizeObserver.observe(mountRef.current.parentElement)
+	    	if (ref.parentElement) {
+	      		resizeObserver.observe(ref.parentElement)
 	    	}
 	
 	    	updateDimensions() // Initial dimension set
@@ -47,7 +48,9 @@ export default function MatrixScape() {
 	},[])
 
   	useEffect(() => {
-		if (!mountRef.current) return
+		const ref = mountRef.current
+		const grids = gridsRef.current
+		if (!ref) return
 
 		const { width, height } = dimensions
 
@@ -55,14 +58,14 @@ export default function MatrixScape() {
 		camera.aspect = width / height
 		camera.updateMatrix()
 
-		mountRef.current.appendChild(renderer.domElement)
+		ref.appendChild(renderer.domElement)
 		
 	    	// Create grids: left, center, right
 		for (let i = -1; i < GRID_COUNT - 1; i++) {
 			const grid = new THREE.GridHelper(GRID_SIZE, GRID_DIVISIONS, 0x00ff00, 0x00ff00)
 		      	grid.position.z = i * GRID_SIZE
 		      	scene.add(grid)
-		      	gridsRef.current.push(grid)
+		      	grids.push(grid)
 		}
 		
 		camera.position.set(0, 10, 40) // Adjust camera position
@@ -71,7 +74,7 @@ export default function MatrixScape() {
 		function animate() {
 		  	requestAnimationFrame(animate)
 		      
-		      	gridsRef.current.forEach((grid) => {
+		      	grids.forEach((grid) => {
 		        	grid.position.z += GRID_MOVE_SPEED
 		
 		        	// If the grid has moved past the reposition threshold, move it to the back
@@ -86,8 +89,8 @@ export default function MatrixScape() {
 		animate()
 		
 		return () => {
-			mountRef.current?.removeChild(renderer.domElement)
-		      	gridsRef.current.forEach(grid => {
+			ref?.removeChild(renderer.domElement)
+		      	grids.forEach(grid => {
 		        	scene.remove(grid)
 		        	grid.dispose()
 		      	})
@@ -97,8 +100,6 @@ export default function MatrixScape() {
 
 
 
-	useEffect(()=>{
-	},[mountRef?.current?.parentElement?.clientWidth, mountRef?.current?.parentElement?.clientHeight])
 	
 	return <div ref={mountRef} id="matrixscape" aria-hidden="true" style={dimensions}></div>
 }

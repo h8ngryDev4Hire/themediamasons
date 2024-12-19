@@ -25,7 +25,7 @@ export default function Headline( { message } : Params ) {
 			 className={`
 				 ${gudeaThin.className} 
 				 text-white text-center 
-				 text-3xl md:text-4xl lg:text-4xl xl:text-4xl 
+				 max-sm:text-2xl text-3xl md:text-4xl lg:text-4xl xl:text-4xl 
 			`}>
 				{message}				
 			</h1>
