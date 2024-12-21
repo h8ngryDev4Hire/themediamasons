@@ -66,7 +66,7 @@ export default function Addons() {
 		<section 
 		 id="addons-section" 
 		 className={`
-		 w-[90vw] md:w-full lg:w-full xl:w-full 
+		 w-[90vw] md:w-full lg:w-full xl:w-[80vw]
 		 h-[18rem] md:h-[20rem] lg:h-[23rem] xl:h-[25rem] 
 		 flex flex-col items-center justify-center
 		 rounded-xl

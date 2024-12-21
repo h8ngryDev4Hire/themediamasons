@@ -54,7 +54,7 @@
           "svg": "/svg/spedometer.svg"
         },
         {
-          "name": "Monthly Performance Reports",
+          "name": "Monthly Reports",
           "description": "Regular insights and recommendations for continuous improvement",
           "pricing": {
             "start": 99.99,

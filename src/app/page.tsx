@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import Navigator from '@components/common/navigator/navigator.tsx'
 import Transitioner from '@components/common/transitioner/transitioner.tsx'
 import Hero from './_components/hero/hero.tsx' 
@@ -8,7 +9,9 @@ import About from './_components/about/about.tsx'
 import Pricing from './_components/pricing/pricing.tsx'
 import Services from './_components/services/services.tsx'
 import Contact from './_components/contact/contact.tsx'
+import { bangers } from '@ui/fonts.ts'
 
+const ThreeObject = dynamic(() => import('@components/three/cube.tsx'), { ssr: false })
 
 
 
@@ -52,6 +55,7 @@ export default function Home() : JSX.Element {
       			 mt-[8rem] sm:mt-[10rem] md:mt-[15rem] 
       			 space-y-[12rem] sm:space-y-[15rem] md:space-y-[25rem]
       			 snap-x 
+			 overscroll-y-contain
 			`}>
 
 				<div 

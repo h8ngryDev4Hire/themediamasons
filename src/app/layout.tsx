@@ -28,7 +28,7 @@ export default function RootLayout({children} : RootLayoutProps ) : JSX.Element 
 	return (
 		<html lang="en">
 			<title>The Media Masons</title>
-			<body className="bg-black max-w-screen overflow-x-hidden">
+			<body className="bg-black max-w-screen overflow-x-hidden overscroll-y-contain">
 				<Background/>
 				{children}
 				{ modalState && modalState.name === SIGNATURE && 
