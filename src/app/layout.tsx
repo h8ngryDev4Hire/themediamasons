@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import '@ui/globals.css'
 import Background from '@components/background/background.tsx'
 import useModal from '@hooks/useModal'
@@ -21,7 +21,7 @@ interface RootLayoutProps {
 const Responsiveness = dynamic(() => import('./responsiveness'), { ssr: false })
 
 
-export default function RootLayout({children} : RootLayoutProps ) : JSX.Element {
+function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 	const { modalState, openModal } = useModal()
 	const searchParams = useSearchParams()
 
@@ -67,3 +67,13 @@ export default function RootLayout({children} : RootLayoutProps ) : JSX.Element 
 }
 
 
+// For compliance with useSearchParams() hook
+export default function Layout({ children } : RootLayoutProps) {
+	return (
+		<Suspense>
+		<RootLayout>
+		{children}
+		</RootLayout>
+		</Suspense>
+	) 
+}
