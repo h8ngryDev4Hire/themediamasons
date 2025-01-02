@@ -31,8 +31,11 @@ export default function Navigator({floating} : Params ): JSX.Element {
 	        	 id="navigator-top" 
 			 className={` 
 			  	transition-all duration-300 ease-in-out
-			  	${ isFloating ? "bg-opacity-0 rounded-xl" : "bg-opacity-100 rounded-none" } 
-	          	  	flex flex-grow  h-[4rem] bg-zinc-900 p-1 
+			  	${ isFloating 
+					? "bg-opacity-0 rounded-xl py-[.25rem]" 
+					: "bg-opacity-100 rounded-none py-[.75rem]" 
+				} 
+	          	  	flex flex-grow  h-full bg-zinc-900 p-1 
 				items-center justify-center
 	        	 `}
 	      		>
@@ -70,7 +73,7 @@ export default function Navigator({floating} : Params ): JSX.Element {
 					 } flex h-full flex-grow items-center justify-center
 					`}>
 	          				<NavBtn name={"Services"} href={"/#services"}/>
-	          				<NavBtn name={"Contact"} href={"/#contact"}/>
+	          				<NavBtn name={"Contact"} href={"/?modal=contact-modal"}/>
 	        			</section>
 				</NavigatorContext.Provider>
 	      		</nav>

@@ -66,3 +66,9 @@ export interface ClientContactInformation{
 export interface NewsletterSubscription {
 	email: string;
 }
+
+
+/*
+ * Modal IDs
+ */
+export type ModalIdentifier = 'contact-modal' | 'newsletter-modal' 

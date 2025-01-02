@@ -61,7 +61,7 @@ export default function CtaView( { contentState } : Props ) {
 				 id="cta-section" 
 				 className={`
 				 md:h-full h-[50%] 
-				 w-full md:w-[70%] lg:w-[60%] xl:w-full
+				 w-full md:w-[70%] lg:w-[50%] xl:w-[50%]
 				 space-y-[1rem] p-[1rem]
 				`}>
 					<ContactCta/>

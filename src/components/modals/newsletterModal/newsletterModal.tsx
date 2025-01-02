@@ -4,9 +4,10 @@ import { bangers, gudeaThin } from "@ui/fonts";
 import NewsletterInvite from "./newsletterInvite";
 import useModal from "@hooks/useModal";
 import { useEffect, useState } from "react";
+import { ModalIdentifier } from "@def/definitions";
 
 
-export const signature = 'newsletter-modal' 
+export const signature : ModalIdentifier = 'newsletter-modal' 
 
 export default function NewsletterModal() {
 	const message = `

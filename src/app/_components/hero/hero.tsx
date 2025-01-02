@@ -11,7 +11,7 @@ export default function Hero() {
 			 id="cta-container" 
 			 className={`
 			 absolute inset-0 
-			 mb-[20rem] sm:mb-[25rem] md:mb-[10rem] lg:mb-[10rem] xl:mb-[10rem]  
+			 max-sm:mb-[10rem] sm:mb-[25rem] md:mb-[10rem] lg:mb-[10rem] xl:mb-[10rem]  
 			 flex w-auto items-center justify-center
 			`}>
 				<CallToAction/>

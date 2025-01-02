@@ -42,7 +42,7 @@ export default function Button( { selectedPlan } : Props )  {
 			 flex items-center justify-center
 			 hover:bg-gradient-to-tr from-orange-500 to-purple-500
 			 trans-ease-all
-			`}>Get Started</p>
+			`}>See Pricing</p>
 			<span 
 			 id="glow" 
 			 className={`

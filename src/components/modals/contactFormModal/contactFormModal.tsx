@@ -5,7 +5,7 @@ import useModal from '@hooks/useModal.ts'
 import { gudeaBold } from '@ui/fonts.ts'
 import CtaView from './views/ctaView/ctaView'
 import SubmissionView from './views/submissionView/submissionView'
-import { ServicePackage, StateHook } from '@def/definitions'
+import { ModalIdentifier, ServicePackage, StateHook } from '@def/definitions'
 
 
 interface Props {
@@ -22,7 +22,7 @@ export interface ContactFormMasterContext {
 
 export type ModalPhase = 'contact-info' | 'thank-you'
 
-export const SIGNATURE = 'contact-modal'
+export const SIGNATURE : ModalIdentifier = 'contact-modal'
 const ERROR_TIMEOUT = 5000
 
 export const ContactFormModalContext = createContext<any>(undefined)

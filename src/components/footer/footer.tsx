@@ -9,7 +9,7 @@ export default function LayoutFooter() {
 		 className={`
 		 z-layout relative
 		 flex flex-col items-center justify-center
-		 w-screen h-[20rem] p-[.5rem]
+		 w-full h-[20rem] p-[.5rem]
 		 bg-gradient-to-b
 		 from-zinc-900 to-zinc-950
 		 space-x-[3rem]
@@ -47,7 +47,7 @@ export default function LayoutFooter() {
 			<span 
 			 id="copyright" 
 			 className={`
-			 w-full flex-shrink
+			 flex-shrink
 			 text-white text-opacity-40
 			 max-sm:text-sm text-base 
 			 font-sans

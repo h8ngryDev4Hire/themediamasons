@@ -5,6 +5,9 @@ import { gudeaThin, gudeaBold, bangers } from '@ui/fonts.ts'
 import Button from './button.tsx'
 import { PricingTier, ServicePackage } from '@def/definitions.ts';
 
+import Rocketship from '@public/svg/rocketship.svg'
+import FlaminTire from '@public/svg/tire-flame.svg'
+import Globe from '@public/svg/globe.svg'
 
 type CompliantPricingTier = Omit<PricingTier, 'price'>
 
@@ -12,12 +15,16 @@ interface Props extends CompliantPricingTier {
 	price: number
 	animated?: number | boolean 
 	discounted?: JSX.Element | boolean
+	isShown?: boolean
 }
 
 
-export default function Tier( { name, codeName, price, perks, description, animated = false, discounted = false } : Props ) {
+export default function Tier( { 
+	name, codeName, price, perks, description, animated = false, discounted = false, isShown = false
+} : Props ) {
 	const [ dollars, cents ] = price.toLocaleString().split('.')
 	const plan  = codeName 
+
 	
 	const [ introStarted, setIntroState ] = useState(false)
 
@@ -37,14 +44,16 @@ export default function Tier( { name, codeName, price, perks, description, anima
 			 px-[1rem] md:px-[1rem] lg:px-[1rem]
 			 p-[1rem] 
 			 w-[80vw] xl:w-[25vw]
-			 h-auto xl:h-[50rem] 
+			 h-auto xl:h-[47rem] 
 			 space-y-0 md:space-y-[1rem] 
 			 max-sm:space-x-0 space-x-[3rem] lg:space-x-[4.5rem] xl:space-x-0 
 			 flex 
 			 max-sm:flex-col md:flex-row lg:flex-row xl:flex-col 
 			 max-sm:items-center md:items-center 
-			 max-sm:justify-center md:justify-center  
-			 bg-zinc-800 rounded-xl text-white
+			 max-sm:justify-center md:justify-evenly  
+			 bg-gradient-to-t from-zinc-900  to-zinc-800 
+			 opacity-90
+			 rounded-xl text-white
 			 trans-ease-md-all    
 			 ${ animated 
 				 ? `${ introStarted ? "" : "-translate-y-[50%] opacity-0" }` 
@@ -84,9 +93,21 @@ export default function Tier( { name, codeName, price, perks, description, anima
 						<h3 className={`${gudeaBold.className} text-xl`}><i>Tier</i></h3>
 					</span>
 
-					<h4>Originally was...</h4>
+					{ isShown && <h4>Originally was...</h4>}
 				</section>
-
+				{!isShown && (
+				<section 
+				 id="icon-section"
+				 className={`
+				 flex items-center justify-center
+				 h-[6rem]
+				`}>
+					{codeName === 'starter' && <Rocketship className={`size-[5rem] fill-white opacity-65`}/>}
+					{codeName === 'business' && <FlaminTire className={`size-[6rem] scale-[1.5] fill-white opacity-65`}/>}
+					{codeName === 'enterprise' && <Globe className={`size-[6rem] fill-white opacity-65`}/>}
+				 </section>
+				)}
+				{ isShown && (
 				<section 
 				 id="tier-pricing-section" 
 				 className={`flex space-x-1 w-full justify-center`}
@@ -115,6 +136,7 @@ export default function Tier( { name, codeName, price, perks, description, anima
 					</span>
 
 				</section>
+				)}
 
 			</div>
 

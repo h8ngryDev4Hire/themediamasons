@@ -21,25 +21,29 @@ export default function NavBtn({ name, href } : Params ) : JSX.Element {
 		 className={`
 		 h-full 
 		 w-[6rem] 
+		 flex
+		 bg-zinc-800
+		 rounded-xl 
+		 items-center justify-center
+		 ${ isFloating 
+			  ? "bg-opacity-30 md:scale-125 scale-100 hover:text-purple-300" 
+			  : "bg-opacity-100 hover:text-red-400" 
+		 }
 		 ${ isFloating ? "p-[0.2rem]" : "p-[0.4rem]" }
 		`}>
 
-			<Link href={href}>
-			<span 
-			 id="" 
+			<Link 
+			 href={href}
 			 className={`
-				${gudeaBold.className} 
-			  	${ isFloating 
-				  	? "bg-opacity-30 md:scale-125 scale-100 hover:text-purple-300" 
-				  	: "bg-opacity-100 hover:text-red-400" 
-			  	}
-			  	trans-ease-all bg-zinc-800 block h-full w-full content-center rounded-md 
-			  	text-base text-white  hover:scale-[.90] text-center`
-			}>
-				{name}	
-			</span>
+			 w-full 
+			 ${gudeaBold.className} 
 
-		</Link>
+			 trans-ease-all  
+			 text-base text-white  hover:scale-[.90] 
+			 text-center
+			`}>
+			{name}	
+			</Link>
 		</button>
 	)
 }

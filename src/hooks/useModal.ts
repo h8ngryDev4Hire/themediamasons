@@ -1,6 +1,7 @@
 'use client'
 
 import { GenericCallback } from '@def/definitions';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect, useCallback } from 'react';
 
 
@@ -25,6 +26,8 @@ const CLOSE_MODAL_EVENT = 'closeContactForm';
 
 export default function useModal() {
 	const [modalState, setModalState] = useState<false|ModalState>(false);
+
+	const router = useRouter()
 
   	const openModal = useCallback(( options : OpenModalOptions ) => {
   			window.dispatchEvent(new CustomEvent(OPEN_MODAL_EVENT, { 
@@ -71,6 +74,9 @@ export default function useModal() {
 		} else {
 			setModalState(false)
 		}
+
+		const url = location.href.replace(/(\?|&)modal=[^&]+(&|$)/, '')
+		router.push(url)
 
 		if (typeof document !== 'undefined') document.body.style.overflowY = "auto"
 	}
