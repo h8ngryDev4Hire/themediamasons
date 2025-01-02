@@ -48,9 +48,7 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 	},[searchParams])
 
 	return (
-		<html lang="en">
-			<title>The Media Masons</title>
-			<body className="bg-black max-w-full overflow-x-hidden overscroll-none">
+		<>
 				<Background/>
 				<main className="overflow-x-hidden">
 				{children}
@@ -61,8 +59,7 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 					/> }
 				{ modalState && modalState.name === signature && <NewsletterModal/> }
 				<LayoutFooter/>
-			</body>
-		</html>
+		</>
 	)
 }
 
@@ -70,10 +67,15 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 // For compliance with useSearchParams() hook
 export default function Layout({ children } : RootLayoutProps) {
 	return (
-		<Suspense>
-		<RootLayout>
-		{children}
-		</RootLayout>
-		</Suspense>
+		<html lang="en">
+			<title>The Media Masons</title>
+			<body className="bg-black max-w-full overflow-x-hidden overscroll-none">
+			<Suspense>
+			<RootLayout>
+			{children}
+			</RootLayout>
+			</Suspense>
+			</body>
+		</html>
 	) 
 }
