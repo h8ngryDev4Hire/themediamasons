@@ -9,7 +9,7 @@
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "strict": false,
+    "strict": true,
     "noEmit": false,
     "incremental": true,
     "module": "esnext",
@@ -39,6 +39,9 @@
       ],
       "@hooks/*": [
         "./src/hooks/*"
+      ],
+      "@lib/*": [
+	"./src/lib/*"
       ]
     },
     "plugins": [

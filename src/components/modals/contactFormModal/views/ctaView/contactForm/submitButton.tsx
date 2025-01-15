@@ -4,7 +4,7 @@ import { bangers } from '@ui/fonts.ts'
 import { MouseEvent, useContext } from 'react'
 import { contactFormContext } from './contactForm'
 import { ContactFormMasterContext, ContactFormModalContext, exitModalContext } from '@components/modals/contactFormModal/contactFormModal'
-import validate from './validate'
+import { ClientContactInformationSchema } from '@def/definitions'
 
 
 export default function SubmitButton() {
@@ -18,9 +18,9 @@ export default function SubmitButton() {
 	const handleButtonClick = async (event : MouseEvent)  => {
 		event.preventDefault()
 		try {
-			const result = validate(contactData)	
+			const result = ClientContactInformationSchema.safeParse(contactData)
 
-			if (result instanceof Error) throw result
+			if (!result.success) throw new Error(result.error.issues[0].message) 
 
 			const response = await fetch('/api/post/contact-info', {
 				method:'POST',
@@ -34,7 +34,7 @@ export default function SubmitButton() {
 			}
 
 			setPhase('thank-you')
-		} catch(error) {
+		} catch(error : any) {
 			setError(error)
 		}
 	}	

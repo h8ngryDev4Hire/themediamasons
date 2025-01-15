@@ -16,7 +16,7 @@ export interface ContactFormMasterContext {
 	modal: StateHook<boolean>;
 	content: StateHook<boolean>;
 	phase: StateHook<ModalPhase>; 
-	plan: StateHook<string>
+	plan: StateHook<ServicePackage | undefined>
 	error: StateHook<Error | false>
 }
 
@@ -34,7 +34,7 @@ export default function ContactFormModal({ metadata } : Props) {
 	const contactFormModalContext : ContactFormMasterContext = {
 		modal: useState(false),
 		content: useState(false),
-		plan: useState<ServicePackage>(metadata),
+		plan: useState<ServicePackage | undefined>(metadata),
 		phase: useState<ModalPhase>('contact-info'),
 		error: useState<false | Error>(false)
 	}

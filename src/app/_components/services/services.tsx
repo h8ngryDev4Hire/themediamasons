@@ -3,17 +3,49 @@
 import { useState, useEffect, useRef } from 'react'
 import Headline from './headline.tsx'
 import ServiceBlock from './service-block.tsx'
-import serviceListData from '@data/json/serviceListData.json'
+import { FetchRequest, UnknownResponse } from '@def/routes.ts'
+import { ServiceBlockArray } from '@def/sanity.ts'
 
-const TOP_ROW_SERVICE_DATA = serviceListData.services.slice(0,3)
-const BOTTOM_ROW_SERVICE_DATA = serviceListData.services.slice(3,6)
 
 
 export default function Services() {
 	const [ isVisible, setVisibleState ] = useState(false)
+	const [ serviceBlocks, setServiceBlocks ] = useState<ServiceBlockArray>([])
 
 	const serviceListRef = useRef<HTMLDivElement>(null)
 
+
+	useEffect(()=> {
+		(async ()=> {
+			try {
+				const payload : FetchRequest = {
+					content: 'serviceList'
+				}
+
+				const response = await fetch('/api/fetch/', {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(payload)
+				})
+
+				const data : UnknownResponse = await response.json()
+
+				if (!response.ok || !data.successful) {
+					throw new Error(data.error)
+				}
+
+				const serviceBlockData : ServiceBlockArray = data.data
+
+				if (!serviceBlockData) {
+					throw new Error('Request successful yet no data was recieved.')
+				} else {
+					setServiceBlocks(serviceBlockData)
+				}
+			} catch (error) {
+
+			}
+		})()
+	},[])
 
 	useEffect(()=>{
 		const observer = new IntersectionObserver( ([ entry ]) =>{
@@ -66,13 +98,13 @@ export default function Services() {
 					 lg:space-x-[3rem]
 					 flex items-center justify-center h-[65%]
 				`}>
-					{TOP_ROW_SERVICE_DATA.map( (service, id) => {
+					{serviceBlocks.slice(0,3).map( (service, id) => {
 						return (
 							<ServiceBlock
 							 key={id}
 							 name={service.name}
-							 desc={service.desc}
-							 imgSrc={service.imgSrc}
+							 desc={service.description}
+							 imgSrc={service.iconUrl}
 							/>	
 						)
 					})}
@@ -85,13 +117,13 @@ export default function Services() {
 					 lg:space-x-[3rem]
 					 flex items-center justify-center h-[65%]
 				`}>
-					{BOTTOM_ROW_SERVICE_DATA.map( (service, id) => {
+					{serviceBlocks.slice(3,6).map( (service, id) => {
 						return (
 							<ServiceBlock
 							 key={id}
 							 name={service.name}
-							 desc={service.desc}
-							 imgSrc={service.imgSrc}
+							 desc={service.description}
+							 imgSrc={service.iconUrl}
 							/>	
 						)
 					})}

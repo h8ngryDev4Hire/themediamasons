@@ -30,11 +30,17 @@
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.7",
     "three": "^0.167.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "zod": "^3.24.1"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.68.3",
     "@types/three": "^0.167.1",
+    "next-sanity": "^9.8.32",
+    "sanity": "^3.68.3",
     "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "styled-components": "^6.1.14"
   }
 }

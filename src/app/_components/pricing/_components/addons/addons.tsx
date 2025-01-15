@@ -1,5 +1,4 @@
-import addonPricingData from '@data/json/addonPricingData.json'
-import { Addon, AddonSuite, CoreFunctions, StateHook } from '@def/definitions'
+import { Addon, AddonSuite, CoreFunctions, FetchRequest, StateHook, UnknownResponse } from '@def/definitions'
 import { gudeaBold } from '@ui/fonts'
 import AddonBlock from './addon-block'
 import { createContext, useEffect, useState } from 'react'
@@ -15,10 +14,9 @@ export interface AddonsMasterContext {
 	functions : CoreFunctions 
 }
 
-export const AddonsContext = createContext(undefined)
+export const AddonsContext = createContext<any>(undefined)
 
 export default function Addons() {
-	const addonSuite : AddonSuite = addonPricingData.addons
 
 	const [ addons, setAddons ] = useState<Addon[]>([])
 
@@ -32,27 +30,55 @@ export default function Addons() {
 	const [ categories, setCategories ] = MasterContext.categoriesContext
 	const { transitionState } = MasterContext.transitionContext
 
-	const extractAndTransform = (addonSuite : AddonSuite) => {
-		const categorySet : string[] = []
-		const addonSet : Addon[] = []
-
-		addonSuite.forEach( addon => {
-			const [[ ,category ],[ ,options ]] = Object.entries(addon) as ExtractedAddons	
-
-			const addons = options.map( opt => {
-				opt.category = category
-				return opt
-			})	
-			categorySet.push(category)
-			addonSet.push(...addons)
-		})
-
-		setCategories(categorySet)
-		setAddons(addonSet)
-	}
 
 
-	useEffect(()=> extractAndTransform(addonSuite),[])
+	
+	useEffect(()=> {
+		(async ()=> {
+			try {
+				const payload : FetchRequest = {
+					content: 'serviceAddons'
+				}
+
+				const response = await fetch('/api/fetch/', {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(payload)
+				})
+
+				const data : UnknownResponse = await response.json()
+
+				if (!response.ok || !data.successful) {
+					throw new Error(data.error)
+				}
+
+				const addonSuiteData : AddonSuite = data.data
+
+				if (!addonSuiteData) {
+					throw new Error('Request successful yet no data was recieved.')
+				} else {
+					const categories : string[] = []
+					const addons : Addon[] = []
+
+					addonSuiteData.forEach( category => {
+						categories.push(category.category)
+
+						category.addons.forEach( addon => {
+							addons.push(addon)
+						})
+					})
+
+					setCategories(categories)
+					setAddons(addons)
+				}
+
+			} catch(error) {
+				console.error(error)
+			}
+		})()
+	},[])
+
+
 
 	useEffect(()=> {
 		if (categories.length > 0) {
@@ -94,7 +120,7 @@ export default function Addons() {
 					 key={key}
 					 name={addon.name} 
 					 description={addon.description}
-					 svg={addon.svg}
+					 iconUrl={addon.iconUrl}
 					/>
 				)
 			})}

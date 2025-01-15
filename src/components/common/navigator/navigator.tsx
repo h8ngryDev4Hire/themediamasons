@@ -10,7 +10,7 @@ interface Params {
 }
 
 
-export const NavigatorContext = createContext([])
+export const NavigatorContext = createContext<any>(undefined)
 
 
 export default function Navigator({floating} : Params ): JSX.Element {

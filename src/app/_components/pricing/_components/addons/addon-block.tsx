@@ -6,12 +6,10 @@ import { AddonsContext, AddonsMasterContext } from "./addons";
 
 type CompliantAddon = Omit<Addon, 'pricing'>
 
-interface Props extends CompliantAddon {
+interface Props extends CompliantAddon {}
 
-}
-
-export default function AddonBlock( { name, description, svg } : Props ) {
-	const { transitionContext } : AddonsMasterContext = useContext(AddonsContext)
+export default function AddonBlock( { name, description, iconUrl } : Props ) {
+	const { transitionContext }  = useContext(AddonsContext) as AddonsMasterContext 
 	const { transitionState } = transitionContext
 
 	return (
@@ -37,7 +35,7 @@ export default function AddonBlock( { name, description, svg } : Props ) {
 			 max-sm:text-base text-base md:text-lg lg:text-lg xl:text-lg
 			`}>{name}</h2>
 			<Image 
-			 src={svg}
+			 src={iconUrl}
 			 height={50}
 			 width={50}
 			 alt={""}
