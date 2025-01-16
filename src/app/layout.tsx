@@ -8,7 +8,7 @@ import  ContactFormModal from '@components/modals/contactFormModal/contactFormMo
 import  { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
 import NewsletterModal, { signature } from '@components/modals/newsletterModal/newsletterModal'
 import LayoutFooter from '@components/footer/footer'
-import { ModalIdentifier, ServicePackage } from '@def/definitions'
+import { Core, Sanity } from '@def/definitions'
 import dynamic from 'next/dynamic'
 import { useSearchParams } from 'next/navigation'
 
@@ -27,7 +27,7 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 
 	
 	useEffect(()=> {
-		const signature  = searchParams.get('modal') as ModalIdentifier
+		const signature  = searchParams.get('modal') as Core.ModalIdentifier
 
 			switch(signature) {
 				case 'contact-modal': {
@@ -55,7 +55,7 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 				</main>
 				{ modalState && modalState.name === SIGNATURE && 
 					<ContactFormModal 
-					 metadata={modalState.metadata as ServicePackage}
+					 metadata={modalState.metadata as Sanity.ServicePackage}
 					/> }
 				{ modalState && modalState.name === signature && <NewsletterModal/> }
 				<LayoutFooter/>

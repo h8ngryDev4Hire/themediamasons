@@ -1,11 +1,11 @@
-import { ClientContactInformationSchema } from '@def/definitions'
-import { NextRequest, NextResponse } from 'next/server'
+import { UserContent } from '@def/definitions'
+import { NextResponse } from 'next/server'
 
 
 export async function POST( request : Request )  {
 	try {
 		const data = await request.json()
-		const result = ClientContactInformationSchema.safeParse(data)
+		const result = UserContent.ClientContactInformationSchema.safeParse(data)
 
 		if (!result.success) {
 			return NextResponse.json({

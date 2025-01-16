@@ -2,7 +2,6 @@ import { ForwardedRef, forwardRef, useState  } from "react"
 import Headline from "./headline"
 import CtaButton from "@components/common/call-to-action/call-to-action-btn"
 import { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
-import { ServicePackage } from "@def/definitions"
 
 interface Props {
 	visible: boolean

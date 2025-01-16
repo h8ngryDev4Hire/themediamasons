@@ -5,24 +5,24 @@ import useModal from '@hooks/useModal.ts'
 import { gudeaBold } from '@ui/fonts.ts'
 import CtaView from './views/ctaView/ctaView'
 import SubmissionView from './views/submissionView/submissionView'
-import { ModalIdentifier, ServicePackage, StateHook } from '@def/definitions'
+import { Core, Sanity } from '@def/definitions'
 
 
 interface Props {
-	metadata?: ServicePackage;
+	metadata?: Sanity.ServicePackage;
 }
 
 export interface ContactFormMasterContext {
-	modal: StateHook<boolean>;
-	content: StateHook<boolean>;
-	phase: StateHook<ModalPhase>; 
-	plan: StateHook<ServicePackage | undefined>
-	error: StateHook<Error | false>
+	modal: Core.StateHook<boolean>;
+	content: Core.StateHook<boolean>;
+	phase: Core.StateHook<ModalPhase>; 
+	plan: Core.StateHook<Sanity.ServicePackage | undefined>
+	error: Core.StateHook<Error | false>
 }
 
 export type ModalPhase = 'contact-info' | 'thank-you'
 
-export const SIGNATURE : ModalIdentifier = 'contact-modal'
+export const SIGNATURE : Core.ModalIdentifier = 'contact-modal'
 const ERROR_TIMEOUT = 5000
 
 export const ContactFormModalContext = createContext<any>(undefined)
@@ -34,7 +34,7 @@ export default function ContactFormModal({ metadata } : Props) {
 	const contactFormModalContext : ContactFormMasterContext = {
 		modal: useState(false),
 		content: useState(false),
-		plan: useState<ServicePackage | undefined>(metadata),
+		plan: useState<Sanity.ServicePackage | undefined>(metadata),
 		phase: useState<ModalPhase>('contact-info'),
 		error: useState<false | Error>(false)
 	}

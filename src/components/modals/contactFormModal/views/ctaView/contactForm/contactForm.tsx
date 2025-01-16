@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, createContext, useContext } from 'react'
-import { ClientContactInformation, ServicePackage } from '@def/definitions.ts'
+import { UserContent, Sanity } from '@def/definitions.ts'
 import SubmitButton from './submitButton.tsx'
 import { ContactFormMasterContext, ContactFormModalContext } from '@components/modals/contactFormModal/contactFormModal.tsx'
 
@@ -16,7 +16,7 @@ export default function ContactForm() {
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
 	const [company, setCompany] = useState('');	
-	const [contactContextPayload, setContactContextPayload] = useState<{} | ClientContactInformation>({})
+	const [contactContextPayload, setContactContextPayload] = useState<{} | UserContent.ClientContactInformation>({})
 
 	const handleFieldChange = (e : React.ChangeEvent<HTMLInputElement> ) => {
 		const { name, value } = e.target
@@ -38,12 +38,12 @@ export default function ContactForm() {
 	}
 
 	useEffect(() => {
-		const payload : ClientContactInformation = {
+		const payload : UserContent.ClientContactInformation = {
 			name: name,
 			phone: phone,
 			email: email,
 			company: company,
-			plan: plan as ServicePackage
+			plan: plan as Sanity.ServicePackage
 		}
 
 		setContactContextPayload(payload)

@@ -1,4 +1,4 @@
-import { GenericCallback } from "@def/definitions"
+import { Core } from "@def/definitions"
 import { useState } from "react"
 
 type TransitionSpeed = 'trans-ease' | 'trans-ease-md' | 'trans-ease-lg'
@@ -11,7 +11,7 @@ enum Speed {
 
 interface Options {
 	speed? : TransitionSpeed
-	callback? : GenericCallback
+	callback? : Core.GenericCallback
 }
 
 

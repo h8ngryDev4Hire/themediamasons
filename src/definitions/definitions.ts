@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export * from './core'
-export * from './routes'
-export * from './sanity'
-export * from './user-content'
+export * as Core from './core'
+export * as Routes from './routes'
+export * as Sanity from './sanity'
+export * as UserContent from './user-content'

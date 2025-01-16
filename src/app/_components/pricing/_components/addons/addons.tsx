@@ -1,24 +1,22 @@
-import { Addon, AddonSuite, CoreFunctions, FetchRequest, StateHook, UnknownResponse } from '@def/definitions'
-import { gudeaBold } from '@ui/fonts'
+import { Core, Sanity, Routes } from '@def/definitions'
 import AddonBlock from './addon-block'
 import { createContext, useEffect, useState } from 'react'
 import AddonSelector from './addon-selector'
 import useTransition, { UseTransition } from '@hooks/useTransition'
 
-type ExtractedAddons = [[ string,string ],[ string, Addon[] ]]
 
 export interface AddonsMasterContext {
-	categoriesContext : StateHook<string[]>
-	selectedCategoryContext: StateHook<string>
+	categoriesContext : Core.StateHook<string[]>
+	selectedCategoryContext: Core.StateHook<string>
 	transitionContext: UseTransition 
-	functions : CoreFunctions 
+	functions : Core.CoreFunctions 
 }
 
 export const AddonsContext = createContext<any>(undefined)
 
 export default function Addons() {
 
-	const [ addons, setAddons ] = useState<Addon[]>([])
+	const [ addons, setAddons ] = useState<Sanity.Addon[]>([])
 
 	const MasterContext : AddonsMasterContext = {
 		categoriesContext: useState<string[]>([]),
@@ -36,7 +34,7 @@ export default function Addons() {
 	useEffect(()=> {
 		(async ()=> {
 			try {
-				const payload : FetchRequest = {
+				const payload : Routes.FetchRequest = {
 					content: 'serviceAddons'
 				}
 
@@ -46,19 +44,19 @@ export default function Addons() {
 					body: JSON.stringify(payload)
 				})
 
-				const data : UnknownResponse = await response.json()
+				const data : Routes.UnknownResponse = await response.json()
 
 				if (!response.ok || !data.successful) {
 					throw new Error(data.error)
 				}
 
-				const addonSuiteData : AddonSuite = data.data
+				const addonSuiteData : Sanity.AddonSuite = data.data
 
 				if (!addonSuiteData) {
 					throw new Error('Request successful yet no data was recieved.')
 				} else {
 					const categories : string[] = []
-					const addons : Addon[] = []
+					const addons : Sanity.Addon[] = []
 
 					addonSuiteData.forEach( category => {
 						categories.push(category.category)

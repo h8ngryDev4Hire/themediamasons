@@ -4,7 +4,7 @@ import { bangers } from '@ui/fonts.ts'
 import { MouseEvent, useContext } from 'react'
 import { contactFormContext } from './contactForm'
 import { ContactFormMasterContext, ContactFormModalContext, exitModalContext } from '@components/modals/contactFormModal/contactFormModal'
-import { ClientContactInformationSchema } from '@def/definitions'
+import { UserContent } from '@def/definitions'
 
 
 export default function SubmitButton() {
@@ -18,7 +18,7 @@ export default function SubmitButton() {
 	const handleButtonClick = async (event : MouseEvent)  => {
 		event.preventDefault()
 		try {
-			const result = ClientContactInformationSchema.safeParse(contactData)
+			const result = UserContent.ClientContactInformationSchema.safeParse(contactData)
 
 			if (!result.success) throw new Error(result.error.issues[0].message) 
 

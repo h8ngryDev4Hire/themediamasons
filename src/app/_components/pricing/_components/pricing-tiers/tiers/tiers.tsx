@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react'
 import { gudeaThin, gudeaBold, bangers } from '@ui/fonts.ts'
 import Button from './button.tsx'
-import { PricingTier, ServicePackage } from '@def/definitions.ts';
+import { Sanity } from '@def/definitions.ts';
 
 import Rocketship from '@public/svg/rocketship.svg'
 import FlaminTire from '@public/svg/tire-flame.svg'
 import Globe from '@public/svg/globe.svg'
 
-type CompliantPricingTier = Omit<PricingTier, 'price'>
+type CompliantPricingTier = Omit<Sanity.PricingTier, 'price'>
 
 interface Props extends CompliantPricingTier {
 	price: number

@@ -1,13 +1,13 @@
 'use client'
 
-import { GenericCallback } from '@def/definitions';
+import { Core } from '@def/definitions';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useCallback } from 'react';
 
 
 interface CloseModalOptions {
 	timeout? : number
-	callbackFn?: GenericCallback 
+	callbackFn?: Core.GenericCallback 
 }
 
 interface OpenModalOptions {

@@ -2,18 +2,18 @@
 
 import Tier from './tiers/tiers.tsx'
 import PricingDeal from './pricing-deal.tsx'
-import { FetchRequest, PricingTier, ServicePackage, UnknownResponse } from '@def/definitions.ts'
+import { Routes, Sanity } from '@def/definitions.ts'
 import { useEffect, useState } from 'react'
 
 
 export default function PricingTiers() {
-	const [ pricingTiers, setPricingTiers ] = useState<PricingTier[]>([])
+	const [ pricingTiers, setPricingTiers ] = useState<Sanity.PricingTier[]>([])
 
 
 	useEffect(()=>{
 		(async() => {
 			try {
-				const payload : FetchRequest = {
+				const payload : Routes.FetchRequest = {
 					content: 'pricingTiers'
 				}
 
@@ -23,7 +23,7 @@ export default function PricingTiers() {
 					body: JSON.stringify(payload)
 				})
 
-				const data : UnknownResponse = await response.json()
+				const data : Routes.UnknownResponse = await response.json()
 
 				if (!response.ok || !data.successful) {
 					throw new Error(data.error)
@@ -58,7 +58,7 @@ export default function PricingTiers() {
 			return (
 				<Tier
 				 key={id}
-				 codeName={tier.codeName as ServicePackage}
+				 codeName={tier.codeName as Sanity.ServicePackage}
 				 name={tier.name}
 				 price={tier.price.discounted}
 				 perks={tier.perks}

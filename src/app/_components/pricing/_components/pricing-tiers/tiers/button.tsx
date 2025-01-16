@@ -1,10 +1,10 @@
-import { ServicePackage } from '@def/definitions';
+import { Sanity } from '@def/definitions';
 import useModal from '@hooks/useModal';
 import { gudeaBold } from '@ui/fonts.ts'
 import { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
 
 interface Props {
-	selectedPlan: ServicePackage; 
+	selectedPlan: Sanity.ServicePackage; 
 }
 
 export default function Button( { selectedPlan } : Props )  {

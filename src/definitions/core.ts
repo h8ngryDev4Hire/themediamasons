@@ -1,9 +1,10 @@
 import { z } from 'zod'
 
 // Basic utility types with Zod
-export const GenericCallbackSchema = z.function()
-  .args(z.array(z.any()))
-  .returns(z.any());
+export const GenericCallbackSchema = z.function(
+	z.tuple([]).rest(z.any()))
+		.returns(z.any())
+		.optional()
 
 
 // React state hook type - keeping as type because it's a TypeScript utility type

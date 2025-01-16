@@ -1,13 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import ctaData from '@data/json/ctaData.json'
 import TextStream from './text-stream.tsx'
 import FadeIntoText from './fade-into-text.tsx'
 import AppTitle from '@components/common/app-title/app-title.tsx'
 import CtaButton from '@components/common/call-to-action/call-to-action-btn.tsx'
 import { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
-import { FetchRequest, HeroCtaArray, ServicePackage, UnknownResponse } from '@def/definitions.ts'
+import { Routes, Sanity } from '@def/definitions.ts'
 
 const SHOW_QUESTION_TIMER = 1000
 const SHOW_ANSWER_TIMER = 2000
@@ -24,12 +23,12 @@ export default function CallToAction() {
     	const [ questionVisible, setQuestionVisible ] = useState(false)
 	const [ answerVisible, setAnswerVisible ] = useState(false)
 	const [ introEffect, setIntroEffect ] = useState(false)
-	const [ heroCta, setHeroCta ] = useState<HeroCtaArray>([])
+	const [ heroCta, setHeroCta ] = useState<Sanity.HeroCtaArray>([])
 
 	useEffect(()=> {
 		( async () => {
 			try {
-				const payload : FetchRequest = {
+				const payload : Routes.FetchRequest = {
 					content: 'heroCta'
 				}
 
@@ -39,13 +38,13 @@ export default function CallToAction() {
 					body: JSON.stringify(payload)
 				})
 
-				const data : UnknownResponse = await response.json()
+				const data : Routes.UnknownResponse = await response.json()
 
 				if (!response.ok || !data.successful) {
 					throw new Error(data.error)
 				}
 
-				const ctaData : HeroCtaArray = data.data
+				const ctaData : Sanity.HeroCtaArray = data.data
 
 				if (!ctaData) {
 					throw new Error('Request successful yet no data was recieved.')
@@ -134,7 +133,7 @@ export default function CallToAction() {
 				<CtaButton 
 				 message={"Start Here!"}
 				 modalId={SIGNATURE}
-				 metadata={"cta" as ServicePackage}
+				 metadata={"cta" as Sanity.ServicePackage}
 				/>
 			</div>
 

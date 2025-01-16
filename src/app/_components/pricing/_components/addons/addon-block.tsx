@@ -1,10 +1,10 @@
-import { Addon } from "@def/definitions";
+import { Sanity } from "@def/definitions";
 import { bangers, gudeaBold, gudeaThin } from "@ui/fonts";
 import Image from "next/image";
 import { useContext } from "react";
 import { AddonsContext, AddonsMasterContext } from "./addons";
 
-type CompliantAddon = Omit<Addon, 'pricing'>
+type CompliantAddon = Omit<Sanity.Addon, 'pricing'>
 
 interface Props extends CompliantAddon {}
 

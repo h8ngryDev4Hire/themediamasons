@@ -1,4 +1,4 @@
-import { FailureResponse, FetchRequestSchema, SuccessResponse } from "@def/definitions"
+import { Routes } from "@def/definitions"
 import sanityQuery from "@lib/queries/util"
 import { NextResponse } from "next/server"
 import * as Queries from '@lib/queries/standard'
@@ -13,7 +13,7 @@ export async function POST( request: Request ) {
 
 		const json = await request.json()
 
-		const { content } = FetchRequestSchema.parse(json)
+		const { content } = Routes.FetchRequestSchema.parse(json)
 
 
 		switch (content) {
@@ -52,14 +52,14 @@ export async function POST( request: Request ) {
 		if (error) throw new Error(error) 
 
 		if (data) {
-			return NextResponse.json<SuccessResponse>({
+			return NextResponse.json<Routes.SuccessResponse>({
 				successful: true,
 				data
 			})
 		} else throw new Error('No error recieved yet data value was returned empty')
 
 	} catch ( error : unknown ) {
-		return NextResponse.json<FailureResponse>({
+		return NextResponse.json<Routes.FailureResponse>({
 			successful: false,
 			error: error
 		})
