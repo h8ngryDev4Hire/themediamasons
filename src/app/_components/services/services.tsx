@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect, useRef } from 'react'
 import Headline from './headline.tsx'
 import ServiceBlock from './service-block.tsx'

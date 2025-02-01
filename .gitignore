@@ -1,3 +1,6 @@
+# WIP
+*.wip
+
 # Node Modules folder
 node_modules/
 

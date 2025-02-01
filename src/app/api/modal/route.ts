@@ -9,6 +9,6 @@ export async function GET(request : NextRequest) {
 		})
 	} catch(error){
 		console.log(error)
-		return NextResponse.json({ successful: false }, { status: 404 })
+		return NextResponse.json({ successful: false }, { status: 400 })
 	}
 }

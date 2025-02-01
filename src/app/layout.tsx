@@ -2,15 +2,16 @@
 
 import React, { Suspense, useEffect } from 'react'
 import '@ui/globals.css'
-import Background from '@components/background/background.tsx'
+import { useSearchParams } from 'next/navigation'
+import dynamic from 'next/dynamic'
+
+import { Core, Sanity } from '@def/definitions'
 import useModal from '@hooks/useModal'
+import Background from '@components/background/background.tsx'
 import  ContactFormModal from '@components/modals/contactFormModal/contactFormModal.tsx'
 import  { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
 import NewsletterModal, { signature } from '@components/modals/newsletterModal/newsletterModal'
 import LayoutFooter from '@components/footer/footer'
-import { Core, Sanity } from '@def/definitions'
-import dynamic from 'next/dynamic'
-import { useSearchParams } from 'next/navigation'
 
 
 interface RootLayoutProps {

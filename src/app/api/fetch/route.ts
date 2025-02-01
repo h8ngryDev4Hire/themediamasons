@@ -62,7 +62,7 @@ export async function POST( request: Request ) {
 		return NextResponse.json<Routes.FailureResponse>({
 			successful: false,
 			error: error
-		})
+		},{ status: 400 })
 	}
 }
 
