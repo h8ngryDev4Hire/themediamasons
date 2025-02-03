@@ -4,6 +4,7 @@ import React, { Suspense, useEffect } from 'react'
 import '@ui/globals.css'
 import { useSearchParams } from 'next/navigation'
 import dynamic from 'next/dynamic'
+import Script from 'next/script'
 
 import { Core, Sanity } from '@def/definitions'
 import useModal from '@hooks/useModal'
@@ -69,6 +70,19 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 export default function Layout({ children } : RootLayoutProps) {
 	return (
 		<html lang="en">
+			<head>
+			<Script
+			 src="https://www.googletagmanager.com/gtag/js?id=G-L8M6Z41GM3"
+			 strategy="afterInteractive"
+			/>
+			<Script id="google-analytics">{`
+  			 window.dataLayer = window.dataLayer || [];
+  			 function gtag(){dataLayer.push(arguments);}
+  			 gtag('js', new Date());
+
+  			 gtag('config', 'G-L8M6Z41GM3');
+			`}</Script>
+			</head>
 			<title>The Media Masons</title>
 			<body className="bg-black max-w-full overflow-x-hidden overscroll-none">
 			<Suspense>
