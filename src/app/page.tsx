@@ -9,6 +9,7 @@ import About from './_components/about/about.tsx'
 import Pricing from './_components/pricing/pricing.tsx'
 import Services from './_components/services/services.tsx'
 import Contact from './_components/contact/contact.tsx'
+import TestimonialsSection from './_components/testimonials/testimonials.tsx'
 
 const ThreeObject = dynamic(() => import('@components/three/cube.tsx'), { ssr: false })
 
@@ -90,6 +91,9 @@ export default function Home() : JSX.Element {
 					</div>
 					<div className="snap-proximity w-auto h-auto">
 					<About/>
+					</div>
+					<div className="snap-proximity w-auto h-auto">
+					<TestimonialsSection/>
 					</div>
 					<div className="snap-proximity w-auto h-auto">
 					<Pricing/>

@@ -103,3 +103,25 @@ export type AddonCategory = z.infer<typeof AddonCategorySchema>;
 export type AddonSuite = z.infer<typeof AddonSuiteSchema>;
 export type AboutTextContent = z.infer<typeof AboutTextContentSchema>
 export type AboutTextContentArray = z.infer<typeof AboutTextContentArraySchema>
+
+export type Testimonial = {
+  _id: string
+  name: string
+  position?: string
+  quote: string
+  rating: number
+  imageUrl?: string
+}
+
+// Testimonial schema
+export const TestimonialSchema = z.object({
+  _id: z.string(),
+  name: z.string(),
+  position: z.string().optional(),
+  quote: z.string(),
+  rating: z.number().min(1).max(5),
+  imageUrl: z.string().url().optional()
+});
+
+// Testimonial Array Schema
+export const TestimonialArraySchema = z.array(TestimonialSchema);

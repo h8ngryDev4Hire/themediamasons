@@ -42,6 +42,11 @@ export async function POST( request: Request ) {
 				schema = SanitySchemas.AboutTextContentArraySchema
 				break
 			}
+			case 'testimonial': {
+				query = Queries.testimonialsQuery
+				schema = SanitySchemas.TestimonialArraySchema 
+				break
+			}
 			default: {
 				throw new Error('Invalid Content Type received')
 			}
