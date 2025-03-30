@@ -7,6 +7,7 @@ import serviceAddonsCategories from './serviceAddonsCategories'
 import heroCta from './heroCta'
 import about from './about'
 import testimonial from './testimonial'
+import aboutHighlight from './aboutHighlight'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -17,7 +18,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		serviceAddonsCategories,
 		heroCta,
 		about,
-		testimonial
+		testimonial,
+		aboutHighlight
 	],
 }
 
@@ -28,5 +30,6 @@ export const schemaCodenames = [
 	'serviceAddonsCategories',
 	'heroCta',
 	'about',
-	'testimonial'
+	'testimonial',
+	'aboutHighlight'
 ] as const 

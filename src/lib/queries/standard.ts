@@ -27,6 +27,14 @@ export const aboutQuery = `*[_type == "about"] | order(orderAsc) {
   description
 }`
 
+// About Highlights Query
+export const aboutHighlightsQuery = `*[_type == "aboutHighlight"] | order(order asc) {
+  title,
+  description,
+  componentType,
+  order
+}`
+
 // Addons with Categories Query
 export const addonsQuery = `*[_type == "addonCategory"] {
     category,

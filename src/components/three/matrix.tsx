@@ -63,7 +63,7 @@ export default function Matrix() {
         void main() {
           vOpacity = opacity;
           vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-          gl_PointSize = 2.0;
+          gl_PointSize = 5.0;
           gl_Position = projectionMatrix * mvPosition;
         }
       `,
@@ -97,6 +97,11 @@ export default function Matrix() {
     camera.position.set(0, 0, 10)
     camera.lookAt(0, 0, 0)
 
+    // Define fade zones for top and bottom of the view
+    const fadeDistance = 4
+    const topFadeStart = 9
+    const bottomFadeStart = -7
+
     const animate = () => {
       requestAnimationFrame(animate)
 
@@ -107,15 +112,25 @@ export default function Matrix() {
           particlePositions[i * 3 + 1] = 10
         }
 
-        particleOpacities[i] = Math.max(0, particleOpacities[i] - 0.02)
-        if (particleOpacities[i] <= 0) {
-          particleOpacities[i] = 1 // Reset opacity
+        // Calculate opacity based on position
+        const yPos = particlePositions[i * 3 + 1]
+        
+        // Fade in at the top
+        if (yPos > topFadeStart) {
+          particleOpacities[i] = Math.max(0, Math.min(1, 1 - (yPos - topFadeStart) / fadeDistance))
+        } 
+        // Fade out at the bottom
+        else if (yPos < bottomFadeStart) {
+          particleOpacities[i] = Math.max(0, Math.min(1, (yPos - bottomFadeStart + fadeDistance) / fadeDistance))
+        } 
+        // Full opacity in the middle
+        else {
+          particleOpacities[i] = 1
         }
       }
 
       particleGeometry.attributes.position.needsUpdate = true
       particleGeometry.attributes.opacity.needsUpdate = true
-
 
       renderer.render(scene, camera)
     }

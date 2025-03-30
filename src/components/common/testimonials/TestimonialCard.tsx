@@ -49,7 +49,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, classNam
             />
           </div>
         ) : (
-          <div className="h-12 w-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 mr-4 flex items-center justify-center text-white font-bold text-xl">
+          <div className="min-h-12 min-w-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 mr-4 flex items-center justify-center text-white font-bold text-xl">
             {testimonial.name.charAt(0)}
           </div>
         )}

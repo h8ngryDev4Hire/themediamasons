@@ -62,9 +62,9 @@ loader.setDRACOLoader( dracoLoader );
 
     function animate() {
       requestAnimationFrame(animate)
-	const model = modelRef?.current
+      const model = modelRef?.current
       if (model) {
-	      model.rotation.y += 0.005
+	      model.rotation.y += 0.002
       } 
       renderer.render(scene, camera)
     }

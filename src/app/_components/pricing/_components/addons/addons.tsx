@@ -17,6 +17,7 @@ export const AddonsContext = createContext<any>(undefined)
 export default function Addons() {
 
 	const [ addons, setAddons ] = useState<Sanity.Addon[]>([])
+	const [ currentAddonIndex, setCurrentAddonIndex ] = useState(0)
 
 	const MasterContext : AddonsMasterContext = {
 		categoriesContext: useState<string[]>([]),
@@ -28,9 +29,18 @@ export default function Addons() {
 	const [ categories, setCategories ] = MasterContext.categoriesContext
 	const { transitionState } = MasterContext.transitionContext
 
+	// Function to navigate to next addon
+	const nextAddon = () => {
+		const categoryAddons = addons.filter(addon => addon.category === selectedCategory)
+		setCurrentAddonIndex((prev) => (prev + 1) % categoryAddons.length)
+	}
 
+	// Function to navigate to previous addon
+	const prevAddon = () => {
+		const categoryAddons = addons.filter(addon => addon.category === selectedCategory)
+		setCurrentAddonIndex((prev) => (prev - 1 + categoryAddons.length) % categoryAddons.length)
+	}
 
-	
 	useEffect(()=> {
 		(async ()=> {
 			try {
@@ -76,22 +86,28 @@ export default function Addons() {
 		})()
 	},[])
 
-
-
 	useEffect(()=> {
 		if (categories.length > 0) {
 			setSelectedCategory(categories[1])
 		}
 	},[categories])
 
+	useEffect(() => {
+		// Reset current addon index when category changes
+		setCurrentAddonIndex(0)
+	}, [selectedCategory])
 
+	// Get the filtered addons for the current category
+	const categoryAddons = addons.filter(addon => addon.category === selectedCategory)
+	// Get the addon to display in carousel view
+	const displayedAddon = categoryAddons[currentAddonIndex]
 
 	return (
 		<section 
 		 id="addons-section" 
 		 className={`
 		 w-[90vw] md:w-full lg:w-full xl:w-[80vw]
-		 h-[18rem] md:h-[20rem] lg:h-[23rem] xl:h-[25rem] 
+		 h-auto sm:h-[18rem] md:h-[20rem] lg:h-[23rem] xl:h-[25rem] 
 		 flex flex-col items-center justify-center
 		 rounded-xl
 		 bg-white bg-opacity-10
@@ -106,10 +122,12 @@ export default function Addons() {
 			`}>
 				<AddonSelector/>
 			</section>
+			
+			{/* Desktop view - grid layout for addons */}
 			<section 
-			 id="addon-display" 
+			 id="addon-display-desktop" 
 			 className={`
-			 flex items-center justify-center
+			 hidden sm:flex items-center justify-center
 			 space-x-[3rem]
 			`}>
 			{addons.map( ( addon,key ) => {
@@ -122,6 +140,68 @@ export default function Addons() {
 					/>
 				)
 			})}
+			</section>
+			
+			{/* Mobile view - carousel layout for addons */}
+			<section 
+			 id="addon-display-mobile" 
+			 className={`
+			 flex sm:hidden 
+			 flex-col
+			 items-center justify-center
+			 w-full
+			`}>
+				{/* Only render if we have addons and a selected category */}
+				{displayedAddon && (
+					<div className="flex flex-row items-center justify-center w-full">
+						{/* Previous button */}
+						<button 
+							onClick={prevAddon}
+							className="flex items-center justify-center w-8 h-8 mr-2 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-full shadow-lg hover:bg-black/60 transition-all duration-300 focus:outline-none z-10"
+							aria-label="Previous add-on"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 text-purple-400">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+							</svg>
+						</button>
+						
+						{/* Current addon */}
+						<div className="flex justify-center transition-all duration-300 ease-in-out transform scale-110">
+							<AddonBlock 
+								name={displayedAddon.name} 
+								description={displayedAddon.description}
+								iconUrl={displayedAddon.iconUrl}
+							/>
+						</div>
+						
+						{/* Next button */}
+						<button 
+							onClick={nextAddon}
+							className="flex items-center justify-center w-8 h-8 ml-2 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-full shadow-lg hover:bg-black/60 transition-all duration-300 focus:outline-none z-10"
+							aria-label="Next add-on"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 text-purple-400">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+							</svg>
+						</button>
+					</div>
+				)}
+				
+				{/* Addon indicators */}
+				{categoryAddons.length > 0 && (
+					<div className="flex justify-center mt-4 w-full">
+						{categoryAddons.map((_, index) => (
+							<button
+								key={index}
+								onClick={() => setCurrentAddonIndex(index)}
+								className={`w-2 h-2 mx-1 rounded-full focus:outline-none transition-all duration-300 ${
+									index === currentAddonIndex ? 'bg-purple-500' : 'bg-purple-500/30'
+								}`}
+								aria-label={`Go to add-on ${index + 1}`}
+							/>
+						))}
+					</div>
+				)}
 			</section>
 		</AddonsContext.Provider>
 		</section>

@@ -1,37 +1,28 @@
-import { AboutTextContent, AboutTextContentArray } from "@def/sanity";
-import { gudeaBold, gudeaThin } from "@ui/fonts";
+import { AboutTextContent } from "@def/sanity";
+import { bangers, gudeaBold, gudeaThin } from "@ui/fonts";
 
-
-export default function TextContent({ name, description, quote } : AboutTextContent) {
+export default function TextContent({ name, description, quote }: AboutTextContent) {
 	return (
-
-			<>
-			<blockquote 
-			 id={`${name.toLowerCase}-quote`}
-			 className={`
-			 flex flex-col text-white
-       			 text-center md:text-left
-			`}>
-				<h1 
-				 className={`
-				 ${gudeaBold.className} text-2xl
-				`}><i>{`"${quote.text}"`}</i>
-				</h1>
-				<span 
-				 className={`
-				 ${gudeaThin.className} ml-[1rem] text-opacity-60
-				`}><i>{`~ ${quote.author}`}</i></span>
+		<div className="space-y-4">
+			{/* Section title */}
+			<h3 className={`${bangers.className} text-xl md:text-2xl font-bold text-white`}>
+				{name}
+			</h3>
+			
+			{/* Quote */}
+			<blockquote className="pl-4 border-l-4 border-purple-500/50 my-4">
+				<p className={`${gudeaBold.className} text-lg md:text-xl text-gray-300 italic`}>
+					"{quote.text}"
+				</p>
+				<footer className={`${gudeaThin.className} text-sm text-gray-400 mt-2`}>
+					— {quote.author}
+				</footer>
 			</blockquote>
-
-			<p 
-			 id="text-content" 
-			 className={`
-       			 text-white 
-			 text-sm sm:text-[1.1rem]
-			 text-opacity-80 whitespace-pre-wrap
-			 leading-normal
-      			 text-left indent-8
-			`}>{description}</p>
-		</>
+			
+			{/* Description */}
+			<p className="text-gray-300 text-base leading-relaxed whitespace-pre-wrap">
+				{description}
+			</p>
+		</div>
 	)
 }

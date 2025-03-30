@@ -42,6 +42,11 @@ export async function POST( request: Request ) {
 				schema = SanitySchemas.AboutTextContentArraySchema
 				break
 			}
+			case 'aboutHighlight': {
+				query = Queries.aboutHighlightsQuery
+				schema = SanitySchemas.AboutHighlightArraySchema
+				break
+			}
 			case 'testimonial': {
 				query = Queries.testimonialsQuery
 				schema = SanitySchemas.TestimonialArraySchema 

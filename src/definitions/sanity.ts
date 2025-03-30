@@ -89,6 +89,18 @@ export const AboutTextContentSchema = z.object({
 
 export const AboutTextContentArraySchema = z.array(AboutTextContentSchema)
 
+// Component type for 3D visualizations
+export const ComponentTypeSchema = z.enum(['laptop', 'globe', 'dnaHelix'])
+
+// About Highlight schema
+export const AboutHighlightSchema = z.object({
+	title: z.string(),
+	description: z.string(),
+	componentType: ComponentTypeSchema,
+	order: z.number()
+})
+
+export const AboutHighlightArraySchema = z.array(AboutHighlightSchema)
 
 export type SanityCodename = z.infer<typeof SanityCodenameSchema>
 export type ServicePackage = z.infer<typeof ServicePackageSchema>;
@@ -103,6 +115,9 @@ export type AddonCategory = z.infer<typeof AddonCategorySchema>;
 export type AddonSuite = z.infer<typeof AddonSuiteSchema>;
 export type AboutTextContent = z.infer<typeof AboutTextContentSchema>
 export type AboutTextContentArray = z.infer<typeof AboutTextContentArraySchema>
+export type ComponentType = z.infer<typeof ComponentTypeSchema>
+export type AboutHighlight = z.infer<typeof AboutHighlightSchema>
+export type AboutHighlightArray = z.infer<typeof AboutHighlightArraySchema>
 
 export type Testimonial = {
   _id: string

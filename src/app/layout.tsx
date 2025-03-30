@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import '@ui/globals.css'
 import { useSearchParams } from 'next/navigation'
 import dynamic from 'next/dynamic'
@@ -9,25 +9,23 @@ import Script from 'next/script'
 import { Core, Sanity } from '@def/definitions'
 import useModal from '@hooks/useModal'
 import Background from '@components/background/background.tsx'
-import  ContactFormModal from '@components/modals/contactFormModal/contactFormModal.tsx'
-import  { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
+import ContactFormModal from '@components/modals/contactFormModal/contactFormModal.tsx'
+import { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
 import NewsletterModal, { signature } from '@components/modals/newsletterModal/newsletterModal'
 import LayoutFooter from '@components/footer/footer'
-
+import LoadingProgressBar from '@components/loading/progress-bar.tsx'
 
 interface RootLayoutProps {
 	children : React.ReactNode
 }
 
-
 const Responsiveness = dynamic(() => import('./responsiveness'), { ssr: false })
-
 
 function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 	const { modalState, openModal } = useModal()
 	const searchParams = useSearchParams()
+	const [isLoading, setIsLoading] = useState(true)
 
-	
 	useEffect(()=> {
 		const signature  = searchParams.get('modal') as Core.ModalIdentifier
 
@@ -51,22 +49,21 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 
 	return (
 		<>
-				<Background/>
-				<main className="overflow-x-hidden">
-				{children}
-				</main>
-				{ modalState && modalState.name === SIGNATURE && 
-					<ContactFormModal 
-					 metadata={modalState.metadata as Sanity.ServicePackage}
-					/> }
-				{ modalState && modalState.name === signature && <NewsletterModal/> }
-				<LayoutFooter/>
+			{isLoading && <LoadingProgressBar onLoadingComplete={() => setIsLoading(false)} />}
+			<Background/>
+			<main className="overflow-x-hidden">
+			{children}
+			</main>
+			{ modalState && modalState.name === SIGNATURE && 
+				<ContactFormModal 
+				 metadata={modalState.metadata as Sanity.ServicePackage}
+				/> }
+			{ modalState && modalState.name === signature && <NewsletterModal/> }
+			<LayoutFooter/>
 		</>
 	)
 }
 
-
-// For compliance with useSearchParams() hook
 export default function Layout({ children } : RootLayoutProps) {
 	return (
 		<html lang="en">

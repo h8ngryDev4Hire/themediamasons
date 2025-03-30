@@ -1,22 +1,23 @@
-import { useState, useEffect, useRef } from 'react'
-import Headline from './headline.tsx'
+'use client'
+
+import React, { useState, useEffect, useRef } from 'react'
+import { bangers } from '@ui/fonts'
 import ServiceBlock from './service-block.tsx'
 import { FetchRequest, UnknownResponse } from '@def/routes.ts'
 import { ServiceBlockArray } from '@def/sanity.ts'
-
-
+import { useReveal } from '@lib/hooks/useReveal'
 
 export default function Services() {
-	const [ isVisible, setVisibleState ] = useState(false)
-	const [ serviceBlocks, setServiceBlocks ] = useState<ServiceBlockArray>([])
+	const [serviceBlocks, setServiceBlocks] = useState<ServiceBlockArray>([])
+	const [sectionRef, revealed] = useReveal({
+		threshold: 0.1
+	})
 
-	const serviceListRef = useRef<HTMLDivElement>(null)
-
-
-	useEffect(()=> {
-		(async ()=> {
+	// Fetch services from API
+	useEffect(() => {
+		(async () => {
 			try {
-				const payload : FetchRequest = {
+				const payload: FetchRequest = {
 					content: 'serviceList'
 				}
 
@@ -26,108 +27,68 @@ export default function Services() {
 					body: JSON.stringify(payload)
 				})
 
-				const data : UnknownResponse = await response.json()
+				const data: UnknownResponse = await response.json()
 
 				if (!response.ok || !data.successful) {
-					throw new Error(data.error)
+					throw new Error(data.error || 'Failed to fetch services')
 				}
 
-				const serviceBlockData : ServiceBlockArray = data.data
+				const serviceBlockData: ServiceBlockArray = data.data
 
 				if (!serviceBlockData) {
-					throw new Error('Request successful yet no data was recieved.')
+					throw new Error('Request successful yet no data was received.')
 				} else {
 					setServiceBlocks(serviceBlockData)
 				}
 			} catch (error) {
-
+				console.error('Error fetching services:', error)
 			}
 		})()
-	},[])
-
-	useEffect(()=>{
-		const observer = new IntersectionObserver( ([ entry ]) =>{
-				setVisibleState(entry.isIntersecting)
-			},{
-				root: null,
-				rootMargin: '0px',
-				threshold: 0
-			})
-
-		if (serviceListRef.current) observer.observe(serviceListRef.current)
-
-		return () => { if (serviceListRef.current) observer.unobserve(serviceListRef.current) }
-	
-	},[])
-
+	}, [])
 
 	return (
-		<div 
-		 id="services" 
-		 className={`
-			 flex flex-col w-full items-center justify-center space-y-[6rem]
-			 trans-ease-all-md transform min-h-[1000px]
-		 `} 
-		 ref={serviceListRef}
+		<section 
+			id="services" 
+			ref={sectionRef}
+			className={`
+				w-full py-12 md:py-20
+				flex flex-col items-center
+				transition-all duration-1000 ease-in-out
+				${revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+			`}
 		>
-			{isVisible && 
-				<Headline 
-				 message={<>
-				 Scale <b className={`font-extrabold`}>UP </b> 
-				 your <b>Digital Presence</b> with our Services!
-				</>}/>
-			}
-
-			<section 
-			 id="services-list" 
-			 className={`
-				flex items-center justify-center
-				max-sm:flex-col flex-row md:flex-row lg:flex-col xl:flex-col 
-				max-sm:space-y-[2rem] md:space-y-0 lg:space-y-[3rem]
-				max-sm:space-x-0 space-x-[4rem] md:space-x-[2rem] lg:space-x-0
-				w-screen
-				${ isVisible ? "" : "opacity-0" } 
-			`}>
-				<section 
-				 id="top-row" 
-				 className={`
-					 md:flex-col lg:flex-row xl:flex-row flex-col 
-					 max-sm:space-y-[2rem] space-y-[2rem] md:space-y-[2rem] lg:space-y-0
-					 lg:space-x-[3rem]
-					 flex items-center justify-center h-[65%]
+			<div className="text-center mb-10 md:mb-16">
+				<h2 className={`
+					text-5xl 
+					font-bold mb-4
+					bg-clip-text text-transparent 
+					bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
+					${bangers.className}
 				`}>
-					{serviceBlocks.slice(0,3).map( (service, id) => {
-						return (
-							<ServiceBlock
-							 key={id}
-							 name={service.name}
-							 desc={service.description}
-							 imgSrc={service.iconUrl}
-							/>	
-						)
-					})}
-				</section>	
-				<section 
-				 id="bottom-row" 
-				 className={`
-					 md:flex-col lg:flex-row xl:flex-row flex-col 
-					 max-sm:space-y-[2rem] space-y-[2rem] md:space-y-[2rem] lg:space-y-0
-					 lg:space-x-[3rem]
-					 flex items-center justify-center h-[65%]
-				`}>
-					{serviceBlocks.slice(3,6).map( (service, id) => {
-						return (
-							<ServiceBlock
-							 key={id}
-							 name={service.name}
-							 desc={service.description}
-							 imgSrc={service.iconUrl}
-							/>	
-						)
-					})}
-				</section>	
-			</section>
-		</div>
+					Our Services
+				</h2>
+				<p className="text-gray-300 max-w-2xl mx-auto text-2xl">
+					Scale <span className="font-extrabold">UP</span> your <span className="font-bold">Digital Presence</span> with our Services!
+				</p>
+			</div>
 
+			{/* Services grid */}
+			<div className="w-full max-w-7xl px-4">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{serviceBlocks.map((service, index) => (
+						<div 
+							key={index}
+							className="bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+						>
+							<ServiceBlock
+								name={service.name}
+								desc={service.description}
+								imgSrc={service.iconUrl}
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
 	)
 }

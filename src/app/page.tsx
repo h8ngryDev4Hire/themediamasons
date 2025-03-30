@@ -79,12 +79,13 @@ export default function Home() : JSX.Element {
 				<main 
 				 id="main-content"
 				 className={`
-        			 w-[90%] sm:w-[85%] md:w-[75%] 
-        			 space-y-[2rem] sm:space-y-[3rem] md:space-y-[10rem]
-        			 flex flex-col items-center justify-center
-        			 max-sm:px-0 px-4 sm:px-6 md:px-0
+        		 w-[90%] sm:w-[85%] md:w-[75%] 
+        		 space-y-[2rem] sm:space-y-[3rem] md:space-y-[10rem]
+        		 flex flex-col items-center justify-center
+        		 max-sm:px-0 px-4 sm:px-6 md:px-0
 				 z-content
 				 overflow-y-clip h-full
+				 snap-y snap-mandatory
 				`}>
 					<div className="snap-proximity w-auto h-auto">
 					<Services/>
