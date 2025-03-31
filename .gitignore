@@ -31,3 +31,4 @@ backups/
 # misc
 *.old
 .DS_Store
+.vercel

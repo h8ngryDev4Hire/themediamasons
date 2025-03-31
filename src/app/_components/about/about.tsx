@@ -150,7 +150,7 @@ export default function About() {
 								width={300}
 								height={300}
 								nodesPerStrand={16}
-								strandThickness={3}
+								strandThickness={0.08}
 							/>
 						</Box3D>
 					</div>

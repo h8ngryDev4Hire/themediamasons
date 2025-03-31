@@ -24,7 +24,7 @@ export default function DigitalDnaHelix({
   ribbonCount = 2,
   rungColor = '#3b82f6', // Blue for rungs
   nodesPerStrand = 24, // Default nodes per strand
-  strandThickness = 0.3 // Default strand thickness
+  strandThickness = 0.08 // Dramatically reduced thickness from original 0.3
 }: HelixProps) {
   const mountRef = useRef<HTMLDivElement>(null)
   const [dimensions, setDimensions] = useState({ width, height })
@@ -121,8 +121,8 @@ export default function DigitalDnaHelix({
       const tubeGeometry = new THREE.TubeGeometry(
         curve, 
         totalSegments,
-        strandThickness, // Use the new parameter
-        12, // increased tube segments for better wireframe
+        strandThickness, 
+        8, // reduced from 12 for even more delicate wireframe appearance
         false // closed
       )
       
@@ -131,7 +131,7 @@ export default function DigitalDnaHelix({
         color: i % 2 === 0 ? primaryColor : secondaryColor,
         wireframe: true,
         transparent: true,
-        opacity: 0.9
+        opacity: 0.6 // Further reduced
       })
       
       const wireframeMesh = new THREE.Mesh(tubeGeometry, wireframeMaterial)
@@ -170,10 +170,10 @@ export default function DigitalDnaHelix({
           const connectionLength = direction.length()
           
           const connectionGeometry = new THREE.CylinderGeometry(
-            0.08, // radius top
-            0.08, // radius bottom
+            0.02, // radius top - dramatically reduced from original 0.08
+            0.02, // radius bottom - dramatically reduced from original 0.08
             connectionLength, // height
-            6, // radial segments
+            4, // radial segments - further reduced for simpler geometry
             1 // height segments
           )
           
@@ -186,7 +186,7 @@ export default function DigitalDnaHelix({
             color: secondaryColor, // Changed from rungColor to secondaryColor
             wireframe: true,
             transparent: true,
-            opacity: 0.8
+            opacity: 0.6 // Reduced from 0.8 for a more delicate appearance
           })
           
           const connection = new THREE.Mesh(connectionGeometry, connectionMaterial)
@@ -232,10 +232,10 @@ export default function DigitalDnaHelix({
     particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3))
     
     const particleMaterial = new THREE.PointsMaterial({
-      size: 0.25,
+      size: 0.15, // Reduced from 0.25 for smaller particles
       vertexColors: true,
       transparent: true,
-      opacity: 0.5
+      opacity: 0.4 // Reduced from 0.5 for a lighter appearance
     })
     
     const particles = new THREE.Points(particleGeometry, particleMaterial)
@@ -257,7 +257,7 @@ export default function DigitalDnaHelix({
       // Animate ribbon materials
       ribbons.forEach((ribbon, i) => {
         if (ribbon.material instanceof THREE.MeshBasicMaterial) {
-          ribbon.material.opacity = 0.7 + 0.2 * Math.sin(time + i * 0.5)
+          ribbon.material.opacity = 0.5 + 0.2 * Math.sin(time + i * 0.5) // Reduced base opacity from 0.7 to 0.5
         }
       })
       
