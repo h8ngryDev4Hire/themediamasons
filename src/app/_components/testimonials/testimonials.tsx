@@ -145,7 +145,11 @@ const TestimonialsSection = () => {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial._id}
-                  ref={el => itemsRef.current[index] = el}
+                  ref={(el) => {
+                    if (itemsRef.current) {
+                      itemsRef.current[index] = el;
+                    }
+                  }}
                   className={`
                     transition-all duration-500 ease-in-out
                     ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 absolute top-0 left-0 z-0'}
