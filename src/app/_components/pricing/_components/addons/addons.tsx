@@ -106,19 +106,19 @@ export default function Addons() {
 		<section 
 		 id="addons-section" 
 		 className={`
-		 w-[90vw] md:w-full lg:w-full xl:w-[80vw]
+		 w-full
 		 h-auto sm:h-[18rem] md:h-[20rem] lg:h-[23rem] xl:h-[25rem] 
 		 flex flex-col items-center justify-center
 		 rounded-xl
 		 bg-white bg-opacity-10
-		 p-[1.5rem] space-y-[2rem]
+		 p-4 sm:p-5 md:p-6 space-y-4 sm:space-y-6
 		`}>
 		<AddonsContext.Provider value={MasterContext}>
 			<section 
 			 id="addon-category-selection" 
 			 className={`
 			 flex items-center justify-between
-			 w-full
+			 w-full max-w-full overflow-x-auto
 			`}>
 				<AddonSelector/>
 			</section>
@@ -128,7 +128,8 @@ export default function Addons() {
 			 id="addon-display-desktop" 
 			 className={`
 			 hidden sm:flex items-center justify-center
-			 space-x-[3rem]
+			 space-x-4 md:space-x-6 lg:space-x-8
+			 w-full overflow-x-auto py-2
 			`}>
 			{addons.map( ( addon,key ) => {
 				if (addon.category === selectedCategory) return (
@@ -157,7 +158,7 @@ export default function Addons() {
 						{/* Previous button */}
 						<button 
 							onClick={prevAddon}
-							className="flex items-center justify-center w-8 h-8 mr-2 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-full shadow-lg hover:bg-black/60 transition-all duration-300 focus:outline-none z-10"
+							className="flex-shrink-0 flex items-center justify-center w-8 h-8 mr-2 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-full shadow-lg hover:bg-black/60 transition-all duration-300 focus:outline-none z-10"
 							aria-label="Previous add-on"
 						>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 text-purple-400">
@@ -177,7 +178,7 @@ export default function Addons() {
 						{/* Next button */}
 						<button 
 							onClick={nextAddon}
-							className="flex items-center justify-center w-8 h-8 ml-2 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-full shadow-lg hover:bg-black/60 transition-all duration-300 focus:outline-none z-10"
+							className="flex-shrink-0 flex items-center justify-center w-8 h-8 ml-2 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-full shadow-lg hover:bg-black/60 transition-all duration-300 focus:outline-none z-10"
 							aria-label="Next add-on"
 						>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 text-purple-400">

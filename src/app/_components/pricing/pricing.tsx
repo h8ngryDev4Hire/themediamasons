@@ -76,7 +76,7 @@ export default function Pricing() {
 			</div>
 
 			{/* Add-ons section */}
-			<div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 mb-10 sm:mb-14 md:mb-20">
+			<div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 mb-10 sm:mb-14 md:mb-20 overflow-hidden">
 				<div className="bg-gradient-to-br from-purple-900/30 to-indigo-900/30 backdrop-blur-sm border border-purple-500/20 rounded-xl p-4 sm:p-6 md:p-8 shadow-lg">
 					<div className="relative">
 						<h3 className={`${bangers.className} text-xl sm:text-2xl md:text-3xl text-white text-center mb-3 sm:mb-4 relative z-10`}>
@@ -87,7 +87,9 @@ export default function Pricing() {
 					<p className="text-gray-300 text-center text-sm sm:text-base max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-6 sm:mb-8">
 						Customize your solution with our add-ons. Schedule a consultation to discuss how these can be tailored to your specific needs.
 					</p>
-					<Addons />
+					<div className="w-full max-w-full overflow-hidden">
+						<Addons />
+					</div>
 				</div>
 			</div>
 

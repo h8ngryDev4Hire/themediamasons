@@ -39,7 +39,6 @@
     "@sanity/vision": "^3.68.3",
     "@types/three": "^0.167.1",
     "next-sanity": "^9.8.32",
-    "sanity": "^3.68.3",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
     "styled-components": "^6.1.14"

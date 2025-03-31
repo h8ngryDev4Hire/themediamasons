@@ -39,44 +39,48 @@ export default function AddonSelector() {
  		<div 
 		 className={`
 		 w-full
-		 max-sm:flex-col flex-row
-		 flex
-		 max-sm:space-y-[.5rem]
+		 max-sm:flex-col sm:flex-row
+		 flex items-center
+		 max-sm:space-y-2 sm:justify-between
+		 overflow-hidden
 		`}>
  	 		<h1 
 			 className={`
 			 ${gudeaBold.className} 
 			 text-white 
-			 text-2xl lg:text-3xl xl:text-3xl
-			 w-full
+			 text-xl sm:text-2xl lg:text-3xl
 			 max-sm:text-center
+			 truncate
 			`}>
- 	 	      	Enhance Your Package 🚀
+ 	 	      	Enhance Your Package
  	 	    	</h1>
  	 	    	<div 
 			 className={`
 			 flex 
-			 items-center justify-center space-x-4
+			 items-center justify-center space-x-2 sm:space-x-3 md:space-x-4
+			 flex-shrink-0
 			`}>
  	 	      		<button
  	 	        	 onClick={() => handleCategoryChange('prev')}
 				 className={`
 				 text-white hover:text-orange-400
-				 text-2xl rounded-full
+				 text-xl sm:text-2xl rounded-full
 				 trans-ease-all
 				 bg-white bg-opacity-10
-				 size-[2.5rem]
-				 hover:scale-75
+				 w-8 h-8 sm:w-10 sm:h-10
+				 flex items-center justify-center
+				 hover:scale-90
 				`}>
  	 	        	←
  	 	      		</button>
  	 	      
  	 	      		<span className={`
- 	 	      		  w-[14rem] h-[2.5rem] 
+ 	 	      		  w-[10rem] sm:w-[12rem] md:w-[14rem] h-8 sm:h-10 
  	 	      		  bg-white bg-opacity-10 
  	 	      		  rounded-full
  	 	      		  flex items-center justify-center
- 	 	      		  text-white
+ 	 	      		  text-white text-sm sm:text-base
+ 	 	      		  px-2 truncate
  	 	      		  ${gudeaBold.className}
  	 	      		`}>
  	 			{selectedCategory}
@@ -86,11 +90,12 @@ export default function AddonSelector() {
  	 	        	 onClick={() => handleCategoryChange('next')}
 				 className={`
 				 text-white hover:text-orange-400
-				 text-2xl rounded-full
+				 text-xl sm:text-2xl rounded-full
 				 trans-ease-all
 				 bg-white bg-opacity-10
-				 size-[2.5rem]
-				 hover:scale-75
+				 w-8 h-8 sm:w-10 sm:h-10
+				 flex items-center justify-center
+				 hover:scale-90
 				`}>
  	 	        	→
  	 	      		</button>
