@@ -40,7 +40,6 @@ const nextConfig = {
 		fileLoaderRule.exclude = /\.svg$/i
     		return config;
   },
-  distDir: 'production'
 };
  
 module.exports = nextConfig
