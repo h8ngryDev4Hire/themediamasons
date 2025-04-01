@@ -45,9 +45,7 @@ const TestimonialsSection = () => {
           // No testimonials found, setTestimonials to empty array
           setTestimonials([])
         } else {
-          // TODO: Remove this once we have real testimonials
-          //setTestimonials(testimonialData)
-          setTestimonials([])
+          setTestimonials(testimonialData)
         }
         
         setLoading(false)
