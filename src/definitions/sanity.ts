@@ -119,15 +119,6 @@ export type ComponentType = z.infer<typeof ComponentTypeSchema>
 export type AboutHighlight = z.infer<typeof AboutHighlightSchema>
 export type AboutHighlightArray = z.infer<typeof AboutHighlightArraySchema>
 
-export type Testimonial = {
-  _id: string
-  name: string
-  position?: string
-  quote: string
-  rating: number
-  imageUrl?: string
-}
-
 // Testimonial schema
 export const TestimonialSchema = z.object({
   _id: z.string(),
@@ -135,8 +126,14 @@ export const TestimonialSchema = z.object({
   position: z.string().optional(),
   quote: z.string(),
   rating: z.number().min(1).max(5),
-  imageUrl: z.string().url().optional()
+  imageUrl: z.string().url().optional().or(z.null()),
+  sourceUrl: z.string().url()
 });
 
 // Testimonial Array Schema
 export const TestimonialArraySchema = z.array(TestimonialSchema);
+
+// Replace the direct Testimonial type definition with the inferred one
+export type Testimonial = z.infer<typeof TestimonialSchema>
+// Add the TestimonialArray type
+export type TestimonialArray = z.infer<typeof TestimonialArraySchema>

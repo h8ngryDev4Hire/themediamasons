@@ -85,6 +85,7 @@ export default function Layout({ children } : RootLayoutProps) {
 			<Suspense>
 			<RootLayout>
 			{children}
+			<Responsiveness/>
 			</RootLayout>
 			</Suspense>
 			</body>

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Sanity } from '@def/definitions'
 
 type TestimonialCardProps = {
@@ -30,17 +31,29 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, classNam
   }
 
   return (
-    <div className={`
-      bg-black/40 backdrop-blur-sm
-      border border-purple-500/20
-      rounded-xl p-6 shadow-lg
-      transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl
-      flex flex-col
-      ${className || ''}
-    `}>
-      <div className="flex items-center mb-4">
+    <div
+      className={`
+        bg-black/40 backdrop-blur-sm
+        border border-purple-500/20
+        rounded-xl p-6 shadow-lg
+        transform transition-all duration-300 
+        hover:scale-[1.03] hover:shadow-xl
+        hover:border-purple-500/50
+        flex flex-col
+        min-h-[320px] sm:min-h-[280px] 
+        min-w-[300px] sm:min-w-[280px] 
+        h-full
+        relative
+        group
+        ${className || ''}
+      `}
+    >
+      {/* Subtle hover effect without text */}
+      <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 transition-all duration-300 rounded-xl"></div>
+      
+      <div className="flex items-center mb-4 relative z-10">
         {testimonial.imageUrl ? (
-          <div className="relative h-12 w-12 mr-4 overflow-hidden rounded-full border border-purple-500/30">
+          <div className="relative h-12 w-12 mr-4 overflow-hidden rounded-full border border-purple-500/30 group-hover:border-purple-500/60 transition-all duration-300">
             <Image
               src={testimonial.imageUrl}
               alt={testimonial.name}
@@ -49,21 +62,30 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, classNam
             />
           </div>
         ) : (
-          <div className="min-h-12 min-w-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 mr-4 flex items-center justify-center text-white font-bold text-xl">
+          <div className="min-h-12 min-w-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 mr-4 flex items-center justify-center text-white font-bold text-xl group-hover:from-purple-500 group-hover:to-blue-400 transition-all duration-300">
             {testimonial.name.charAt(0)}
           </div>
         )}
         <div>
-          <h3 className="text-lg font-bold text-white">{testimonial.name}</h3>
+          <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-all duration-300">{testimonial.name}</h3>
           {testimonial.position && (
-            <p className="text-sm text-gray-300">{testimonial.position}</p>
+            <p className="text-sm text-gray-300 group-hover:text-gray-200 transition-all duration-300">{testimonial.position}</p>
           )}
         </div>
       </div>
-      <div className="flex mb-4">{renderStars()}</div>
-      <blockquote className="text-gray-300 font-light italic mb-4">
+      <div className="flex mb-4 relative z-10">{renderStars()}</div>
+      <blockquote className="text-gray-300 font-light italic mb-4 flex-grow relative z-10 group-hover:text-gray-200 transition-all duration-300">
         "{testimonial.quote}"
       </blockquote>
+      
+      {/* Separate link component that sits on top of the card */}
+      <Link 
+        href={testimonial.sourceUrl} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="absolute inset-0 z-20 cursor-pointer"
+        aria-label={`View testimonial from ${testimonial.name}`}
+      />
     </div>
   )
 }

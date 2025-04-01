@@ -47,11 +47,12 @@ export const addonsQuery = `*[_type == "addonCategory"] {
 }`
 
 // Testimonials Query
-export const testimonialsQuery = `*[_type == "testimonial"] | order(order asc)[0...3] {
+export const testimonialsQuery = `*[_type == "testimonial"] | order(order asc) {
   _id,
   name,
   position,
   quote,
   rating,
-  "imageUrl": image.asset->url
+  "imageUrl": image.asset->url,
+  sourceUrl
 }`
