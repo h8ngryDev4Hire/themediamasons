@@ -19,7 +19,8 @@ export default function ContactCta() {
 				Busy schedule? Let's setup a time that works for you!
 			`}</p>
 			<p>{`
-				Need to reschedule? We get! flexibility is important to us! 
+				Need to reschedule? We get it! 
+				Flexibility is important to us! 
 				We can always find another time!
 			`}</p>
 
