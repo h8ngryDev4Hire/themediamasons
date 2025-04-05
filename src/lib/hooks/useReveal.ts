@@ -15,7 +15,6 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
   useEffect(() => {
     const element = elementRef.current;
     if (!element) {
-      console.log("No element found");
       return;
     }
 

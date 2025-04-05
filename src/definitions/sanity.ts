@@ -30,8 +30,14 @@ export const HeroCtaArraySchema = z.array(HeroCtaSchema)
 // Service Block schema
 export const ServiceBlockSchema = z.object({
 	name: z.string(),
-	description: z.string(),
-	iconUrl: z.string().url()
+	description: z.object({
+		short: z.string(),
+		long: z.string()
+	}),
+	dataPoints: z.array(z.string()).optional(),
+	iconType: z.enum(['lucide', 'custom']),
+	lucideIcon: z.string().optional().nullable(),
+	customIconUrl: z.string().url().optional().nullable()
 })
 
 export const ServiceBlockArraySchema = z.array(ServiceBlockSchema)

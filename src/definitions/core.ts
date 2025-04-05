@@ -29,7 +29,8 @@ export const CoreFunctionsSchema = z.record(
 // Modal Identifier schema
 export const ModalIdentifierSchema = z.enum([
 	'contact-modal',
-  	'newsletter-modal'
+	'newsletter-modal',
+	'service-details-modal'
 ]);
 
 export type GenericCallback = z.infer<typeof GenericCallbackSchema>;

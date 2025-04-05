@@ -65,8 +65,7 @@ export default function Pricing() {
 					<div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 w-3/4 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent rounded-full"></div>
 				</div>
 				<p className={`${gudeaBold.className} text-2xl text-gray-300 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto`}>
-					Customized solutions <span className="font-bold italic text-white">tailored</span> to your business needs. 
-					Contact us for a personalized consultation.
+					Custom Website Solutions <span className="font-bold italic text-white">tailored</span> to your Business Needs. 
 				</p>
 			</div>
 

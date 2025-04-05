@@ -12,6 +12,7 @@ import Background from '@components/background/background.tsx'
 import ContactFormModal from '@components/modals/contactFormModal/contactFormModal.tsx'
 import { SIGNATURE } from '@components/modals/contactFormModal/contactFormModal.tsx'
 import NewsletterModal, { signature } from '@components/modals/newsletterModal/newsletterModal'
+import ServiceDetailsModal, { SIGNATURE as SERVICE_DETAILS_SIGNATURE } from '@components/modals/serviceDetailsModal/serviceDetailsModal'
 import LayoutFooter from '@components/footer/footer'
 import LoadingProgressBar from '@components/loading/progress-bar.tsx'
 
@@ -41,6 +42,14 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 				case 'newsletter-modal': {
 					break;
 				}
+				case 'service-details-modal': {
+					openModal({
+						signature: signature,
+						disableScroll: true,
+						metadata: searchParams.get('metadata')
+					})
+					break;
+				}
 				default: {
 					break;
 				}
@@ -59,6 +68,10 @@ function RootLayout({children} : RootLayoutProps ) : JSX.Element {
 				 metadata={modalState.metadata as Sanity.ServicePackage}
 				/> }
 			{ modalState && modalState.name === signature && <NewsletterModal/> }
+			{ modalState && modalState.name === SERVICE_DETAILS_SIGNATURE && 
+				<ServiceDetailsModal 
+					metadata={modalState.metadata}
+				/> }
 			<LayoutFooter/>
 		</>
 	)

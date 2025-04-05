@@ -38,6 +38,7 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.68.3",
     "@types/three": "^0.167.1",
+    "lucide-react": "^0.487.0",
     "next-sanity": "^9.8.32",
     "resend": "^4.2.0",
     "sqlite": "^5.1.1",

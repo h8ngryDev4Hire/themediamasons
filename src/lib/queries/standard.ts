@@ -11,7 +11,10 @@ export const pricingQuery = `*[_type == "pricing"] | order(price.discounted asc)
 export const servicesQuery = `*[_type == "serviceList"] {
   name,
   description,
-  "iconUrl": icon.asset->url
+  dataPoints,
+  iconType,
+  lucideIcon,
+  "customIconUrl": customIcon.asset->url
 }`
 
 // Hero CTAs Query
