@@ -18,8 +18,8 @@ type ServiceData = {
 	};
 	dataPoints: string[];
 	iconType: 'lucide' | 'custom';
-	lucideIcon?: string;
-	customIconUrl?: string;
+	lucideIcon?: string | null;
+	customIconUrl?: string | null;
 	Icon?: LucideIcon; // For backward compatibility during transition
 }
 

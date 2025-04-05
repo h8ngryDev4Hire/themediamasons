@@ -14,8 +14,8 @@ interface ServiceBlockProps {
 	} | string; // Support for both new schema and legacy format
 	dataPoints?: string[];
 	iconType?: 'lucide' | 'custom';
-	lucideIcon?: string;
-	customIconUrl?: string;
+	lucideIcon?: string | null;
+	customIconUrl?: string | null;
 	Icon?: LucideIcon; // For backward compatibility
 }
 
