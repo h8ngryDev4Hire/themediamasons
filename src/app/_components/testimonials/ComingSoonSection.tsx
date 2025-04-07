@@ -10,7 +10,7 @@ const ComingSoonSection = () => (
       <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-70 blur-lg"></div>
       <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-red-500 opacity-70 blur-lg"></div>
       
-      <h3 className={`text-2xl sm:text-3xl md:text-4xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 ${bangers.className}`}>
+      <h3 className={`text-2xl sm:text-3xl md:text-4xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-orange-500 to-yellow-500 ${bangers.className}`}>
         Client Testimonials Coming Soon!
       </h3>
       

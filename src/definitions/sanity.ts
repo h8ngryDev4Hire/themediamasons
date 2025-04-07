@@ -12,7 +12,8 @@ export const ServicePackageSchema = z.enum([
   'enterprise',
   'business',
   'custom',
-  'cta'
+  'cta',
+  'url'
 ]);
 
 

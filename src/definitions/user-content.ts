@@ -11,9 +11,8 @@ export const ClientContactInformationSchema = z.object({
     		.email("Invalid email format"),
   	phone: z.string()
     		.regex(/^\+?[\d\s-()]{10,}$/, "Invalid phone number format"),
-  	company: z.string()
-    		.min(2, "Company name must be at least 2 characters")
-    		.max(100, "Company name must be less than 100 characters")
+  	message: z.string()
+    		.max(500, "Message must be less than 500 characters")
     		.optional(),
   	plan: ServicePackageSchema.optional()
 });

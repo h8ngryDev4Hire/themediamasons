@@ -28,7 +28,7 @@ export async function POST( request : Request )  {
 				<p><strong>Name:</strong> ${data.name}</p>
 				<p><strong>Email:</strong> ${data.email}</p>
 				<p><strong>Phone:</strong> ${data.phone}</p>
-				<p><strong>Company:</strong> ${data.company || 'N/A'}</p>
+				<p><strong>Message:</strong> ${data.message || 'N/A'}</p>
 				${data.plan ? `<p><strong>Selected Plan:</strong> ${data.plan.title || 'N/A'}</p>` : ''}
 			`,
 		})

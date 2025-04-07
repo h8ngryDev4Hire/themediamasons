@@ -37,6 +37,7 @@ export default function Navigator({floating} : Params ): JSX.Element {
 				} 
 	          	  	flex flex-grow  h-full bg-zinc-900 p-1 
 				items-center justify-center
+				max-sm:px-[.5rem] sm:px-[1rem] md:px-[2rem] lg:px-[3rem] xl:px-[9rem]
 	        	 `}
 	      		>
 				<NavigatorContext.Provider value={[isFloating]}>

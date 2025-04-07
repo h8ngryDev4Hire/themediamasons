@@ -12,16 +12,20 @@ export default function SubmitButton() {
 	const [ phase, setPhase ] = modalPhase
 	const [ error, setError ] = modalError
 
+	// The contactFormContext is now provided by the CtaView component
+	// This ensures both the form and the button have access to the same data
 	const [ contactData ] = useContext(contactFormContext)
 	const exitModal = useContext(exitModalContext)
 
 	const handleButtonClick = async (event : MouseEvent)  => {
 		event.preventDefault()
 		try {
+			// Validate the form data
 			const result = UserContent.ClientContactInformationSchema.safeParse(contactData)
 
 			if (!result.success) throw new Error(result.error.issues[0].message) 
 
+			// Submit the form data
 			const response = await fetch('/api/post/contact-info', {
 				method:'POST',
 				headers: { 'Content-Type' : 'application/json' },
@@ -33,6 +37,7 @@ export default function SubmitButton() {
 				throw new Error(error)
 			}
 
+			// Show the thank you view
 			setPhase('thank-you')
 		} catch(error : any) {
 			setError(error)
@@ -45,11 +50,15 @@ export default function SubmitButton() {
 		 onClick={handleButtonClick}
 		 className={`
 		 ${bangers.className} 
-		 trans-ease h-[2.5rem] w-[8rem] 
-		 rounded-xl bg-zinc-500 
-		 text-center hover:scale-[.90]
+		 trans-ease h-[3rem] w-[10rem] 
+		 rounded-xl 
+		 text-lg
+		 text-white
+		 bg-gradient-to-r from-purple-600 to-indigo-700 hover:from-purple-700 hover:to-indigo-800
+		 shadow-lg hover:shadow-xl
+		 text-center hover:scale-[.95]
 		`}>
-			Submit
+			Submit Contact
 		</button>
 	)
 }

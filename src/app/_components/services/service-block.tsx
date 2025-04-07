@@ -55,7 +55,8 @@ export default function ServiceBlock({
 			dataPoints: dataPoints || [],
 			iconType,
 			lucideIcon,
-			customIconUrl: customIconUrl || '/icons/default-service.svg'
+			customIconUrl: customIconUrl || '/icons/default-service.svg',
+			Icon: Icon || (LucideIconComponent ? LucideIconComponent : undefined)
 		}
 
 		// Open the modal with service details

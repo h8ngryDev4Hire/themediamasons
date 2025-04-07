@@ -15,7 +15,7 @@ model ClientContact {
 	name		String
 	email		String
 	phone		String
-	company		String?
+	message		String?
 	created_at	DateTime	@default(now())
 }
 

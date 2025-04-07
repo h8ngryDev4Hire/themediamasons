@@ -29,6 +29,7 @@ const CallToAction = forwardRef<HTMLElement, Props>( function CallToAction(
  				<div 
 				 className={`
 				 flex flex-col
+				 text-white
 				`}>
  					<span>
 					{`Didn't see a package that`} 

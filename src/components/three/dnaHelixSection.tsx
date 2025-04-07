@@ -32,7 +32,7 @@ export default function DnaHelixSection({
           
           {/* Text content */}
           <div className="w-full lg:w-1/2 lg:pl-12 mb-12 lg:mb-0 order-1 lg:order-2">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">{title}</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-700 via-orange-500 to-yellow-500 text-transparent bg-clip-text">{title}</h2>
             <p className="text-lg text-gray-300 mb-8">{subtitle}</p>
             <p className="text-gray-400">
               Our digital solutions are built on core principles that form the DNA of successful 

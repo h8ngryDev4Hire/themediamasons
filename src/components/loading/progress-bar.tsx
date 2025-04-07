@@ -99,12 +99,12 @@ export default function LoadingProgressBar({
 				<div className="w-full max-w-md mb-4 relative">
 					<div className="h-2 bg-gray-800 rounded-full overflow-hidden">
 						<div 
-							className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full transition-all duration-300 ease-out"
+							className="h-full bg-gradient-to-r from-purple-500 via-yellow-500 to-orange-500 rounded-full transition-all duration-300 ease-out"
 							style={{ width: `${progress}%` }}
 						/>
 					</div>
 					<div 
-						className="absolute top-0 h-2 rounded-full opacity-50 blur-sm bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 transition-all duration-300 ease-out"
+						className="absolute top-0 h-2 rounded-full opacity-50 blur-sm bg-gradient-to-r from-purple-500 via-yellow-500 to-orange-500 transition-all duration-300 ease-out"
 						style={{ width: `${progress}%` }}
 					/>
 				</div>
@@ -128,7 +128,7 @@ function AnimatedTitle({ text }: { text: string }) {
 				return (
 					<span
 						key={index}
-						className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 animate-pulse"
+						className="pr-[.25rem] inline-block text-transparent bg-clip-text bg-gradient-to-br from-purple-600  to-orange-900 animate-pulse"
 						style={{ 
 							animationDelay: `${index * 0.1}s`,
 							animationDuration: '1.5s'
@@ -156,7 +156,7 @@ function MatrixRain() {
 		canvas.width = window.innerWidth
 		canvas.height = window.innerHeight
 		
-		const characters = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789"
+		const characters = "アイウエオカキクケコサシスセソタチツテトナニヌネノ	ハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789"
 		const columns = Math.floor(canvas.width / 20)
 		const drops: number[] = []
 		

@@ -5,7 +5,7 @@ export default function TextContent({ name, description, quote }: AboutTextConte
 	return (
 		<div className="space-y-4">
 			{/* Section title */}
-			<h3 className={`${bangers.className} text-xl md:text-2xl font-bold text-white`}>
+			<h3 className={`${bangers.className} text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-700 via-orange-500 to-yellow-500 text-transparent bg-clip-text`}>
 				{name}
 			</h3>
 			

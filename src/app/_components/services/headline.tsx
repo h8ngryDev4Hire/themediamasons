@@ -24,7 +24,8 @@ export default function Headline( { message } : Params ) {
 			 id="pricing-catcher" 
 			 className={`
 			 ${gudeaBold.className} 
-			 text-white text-center 
+			 bg-gradient-to-r from-purple-700 via-orange-500 to-yellow-500 text-transparent bg-clip-text
+			 text-center 
 			 text-3xl md:text-3xl lg:text-4xl xl:text-4xl
 			 px-[2rem]
 			`}>

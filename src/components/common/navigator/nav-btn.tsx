@@ -25,9 +25,12 @@ export default function NavBtn({ name, href } : Params ) : JSX.Element {
 		 bg-zinc-800
 		 rounded-xl 
 		 items-center justify-center
+		 group
+		 text-white
+		 trans-ease-all
 		 ${ isFloating 
-			  ? "bg-opacity-30 md:scale-125 scale-100 hover:text-purple-300" 
-			  : "bg-opacity-100 hover:text-red-400" 
+			  ? "bg-opacity-30 md:scale-125 scale-100 hover:text-purple-400 hover:scale-[.90]" 
+			  : "bg-opacity-100 hover:text-orange-400 hover:scale-[.90]" 
 		 }
 		 ${ isFloating ? "p-[0.2rem]" : "p-[0.4rem]" }
 		`}>
@@ -37,9 +40,8 @@ export default function NavBtn({ name, href } : Params ) : JSX.Element {
 			 className={`
 			 w-full 
 			 ${gudeaBold.className} 
-
 			 trans-ease-all  
-			 text-base text-white  hover:scale-[.90] 
+			 text-base    
 			 text-center
 			`}>
 			{name}	

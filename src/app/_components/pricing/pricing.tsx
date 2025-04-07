@@ -57,10 +57,10 @@ export default function Pricing() {
 						text-5xl 
 						font-bold
 						bg-clip-text text-transparent 
-						bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
+						bg-gradient-to-r from-purple-700 via-orange-500 to-yellow-500
 						${bangers.className}
 					`}>
-						Pricing
+						Our Website Pricing
 					</h2>
 					<div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 w-3/4 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent rounded-full"></div>
 				</div>

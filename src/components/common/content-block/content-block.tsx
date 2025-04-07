@@ -21,7 +21,7 @@ export default function ContentBlock({ title, description, media, reverse=false 
 			>
 				<h2 
 				 id="content-title" 
-				 className={`${gudeaThin.className} text-white text-2xl`}
+				 className={`${gudeaThin.className} bg-gradient-to-r from-purple-700 via-orange-500 to-yellow-500 text-transparent bg-clip-text text-2xl`}
 				>
 				{title}
 				</h2>

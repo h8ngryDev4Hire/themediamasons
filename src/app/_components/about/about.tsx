@@ -105,7 +105,7 @@ export default function About() {
 					text-5xl 
 					font-bold mb-4
 					bg-clip-text text-transparent 
-					bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
+					bg-gradient-to-r from-purple-700 via-orange-500 to-yellow-500
 					${bangers.className}
 				`}>
 					About The Media Masons

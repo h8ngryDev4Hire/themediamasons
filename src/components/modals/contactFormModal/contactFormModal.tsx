@@ -5,6 +5,7 @@ import useModal from '@hooks/useModal.ts'
 import { gudeaBold } from '@ui/fonts.ts'
 import CtaView from './views/ctaView/ctaView'
 import SubmissionView from './views/submissionView/submissionView'
+import CalendlyView from './views/calendlyView/calendlyView'
 import { Core, Sanity } from '@def/definitions'
 
 
@@ -20,7 +21,7 @@ export interface ContactFormMasterContext {
 	error: Core.StateHook<Error | false>
 }
 
-export type ModalPhase = 'contact-info' | 'thank-you'
+export type ModalPhase = 'calendly' | 'contact-info' | 'thank-you'
 
 export const SIGNATURE : Core.ModalIdentifier = 'contact-modal'
 const ERROR_TIMEOUT = 5000
@@ -35,7 +36,7 @@ export default function ContactFormModal({ metadata } : Props) {
 		modal: useState(false),
 		content: useState(false),
 		plan: useState<Sanity.ServicePackage | undefined>(metadata),
-		phase: useState<ModalPhase>('contact-info'),
+		phase: useState<ModalPhase>('calendly'),
 		error: useState<false | Error>(false)
 	}
 
@@ -60,7 +61,6 @@ export default function ContactFormModal({ metadata } : Props) {
 	}
 	
 	useEffect(()=>{
-
 		// modal intro transition
 		setFormState(true)
 		setTimeout( ()=>{ setContentState(true) } ,500)
@@ -94,14 +94,14 @@ export default function ContactFormModal({ metadata } : Props) {
 				 id="contact-form-modal" 
 				 className={`
 				 ${gudeaBold.className}
-				 ${formState ? "h-[42rem] md:h-[35rem] lg:h-[30rem] xl:h-[30rem]" : "h-0"}
+				 ${formState ? (phase === 'calendly' ? "h-[650px] w-[95vw] max-w-[800px]" : "h-[45rem] md:h-[35rem] lg:h-[30rem] xl:h-[30rem] w-[95vw] lg:w-[85%] xl:w-[60%]") : "h-0"}
 				 trans-ease-all-md
-				 flex  
-				 w-[95vw] lg:w-[85%] xl:w-[60%]
+				 flex flex-col
 				 text-white rounded-xl p-[1rem]
 				 bg-gradient-to-bl from-zinc-800 to-zinc-900
 				 overflow-hidden
 				`}>
+				{ phase === 'calendly' && <CalendlyView contentState={contentState}/>}
 				{ phase === 'contact-info' && <CtaView contentState={contentState}/>}
 				{ phase === 'thank-you' && <SubmissionView/> }
 				</div>
