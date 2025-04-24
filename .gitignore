@@ -11,6 +11,9 @@ node_modules/
 # Next folder
 .next/
 
+# VSCode
+.vscode/
+
 # Build folder
 production/
 
