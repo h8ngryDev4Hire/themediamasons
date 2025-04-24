@@ -57,5 +57,6 @@ export const testimonialsQuery = `*[_type == "testimonial"] | order(order asc) {
   quote,
   rating,
   "imageUrl": image.asset->url,
-  sourceUrl
+  sourceUrl,
+  websiteUrl
 }`

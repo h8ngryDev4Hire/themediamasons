@@ -192,7 +192,7 @@ export default function Services() {
 					Our Services
 				</h2>
 				<p className="text-gray-300 max-w-2xl mx-auto text-2xl">
-					We Offer <span className="font-extrabold">MORE</span> than just a Website!
+					Professional <span className="font-extrabold">Web Solutions</span> for Your Business Growth
 				</p>
 			</div>
 

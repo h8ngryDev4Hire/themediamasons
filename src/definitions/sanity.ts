@@ -130,11 +130,12 @@ export type AboutHighlightArray = z.infer<typeof AboutHighlightArraySchema>
 export const TestimonialSchema = z.object({
   _id: z.string(),
   name: z.string(),
-  position: z.string().optional(),
+  position: z.string().optional().nullable(),
   quote: z.string(),
   rating: z.number().min(1).max(5),
   imageUrl: z.string().url().optional().or(z.null()),
-  sourceUrl: z.string().url()
+  sourceUrl: z.string().url().optional().nullable(),
+  websiteUrl: z.string().url()
 });
 
 // Testimonial Array Schema

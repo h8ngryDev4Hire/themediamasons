@@ -6,7 +6,9 @@ const MatrixScape = dynamic(() => import('@components/three/matrixscape.tsx'), {
 
 export default function Hero() {
 	return (
-		<header id="hero" className=" w-full min-h-[45rem] z-content items-center justify-center">
+		<header id="hero" className="w-full min-h-[45rem] z-content items-center justify-center">
+			<h1 className="sr-only">The Media Masons - Professional Web Development & Business Web Solutions</h1>
+			
 			<div 
 			 id="cta-container" 
 			 className={`

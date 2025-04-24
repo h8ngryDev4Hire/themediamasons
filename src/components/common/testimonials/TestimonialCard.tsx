@@ -30,6 +30,16 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, classNam
     return stars
   }
 
+  // Helper to get website domain name for display
+  const getDisplayUrl = (url: string) => {
+    try {
+      const domain = new URL(url).hostname.replace('www.', '')
+      return domain
+    } catch (e) {
+      return url
+    }
+  }
+
   return (
     <div
       className={`
@@ -78,14 +88,48 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, classNam
         "{testimonial.quote}"
       </blockquote>
       
-      {/* Separate link component that sits on top of the card */}
-      <Link 
-        href={testimonial.sourceUrl} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="absolute inset-0 z-20 cursor-pointer"
-        aria-label={`View testimonial from ${testimonial.name}`}
-      />
+      {/* Website URL link at the bottom of the card */}
+      <div className="mt-auto z-30 relative">
+        <Link 
+          href={testimonial.websiteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex items-center gap-2 
+            text-sm text-purple-400 hover:text-purple-300 
+            transition-all duration-300
+            group-hover:translate-x-1
+          "
+          onClick={(e) => e.stopPropagation()}
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-4 w-4" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
+            />
+          </svg>
+          <span>{getDisplayUrl(testimonial.websiteUrl)}</span>
+        </Link>
+      </div>
+      
+      {/* Separate link component that sits on top of the card - only when sourceUrl is available */}
+      {testimonial.sourceUrl && (
+        <Link 
+          href={testimonial.sourceUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="absolute inset-0 z-20 cursor-pointer"
+          aria-label={`View testimonial from ${testimonial.name}`}
+        />
+      )}
     </div>
   )
 }

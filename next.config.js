@@ -40,6 +40,18 @@ const nextConfig = {
 		fileLoaderRule.exclude = /\.svg$/i
     		return config;
   },
+
+  // Image optimization configuration
+  images: {
+    domains: [
+      'cdn.sanity.io', // If using Sanity for image hosting
+    ],
+    formats: ['image/avif', 'image/webp'],
+    // Ensure reasonable image quality while maintaining performance
+    minimumCacheTTL: 60,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
 };
  
 module.exports = nextConfig

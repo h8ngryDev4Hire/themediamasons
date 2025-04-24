@@ -10,7 +10,9 @@ export const getAllTestimonialsQuery = groq`
     position,
     quote,
     rating,
-    "imageUrl": image.asset->url
+    "imageUrl": image.asset->url,
+    sourceUrl,
+    websiteUrl
   }
 `
 
@@ -24,6 +26,8 @@ export const getFeaturedTestimonialsQuery = groq`
     position,
     quote,
     rating,
-    "imageUrl": image.asset->url
+    "imageUrl": image.asset->url,
+    sourceUrl,
+    websiteUrl
   }
 ` 

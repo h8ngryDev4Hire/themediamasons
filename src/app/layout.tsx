@@ -16,6 +16,9 @@ import ServiceDetailsModal, { SIGNATURE as SERVICE_DETAILS_SIGNATURE } from '@co
 import LayoutFooter from '@components/footer/footer'
 import LoadingProgressBar from '@components/loading/progress-bar.tsx'
 
+// Metadata is exported from metadata.ts for improved SEO
+// No need to declare it here as Next.js will use the metadata.ts file
+
 interface RootLayoutProps {
 	children : React.ReactNode
 }
@@ -92,8 +95,45 @@ export default function Layout({ children } : RootLayoutProps) {
 
   			 gtag('config', 'G-L8M6Z41GM3');
 			`}</Script>
+			
+			{/* JSON-LD structured data for SEO */}
+			<Script id="schema-structured-data" type="application/ld+json">{`
+				{
+					"@context": "https://schema.org",
+					"@type": "ProfessionalService",
+					"name": "The Media Masons",
+					"description": "Professional web development and digital solutions for businesses. We build custom websites and web applications that drive growth.",
+					"url": "https://themediamasons.com",
+					"logo": "https://themediamasons.com/logo.png",
+					"sameAs": [
+						"https://twitter.com/themediamasons",
+						"https://www.linkedin.com/company/the-media-masons"
+					],
+					"address": {
+						"@type": "PostalAddress",
+						"addressCountry": "US"
+					},
+					"priceRange": "$$",
+					"service": [
+						{
+							"@type": "Service",
+							"name": "Website Development",
+							"description": "Custom, responsive websites built with modern technologies that load fast and convert visitors into customers."
+						},
+						{
+							"@type": "Service",
+							"name": "Web Application Development",
+							"description": "Powerful, scalable web applications with robust functionality that solve complex business problems."
+						},
+						{
+							"@type": "Service",
+							"name": "Web Design",
+							"description": "Beautiful, intuitive designs that captivate your audience and prioritize user experience."
+						}
+					]
+				}
+			`}</Script>
 			</head>
-			<title>The Media Masons</title>
 			<body className="bg-black max-w-full overflow-x-hidden overscroll-none">
 			<Suspense>
 			<RootLayout>

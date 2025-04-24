@@ -39,6 +39,20 @@ export default {
       title: 'Display Order',
       type: 'number',
       validation: (Rule: any) => Rule.required()
+    },
+    {
+      name: 'sourceUrl',
+      title: 'Source URL',
+      type: 'url',
+      description: 'URL to the original testimonial source',
+      validation: (Rule: any) => Rule.required()
+    },
+    {
+      name: 'websiteUrl',
+      title: 'Website URL',
+      type: 'url',
+      description: 'URL to the testimonial client\'s website',
+      validation: (Rule: any) => Rule.required()
     }
   ],
   preview: {
