@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "stagewise.stagewise-vscode-extension",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+} 

@@ -1,101 +1,104 @@
 'use client'
 
-import { Core } from '@def/definitions';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react'
 
-
-interface CloseModalOptions {
-	timeout? : number
-	callbackFn?: Core.GenericCallback 
-}
+type ModalType = 'contact' | 'custom' | null
+type ModalMetadata = Record<string, any> | null
 
 interface OpenModalOptions {
-	signature: string
-	disableScroll?: boolean,
-	metadata?: any
+  type: ModalType
+  metadata?: ModalMetadata
 }
 
-interface ModalState {
-	name: string;	
-	metadata?: string
+interface CloseModalOptions {
+  timeout?: number
 }
 
-const OPEN_MODAL_EVENT = 'openContactForm';
-const CLOSE_MODAL_EVENT = 'closeContactForm';
+const OPEN_MODAL_EVENT = 'openModal'
+const CLOSE_MODAL_EVENT = 'closeModal'
 
 export default function useModal() {
-	const [modalState, setModalState] = useState<false|ModalState>(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [modalType, setModalType] = useState<ModalType>(null)
+  const [metadata, setMetadata] = useState<ModalMetadata>(null)
+  const [scrollPosition, setScrollPosition] = useState(0)
 
-	const router = useRouter()
+  const lockScroll = useCallback(() => {
+    // Store current scroll position
+    const scrollPos = window.scrollY
+    setScrollPosition(scrollPos)
+    
+    // Apply styles to body that lock scroll but preserve position
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollPos}px`
+    document.body.style.width = '100%'
+  }, [])
 
-  	const openModal = useCallback(( options : OpenModalOptions ) => {
-  			window.dispatchEvent(new CustomEvent(OPEN_MODAL_EVENT, { 
-				detail: { options } 
-			}));
-  	}, []);
+  const unlockScroll = useCallback(() => {
+    // Remove styles from body
+    document.body.style.position = ''
+    document.body.style.top = ''
+    document.body.style.width = ''
+    
+    // Restore scroll position
+    window.scrollTo(0, scrollPosition)
+  }, [scrollPosition])
 
-  	const closeModal = useCallback(
-		(  options? : CloseModalOptions ) => 
-	{
-		if (typeof options !== 'undefined') {
-			if ( typeof options.callbackFn === 'function' ) options.callbackFn()
+  const openModal = useCallback((options: OpenModalOptions) => {
+    window.dispatchEvent(new CustomEvent(OPEN_MODAL_EVENT, { 
+      detail: { options } 
+    }))
+  }, [])
 
-  	  		window.dispatchEvent(new CustomEvent(CLOSE_MODAL_EVENT, { 
-				detail: { options } 
-			}));
-		} else {
-  	  		window.dispatchEvent(new CustomEvent(CLOSE_MODAL_EVENT));
-		}
-  	}, []);
+  const closeModal = useCallback((options?: CloseModalOptions) => {
+    window.dispatchEvent(new CustomEvent(CLOSE_MODAL_EVENT, { 
+      detail: { options } 
+    }))
+  }, [])
 
+  const handleOpenModal = useCallback((event: Event) => {
+    const customEvent = event as CustomEvent
+    const { options } = customEvent.detail
+    
+    setModalType(options.type)
+    setMetadata(options.metadata || null)
+    setIsOpen(true)
+    lockScroll()
+  }, [lockScroll])
 
+  const handleCloseModal = useCallback((event: Event) => {
+    const customEvent = event as CustomEvent
+    const options = customEvent.detail?.options
 
-  	const openHandler = (event : CustomEvent) => {
-		const options = event.detail.options
+    const closeAction = () => {
+      setIsOpen(false)
+      setModalType(null)
+      setMetadata(null)
+      unlockScroll()
+    }
 
-		const payload : ModalState = { 
-			name: options.signature, 
-			metadata: options?.metadata
-		}
+    if (options?.timeout) {
+      setTimeout(closeAction, options.timeout)
+    } else {
+      closeAction()
+    }
+  }, [unlockScroll])
 
-		setModalState(payload)
+  useEffect(() => {
+    window.addEventListener(OPEN_MODAL_EVENT, handleOpenModal)
+    window.addEventListener(CLOSE_MODAL_EVENT, handleCloseModal)
 
-		if (typeof document !== 'undefined' && options?.disableScroll) document.body.style.overflowY = "hidden"
-	}
+    return () => {
+      window.removeEventListener(OPEN_MODAL_EVENT, handleOpenModal)
+      window.removeEventListener(CLOSE_MODAL_EVENT, handleCloseModal)
+    }
+  }, [handleOpenModal, handleCloseModal])
 
-    	const closeHandler = ( event : CustomEvent ) => {
-		const options = event.detail?.options
-
-		if (options && options.timeout) {
-			console.log('options supplied: ', options)
-			const timer = options.timeout
-			setTimeout(() => { setModalState(false) }, timer )
-		} else {
-			setModalState(false)
-		}
-
-		const url = location.href.replace(/(\?|&)modal=[^&]+(&|$)/, '')
-		router.push(url)
-
-		if (typeof document !== 'undefined') document.body.style.overflowY = "auto"
-	}
-
-  	useEffect(() => {
-
-
-  	  	window.addEventListener(OPEN_MODAL_EVENT, openHandler);
-  	  	window.addEventListener(CLOSE_MODAL_EVENT, closeHandler);
-
-  	  	return () => {
-  	    		window.removeEventListener(OPEN_MODAL_EVENT, openHandler);
-  	    		window.removeEventListener(CLOSE_MODAL_EVENT, closeHandler);
-  	  	};
-  	}, []);
-
-  	return {
-  		modalState,
-		openModal,
-  	  	closeModal,
-  	};
-}
+  return {
+    isOpen,
+    modalType,
+    metadata,
+    openModal,
+    closeModal
+  }
+} 
