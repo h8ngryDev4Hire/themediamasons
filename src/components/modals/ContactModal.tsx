@@ -50,9 +50,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   }
 
   const renderCalendlyView = () => (
-    <div className="flex flex-col h-full">
-      <div className="h-[500px] rounded-lg overflow-hidden bg-zinc-900">
+    <div id="contact-calendly-view" className="flex flex-col h-full">
+      <div id="calendly-widget-container" className="h-[500px] rounded-lg overflow-hidden bg-zinc-900">
         <div 
+          id="calendly-widget"
           className="calendly-inline-widget"
           data-url="https://calendly.com/arodriguez-themediamasons"
           style={{ height: '100%', width: '100%' }}
@@ -64,6 +65,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           Prefer to send us a message instead?
         </p>
         <button 
+          id="switch-to-form-button"
           onClick={() => setActiveView('message')}
           className={`
             ${oswald.className}
@@ -80,9 +82,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   )
   
   const renderMessageView = () => (
-    <div className="flex flex-col md:flex-row gap-6">
-      <div className="flex-1">
-        <form onSubmit={handleFormSubmit} className="space-y-4">
+    <div id="contact-message-view" className="flex flex-col md:flex-row gap-6">
+      <div id="contact-form-container" className="flex-1">
+        <form id="contact-form" onSubmit={handleFormSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-white mb-1">Name</label>
             <input
@@ -124,6 +126,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           
           <div className="flex justify-between items-center mt-6">
             <button
+              id="switch-to-calendly-button"
               type="button"
               onClick={() => setActiveView('calendly')}
               className={`
@@ -136,6 +139,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             </button>
             
             <button
+              id="send-message-button"
               type="submit"
               className={`
                 ${oswald.className}
@@ -151,13 +155,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         </form>
       </div>
       
-      <div className="relative flex-1 rounded-lg border border-white/10">
+      <div id="contact-info-panel" className="relative flex-1 rounded-lg border border-white/10">
         {/* Glass overlay */}
         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-zinc-800/30 to-zinc-700/20 backdrop-blur-xl"></div>
         
         {/* Content */}
         <div className="relative z-10 p-6">
-          <h3 className={`${oswald.className} text-xl text-white mb-4`}>Why Work With Us</h3>
+          <h3 id="why-work-with-us-title" className={`${oswald.className} text-xl text-white mb-4`}>Why Work With Us</h3>
           <ul className="space-y-3 text-white/80">
             <li className="flex items-start">
               <span className="mr-2 text-purple-400">✓</span>

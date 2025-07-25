@@ -10,15 +10,15 @@ import Spacer from '../components/common/Spacer'
 
 export default function Home() {
   return (
-    <>
+    <main id="main-content">
       <PsychedelicBackground />
       
       <HeroSection />
-      <ProductsSection />
-      <PortfolioSection />
-      <ServicesSection />
       <AboutSection />
+      <ServicesSection />
+      <PortfolioSection />
+      <ProductsSection />
       <Spacer height="50px" />
-    </>
+    </main>
   )
 }

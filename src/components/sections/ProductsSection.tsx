@@ -139,7 +139,7 @@ export default function ProductsSection() {
         </div>
         
         {/* App showcase carousel - restructured layout */}
-        <div className="relative"
+        <div id="products-carousel" className="relative"
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setShowNavigation({ left: false, right: false })}
         >
@@ -147,11 +147,11 @@ export default function ProductsSection() {
             className={`transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'} ${animateSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             style={{transitionDelay: '300ms'}}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-full">
+            <div id="products-grid" className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-full">
               {/* Left column: App showcase - now larger with 60% width */}
-              <div className="lg:col-span-3 flex flex-col h-full">
+              <div id="product-showcase-column" className="lg:col-span-3 flex flex-col h-full">
                 {/* App image showcase */}
-                <div className="relative h-full min-h-[400px] lg:min-h-[500px]">
+                <div id="product-image-showcase" className="relative h-full min-h-[400px] lg:min-h-[500px]">
                   {appProducts[currentIndex].link ? (
                     <a 
                       href={appProducts[currentIndex].link} 
@@ -265,13 +265,13 @@ export default function ProductsSection() {
               </div>
               
               {/* Right column: Features highlight - now 40% width */}
-              <div className="lg:col-span-2 relative backdrop-blur-md rounded-2xl p-8 border border-white/20 min-h-[400px] lg:min-h-[500px] bg-gradient-to-br from-black/40 to-black/20">
+              <div id="product-features-column" className="lg:col-span-2 relative backdrop-blur-md rounded-2xl p-8 border border-white/20 min-h-[400px] lg:min-h-[500px] bg-gradient-to-br from-black/40 to-black/20">
                 {/* Dark tinted glass effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-zinc-800/30 to-zinc-700/20 backdrop-blur-xl"></div>
                 
                 {/* Features content */}
-                <div className="relative z-10">
-                  <h4 className={`${oswald.className} text-xl font-semibold mb-6 text-white border-b border-white/20 pb-3`}>
+                <div id="product-features-content" className="relative z-10">
+                  <h4 id="product-features-title" className={`${oswald.className} text-xl font-semibold mb-6 text-white border-b border-white/20 pb-3`}>
                     Key Features
                   </h4>
                   

@@ -20,28 +20,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth overflow-x-hidden">
+    <html id="root-html" lang="en" className="scroll-smooth overflow-x-hidden">
       <body
+        id="root-body"
         className={`${bangers.className} ${oswald.className} ${raleway.className} antialiased bg-black text-white min-h-screen flex flex-col`}
       >
         <Navigator floating={true} />
         
-        <main className="flex-grow relative z-10">
+        <main id="page-content" className="flex-grow relative z-10">
           {children}
         </main>
         
         <Footer />
         
         {/* Modal system */}
-        <ModalProvider />
+        <div id="modal-system">
+          <ModalProvider />
+        </div>
         
         {/* Stagewise Toolbar - only loads in development */}
         {process.env.NODE_ENV === "development" && (
-          <StagewiseToolbar 
-            config={{
-              plugins: [],
-            }}
-          />
+          <div id="stagewise-toolbar">
+            <StagewiseToolbar 
+              config={{
+                plugins: [],
+              }}
+            />
+          </div>
         )}
       </body>
     </html>

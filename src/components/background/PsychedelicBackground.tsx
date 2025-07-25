@@ -8,6 +8,8 @@ export default function PsychedelicBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
   // Track scroll position
   const [scrollY, setScrollY] = useState(0)
+  // Track portfolio interaction dimming
+  const [isDimmed, setIsDimmed] = useState(false)
   
   useEffect(() => {
     // Safety check
@@ -210,9 +212,15 @@ export default function PsychedelicBackground() {
       const normalizedScroll = window.scrollY / (document.body.scrollHeight - window.innerHeight)
       shaderMaterial.uniforms.scrollOffset.value = normalizedScroll
     }
+
+    // Handle portfolio interaction dimming
+    const handlePortfolioDimming = (event: CustomEvent) => {
+      setIsDimmed(event.detail.interactionMode)
+    }
     
     window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleScroll)
+    window.addEventListener('portfolioInteraction', handlePortfolioDimming as EventListener)
     
     // Animation loop
     const clock = new THREE.Clock()
@@ -230,6 +238,7 @@ export default function PsychedelicBackground() {
     return () => {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('portfolioInteraction', handlePortfolioDimming as EventListener)
       cancelAnimationFrame(animationId)
       
       scene.remove(quad)
@@ -244,22 +253,36 @@ export default function PsychedelicBackground() {
   }, [])
   
   return (
-    <div
-      ref={containerRef}
-      id="background-container"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: -9999,
-        overflow: 'hidden',
-        pointerEvents: 'none',
-        isolation: 'isolate',
-        transform: `translateY(${scrollY * 0.01}px)`, // Reduced from 0.03 to 0.01
-      }}
-      aria-hidden="true"
-    />
+    <>
+      <div
+        ref={containerRef}
+        id="background-container"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: -9999,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          isolation: 'isolate',
+          transform: `translateY(${scrollY * 0.01}px)`, // Reduced from 0.03 to 0.01
+        }}
+        aria-hidden="true"
+      />
+      
+      {/* CSS Dimming overlay - positioned above the background but below all content */}
+      <div
+        id="background-dimming-overlay"
+        className={`fixed inset-0 bg-black pointer-events-none transition-opacity duration-500 ${
+          isDimmed ? 'opacity-85' : 'opacity-0'
+        }`}
+        style={{
+          zIndex: -9998, // Just above the background but still below all content
+        }}
+        aria-hidden="true"
+      />
+    </>
   )
 } 

@@ -78,6 +78,7 @@ export default function Modal({
   
   return (
     <div 
+      id="modal-overlay"
       className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300"
       onClick={(e) => {
         // Close only if the background is clicked directly
@@ -88,6 +89,7 @@ export default function Modal({
     >
       {/* Semi-transparent backdrop */}
       <div 
+        id="modal-backdrop"
         className={`
           fixed inset-0 bg-black/60 backdrop-blur-sm 
           transition-opacity duration-300 
@@ -97,6 +99,7 @@ export default function Modal({
       
       {/* Modal container */}
       <div 
+        id="modal-container"
         className={`
           ${sizeClasses[size]} w-[95%] z-50 
           relative overflow-hidden backdrop-blur-lg rounded-2xl
@@ -111,9 +114,10 @@ export default function Modal({
         <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-xl rounded-2xl" />
         
         {/* Modal header */}
-        <div className="relative z-10 flex justify-between items-center p-4 border-b border-white/10">
-          <h2 className={`${bangers.className} text-3xl text-white`}>{title}</h2>
+        <div id="modal-header" className="relative z-10 flex justify-between items-center p-4 border-b border-white/10">
+          <h2 id="modal-title" className={`${bangers.className} text-3xl text-white`}>{title}</h2>
           <button 
+            id="modal-close-button"
             onClick={onClose}
             className="text-white/80 hover:text-white text-3xl font-bold transition-colors"
           >
@@ -122,7 +126,7 @@ export default function Modal({
         </div>
         
         {/* Modal content */}
-        <div className="relative z-10 p-6">
+        <div id="modal-content" className="relative z-10 p-6">
           {children}
         </div>
       </div>
