@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --media-mason-purple: #7c3aed;
+  --media-mason-orange: #f97316;
+  --media-mason-green: #09d408;
+  --terminal-green: #4ade80;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* Basic smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--media-mason-purple);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.8);
+}
+
+@layer components {
+  .z-background {
+    @apply z-[0]
+  }
+
+  .z-content {
+    @apply z-[50]
+  }
+
+  .z-foreground {
+    @apply z-[250]
+  }
+
+  .z-layout {
+    @apply z-[400]
+  }
+
+  .z-modal {
+    @apply z-[1000]
+  }
+  
+  .footer-bg-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.95), #000);
+    backdrop-filter: blur(12px);
+  }
+  
+  .terminal-text {
+    letter-spacing: 0.05em;
+    position: relative;
+    transition: color 1.5s ease;
+  }
+  
+  .terminal-text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 50%,
+      transparent 100%
+    );
+    background-size: 100% 3px;
+    animation: scanline 2s linear infinite;
+  }
+  
+  .icon-glow-hover {
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .icon-glow-hover:hover, .card-hover:hover .icon-glow {
+    color: var(--media-mason-green);
+    text-shadow: 0 0 10px var(--media-mason-green), 0 0 20px var(--media-mason-purple);
+    animation: icon-gradient-move 3s infinite alternate;
+  }
+}
+
+@keyframes gradient-border-move {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes icon-gradient-move {
+  0% { 
+    color: var(--media-mason-purple);
+    text-shadow: 0 0 10px var(--media-mason-purple), 0 0 15px var(--media-mason-purple);
+  }
+  50% { 
+    color: var(--media-mason-orange);
+    text-shadow: 0 0 10px var(--media-mason-orange), 0 0 15px var(--media-mason-orange);
+  }
+  100% { 
+    color: var(--media-mason-green);
+    text-shadow: 0 0 10px var(--media-mason-green), 0 0 15px var(--media-mason-green);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes scanline {
+  0% { 
+    transform: translateY(-100%); 
+  }
+  100% { 
+    transform: translateY(100%); 
+  }
+}
+
+/* Add animation classes to Tailwind */
+@layer utilities {
+  .animate-flicker {
+    animation: flicker 1s infinite;
+  }
+  
+  .animate-scanline {
+    animation: scanline 2s linear infinite;
+  }
+}

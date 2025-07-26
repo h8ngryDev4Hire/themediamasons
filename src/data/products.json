@@ -1,0 +1,49 @@
+[
+  {
+    "id": "app-taskmaster",
+    "name": "Notate",
+    "link": "https://chromewebstore.google.com/detail/notate/mienhcnmknnplcaheeelfggdagmighap",
+    "description": "Jot your ideas, discoveries, research notes, or practically anything! Without leaving your browser! Enter Notate, your web navigation partner! Notate is a powerful browser extension that seamlessly integrates note-taking and web browsing.",
+    "features": [
+      { "name": "Web navigation", "description": "Navigate the web efficiently with intuitive controls and features" },
+      { "name": "Note-taking", "description": "Capture and organize your thoughts seamlessly while browsing" },
+      { "name": "Web search", "description": "Search the web without interrupting your workflow" },
+      { "name": "Web highlights", "description": "Highlight and save important information from any webpage" }
+    ],
+    "platforms": ["Chrome", "Firefox", "Safari"],
+    "primaryColor": "from-blue-300 to-blue-600",
+    "icon": "�",
+    "images": ["notate-1.jpg", "notate-2.jpg", "notate-3.jpg"]
+  },
+  {
+    "id": "app-dataflow",
+    "name": "B2Brilliant",
+    "link": "https://b2brilliant.app",
+    "description": "B2Brilliant's AI-driven outreach platform helps you identify qualified prospects, personalize campaigns, and boost conversion rates for your business development team.",
+    "features": [
+      { "name": "AI-driven outreach", "description": "Leverage AI to create personalized outreach campaigns that resonate with prospects" },
+      { "name": "Prospect identification", "description": "Identify high-value prospects using advanced targeting algorithms" },
+      { "name": "Campaign personalization", "description": "Create customized campaigns that speak directly to your audience's needs" },
+      { "name": "Conversion tracking", "description": "Monitor and optimize your campaigns with detailed conversion analytics" }
+    ],
+    "platforms": ["Web", "API"],
+    "primaryColor": "from-orange-300 to-orange-600",
+    "icon": "�",
+    "images": ["b2brilliant-1.jpg", "b2brilliant-2.jpg", "b2brilliant-3.jpg"]
+  },
+  {
+    "id": "app-fittrack",
+    "name": "Web Vision",
+    "link": null,
+    "description": "Coming Soon.",
+    "features": [
+      { "name": "Agentic AI", "description": "Intelligent AI agents that assist with your daily tasks" },
+      { "name": "Web navigation", "description": "Smart tools to improve your browsing experience" },
+      { "name": "Navigation Partner", "description": "Enhance your workflow with our powerful navigation partner capabilities" }
+    ],
+    "platforms": ["Chrome", "Firefox", "Safari"],
+    "primaryColor": "from-purple-300 to-red-600",
+    "icon": "�",
+    "images": ["webvision-1.jpg", "webvision-2.jpg", "webvision-3.jpg"]
+  }
+] 
