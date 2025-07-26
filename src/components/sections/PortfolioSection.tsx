@@ -68,6 +68,14 @@ export default function WorkSection() {
     }
   }, [activeProjectIndex, displayedProject]);
 
+  // Handle background dimming on hover
+  useEffect(() => {
+    // Dispatch event to dim/restore background based on hover state
+    window.dispatchEvent(new CustomEvent('portfolioInteraction', {
+      detail: { interactionMode: isHovered }
+    }));
+  }, [isHovered]);
+
   // Use portfolio data from JSON file with type checking
   const projects = portfolioData as PortfolioData;
 
@@ -138,8 +146,11 @@ export default function WorkSection() {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Section-to-background gradient transitions */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none -translate-y-full"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none translate-y-full"></div>
+      <div id="portfolio-transition-layer-top-half-1" className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none -translate-y-full"></div>
+      <div id="portfolio-transition-layer-top-half-2" className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
+
+      <div id="portfolio-transition-layer-bottom-half-1" className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+      <div id="portfolio-transition-layer-bottom-half-2" className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none translate-y-full"></div>
 
       {/* Vignette effect */}
       <div className="absolute inset-0 pointer-events-none z-50 shadow-[inset_0_0_150px_rgba(0,0,0,0.7)]"></div>
