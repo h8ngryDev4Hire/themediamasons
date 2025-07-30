@@ -1,7 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { bangers, oswald, raleway } from '../../../lib/fonts'
+import { bangers, oswald } from '../../../lib/fonts'
+import MobileMenu from './MobileMenu'
+import MobileMenuButton from './MobileMenuButton'
+import NavLink from './NavLink'
 
 interface NavigatorProps {
   floating?: boolean
@@ -15,6 +18,11 @@ export default function Navigator({ floating = true }: NavigatorProps) {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Don't update navigation state when mobile menu is open
+      if (isMobileMenuOpen) {
+        return
+      }
+      
       const scrollY = window.scrollY
       setIsAtTop(scrollY < 50)
       
@@ -43,7 +51,21 @@ export default function Navigator({ floating = true }: NavigatorProps) {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [hasScrolled])
+  }, [hasScrolled, isMobileMenuOpen])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
   
   // Handle navigation
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -149,88 +171,19 @@ export default function Navigator({ floating = true }: NavigatorProps) {
           </NavLink>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button 
-          id="mobile-menu-button" 
-          className="md:hidden text-white"
+        <MobileMenuButton 
+          isOpen={isMobileMenuOpen}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-          )}
-        </button>
+        />
         
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="fixed md:hidden inset-0 top-16 z-layout bg-black/95 backdrop-blur-lg">
-            <div className="flex flex-col items-center justify-center h-full gap-8">
-              <NavLink 
-                href="#products" 
-                isActive={activeSection === 'products'} 
-                onClick={(e) => handleNavClick(e, 'products')}
-              >
-                Products
-              </NavLink>
-              <NavLink 
-                href="#services" 
-                isActive={activeSection === 'services'} 
-                onClick={(e) => handleNavClick(e, 'services')}
-              >
-                Services
-              </NavLink>
-              <NavLink 
-                href="#about" 
-                isActive={activeSection === 'about'} 
-                onClick={(e) => handleNavClick(e, 'about')}
-              >
-                About
-              </NavLink>
-              <NavLink 
-                href="#portfolio" 
-                isActive={activeSection === 'portfolio'} 
-                onClick={(e) => handleNavClick(e, 'portfolio')}
-              >
-                Portfolio
-              </NavLink>
-            </div>
-          </div>
-        )}
+        <MobileMenu 
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+          activeSection={activeSection}
+          onNavClick={handleNavClick}
+          onScrollToTop={handleScrollToTop}
+        />
       </div>
     </nav>
-  )
-}
-
-function NavLink({ 
-  href, 
-  isActive, 
-  onClick,
-  children 
-}: { 
-  href: string, 
-  isActive?: boolean, 
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void,
-  children: React.ReactNode 
-}) {  
-  return (
-    <a 
-      href={href}
-      onClick={onClick}
-      className={`${raleway.className} transition duration-300 ease-in-out cursor-pointer
-        ${isActive 
-          ? 'text-media-mason-purple font-semibold' 
-          : 'text-white hover:text-media-mason-purple'}`
-      }
-    >
-      {children}
-    </a>
   )
 } 

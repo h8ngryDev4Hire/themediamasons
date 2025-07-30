@@ -10,6 +10,7 @@ import { AppProduct, ProductsData } from '../../definitions/types/products'
 export default function ProductsSection() {
   const { ref, isInView } = useInView(0.1);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayedIndex, setDisplayedIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showNavigation, setShowNavigation] = useState({ left: false, right: false });
@@ -25,44 +26,70 @@ export default function ProductsSection() {
   // Import products data from JSON
   const appProducts: ProductsData = productsData as unknown as ProductsData;
 
-  // Handle navigation
+  // Handle navigation with proper transition sequencing
   const goToNext = () => {
     if (!isTransitioning) {
       setIsTransitioning(true);
-      setCurrentIndex((prevIndex) => (prevIndex === appProducts.length - 1 ? 0 : prevIndex + 1));
-      setCurrentImageIndex(0);
-      setTimeout(() => setIsTransitioning(false), 500);
+      const nextIndex = currentIndex === appProducts.length - 1 ? 0 : currentIndex + 1;
+      
+      // Start fade out, then update content, then fade in
+      setTimeout(() => {
+        setCurrentIndex(nextIndex);
+        setDisplayedIndex(nextIndex);
+        setCurrentImageIndex(0);
+      }, 350); // Half of transition duration for content change
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 700); // Full transition duration
     }
   };
 
   const goToPrevious = () => {
     if (!isTransitioning) {
       setIsTransitioning(true);
-      setCurrentIndex((prevIndex) => (prevIndex === 0 ? appProducts.length - 1 : prevIndex - 1));
-      setCurrentImageIndex(0);
-      setTimeout(() => setIsTransitioning(false), 500);
+      const prevIndex = currentIndex === 0 ? appProducts.length - 1 : currentIndex - 1;
+      
+      // Start fade out, then update content, then fade in
+      setTimeout(() => {
+        setCurrentIndex(prevIndex);
+        setDisplayedIndex(prevIndex);
+        setCurrentImageIndex(0);
+      }, 350); // Half of transition duration for content change
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 700); // Full transition duration
     }
   };
 
   const goToSlide = (index: number) => {
     if (!isTransitioning && index !== currentIndex) {
       setIsTransitioning(true);
-      setCurrentIndex(index);
-      setCurrentImageIndex(0);
-      setTimeout(() => setIsTransitioning(false), 500);
+      
+      // Start fade out, then update content, then fade in
+      setTimeout(() => {
+        setCurrentIndex(index);
+        setDisplayedIndex(index);
+        setCurrentImageIndex(0);
+      }, 350); // Half of transition duration for content change
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 700); // Full transition duration
     }
   };
 
   // Image navigation
   const nextImage = () => {
-    const currentApp = appProducts[currentIndex];
+    const currentApp = appProducts[displayedIndex];
     setCurrentImageIndex((prev) => 
       prev === currentApp.images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
-    const currentApp = appProducts[currentIndex];
+    const currentApp = appProducts[displayedIndex];
     setCurrentImageIndex((prev) => 
       prev === 0 ? currentApp.images.length - 1 : prev - 1
     );
@@ -74,7 +101,7 @@ export default function ProductsSection() {
       if (isInView && !isTransitioning) {
         goToNext();
       }
-    }, 6000);
+    }, 10000);
     
     return () => clearInterval(interval);
   }, [isInView, isTransitioning]);
@@ -108,28 +135,28 @@ export default function ProductsSection() {
           >Products</h2>
           
                       <div className={`flex items-center mb-12 transition-all duration-700 delay-200 ${animateSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            {appProducts[currentIndex].link ? (
+            {appProducts[displayedIndex].link ? (
               <a 
-                href={appProducts[currentIndex].link} 
+                href={appProducts[displayedIndex].link} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center hover:opacity-80 transition-opacity group"
               >
-                <div className={`w-16 h-16 flex items-center justify-center rounded-xl mr-4 bg-gradient-to-br ${appProducts[currentIndex].primaryColor} text-white text-3xl shadow-lg group-hover:shadow-xl transition-shadow`}>
-                  {appProducts[currentIndex].icon}
+                <div className={`w-16 h-16 flex items-center justify-center rounded-xl mr-4 bg-gradient-to-br ${appProducts[displayedIndex].primaryColor} text-white text-3xl shadow-lg group-hover:shadow-xl transition-shadow`}>
+                  {appProducts[displayedIndex].icon}
                 </div>
                 <h3 className={`${oswald.className} text-3xl md:text-4xl font-bold text-white group-hover:underline`}>
-                  {appProducts[currentIndex].name}
+                  {appProducts[displayedIndex].name}
                 </h3>
               </a>
             ) : (
               <div className="flex items-center group">
-                <div className={`w-16 h-16 flex items-center justify-center rounded-xl mr-4 bg-gradient-to-br ${appProducts[currentIndex].primaryColor} text-white text-3xl shadow-lg`}>
-                  {appProducts[currentIndex].icon}
+                <div className={`w-16 h-16 flex items-center justify-center rounded-xl mr-4 bg-gradient-to-br ${appProducts[displayedIndex].primaryColor} text-white text-3xl shadow-lg`}>
+                  {appProducts[displayedIndex].icon}
                 </div>
                 <div>
                   <h3 className={`${oswald.className} text-3xl md:text-4xl font-bold text-white`}>
-                    {appProducts[currentIndex].name}
+                    {appProducts[displayedIndex].name}
                   </h3>
                   <span className="text-xs px-2 py-0.5 bg-yellow-600/20 text-yellow-400 rounded-full mt-1 inline-block">Coming Soon</span>
                 </div>
@@ -144,17 +171,17 @@ export default function ProductsSection() {
           onMouseLeave={() => setShowNavigation({ left: false, right: false })}
         >
           <div 
-            className={`transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'} ${animateSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{transitionDelay: '300ms'}}
+            className={`transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 blur-sm' : 'opacity-100 scale-100 blur-0'} ${animateSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            style={{transitionDelay: animateSection ? '300ms' : '0ms'}}
           >
             <div id="products-grid" className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-full">
               {/* Left column: App showcase - now larger with 60% width */}
               <div id="product-showcase-column" className="lg:col-span-3 flex flex-col h-full">
                 {/* App image showcase */}
                 <div id="product-image-showcase" className="relative h-full min-h-[400px] lg:min-h-[500px]">
-                  {appProducts[currentIndex].link ? (
+                  {appProducts[displayedIndex].link ? (
                     <a 
-                      href={appProducts[currentIndex].link} 
+                      href={appProducts[displayedIndex].link} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="block h-full cursor-pointer"
@@ -164,8 +191,8 @@ export default function ProductsSection() {
                           <div className="relative w-full h-full">
                             {/* Image with error handling */}
                             <Image
-                              src={`/images/products/${appProducts[currentIndex].images[currentImageIndex]}`}
-                              alt={`${appProducts[currentIndex].name} screenshot ${currentImageIndex + 1}`}
+                              src={`/images/products/${appProducts[displayedIndex].images[currentImageIndex]}`}
+                              alt={`${appProducts[displayedIndex].name} screenshot ${currentImageIndex + 1}`}
                               fill
                               className="object-cover object-center"
                               priority={currentImageIndex === 0}
@@ -187,7 +214,7 @@ export default function ProductsSection() {
                           </div>
 
                           <span className="absolute top-4 right-4 text-xs text-white/50 bg-black/30 px-2 py-1 rounded-md backdrop-blur-sm">
-                            {currentImageIndex + 1}/{appProducts[currentIndex].images.length}
+                            {currentImageIndex + 1}/{appProducts[displayedIndex].images.length}
                           </span>
 
                           <div className="absolute inset-0 bg-purple-500/0 hover:bg-purple-500/10 transition-colors flex items-center justify-center opacity-0 hover:opacity-100">
@@ -202,8 +229,8 @@ export default function ProductsSection() {
                         <div className="relative w-full h-full">
                           {/* Image with error handling */}
                           <Image
-                            src={`/images/products/${appProducts[currentIndex].images[currentImageIndex]}`}
-                            alt={`${appProducts[currentIndex].name} screenshot ${currentImageIndex + 1}`}
+                            src={`/images/products/${appProducts[displayedIndex].images[currentImageIndex]}`}
+                            alt={`${appProducts[displayedIndex].name} screenshot ${currentImageIndex + 1}`}
                             fill
                             className="object-cover object-center"
                             priority={currentImageIndex === 0}
@@ -225,7 +252,7 @@ export default function ProductsSection() {
                         </div>
 
                         <span className="absolute top-4 right-4 text-xs text-white/50 bg-black/30 px-2 py-1 rounded-md backdrop-blur-sm">
-                          {currentImageIndex + 1}/{appProducts[currentIndex].images.length}
+                          {currentImageIndex + 1}/{appProducts[displayedIndex].images.length}
                         </span>
 
                         <div className="absolute bottom-0 left-0 right-0 py-2 px-4 bg-yellow-900/30 flex items-center justify-center">
@@ -255,7 +282,7 @@ export default function ProductsSection() {
                   
                   {/* Platform indicators */}
                   <div className="absolute -bottom-3 -right-3 flex space-x-2">
-                    {appProducts[currentIndex].platforms.map((platform, i) => (
+                    {appProducts[displayedIndex].platforms.map((platform, i) => (
                       <span key={i} className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
                         {platform}
                       </span>
@@ -276,7 +303,7 @@ export default function ProductsSection() {
                   </h4>
                   
                   <ul className="space-y-6">
-                    {appProducts[currentIndex].features.map((feature, i) => (
+                    {appProducts[displayedIndex].features.map((feature, i) => (
                       <li key={i} className="flex items-start">
                         <span className="w-6 h-6 rounded-full bg-gradient-to-br from-media-mason-purple to-media-mason-purple/70 flex items-center justify-center text-white text-xs mt-0.5 mr-4">
                           {i + 1}

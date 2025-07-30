@@ -2,7 +2,20 @@
 
 import React from 'react'
 import { bangers, oswald, raleway } from '../../lib/fonts'
-import { Linkedin, Twitter } from 'lucide-react'
+import { Linkedin } from 'lucide-react'
+
+// X (Twitter) Logo Component
+const XLogo = ({ size = 22 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 export default function Footer() {
   return (
@@ -48,13 +61,23 @@ export default function Footer() {
           <div id="footer-contact" className="footer-section">
             <h3 className={`${oswald.className} font-bold text-xl mb-4`}>Connect With Us</h3>
             
+            {/* Email Contact */}
+            <div className={`${bangers.className} mb-4`}>
+              <a 
+                href="mailto:letswork@themediamasons.com" 
+                className="text-white icon-glow-hover text-lg transition-transform duration-300 ease-in-out hover:scale-[1.1] inline-block"
+              >
+                letswork@themediamasons.com
+              </a>
+            </div>
+            
             {/* Social Media Links */}
             <div id="social-links" className="flex space-x-4 mt-2">
-              <a href="#" className="text-white hover:text-media-mason-purple trans-ease">
+              <a href="https://www.linkedin.com/company/themediamasons" target="_blank" rel="noopener noreferrer" className="text-white icon-glow-hover transition-transform duration-300 ease-in-out hover:scale-125 inline-block">
                 <Linkedin size={22} />
               </a>
-              <a href="#" className="text-white hover:text-media-mason-purple trans-ease">
-                <Twitter size={22} />
+              <a href="https://x.com/TheMediaMasons" target="_blank" rel="noopener noreferrer" className="text-white icon-glow-hover transition-transform duration-300 ease-in-out hover:scale-125 inline-block">
+                <XLogo size={22} />
               </a>
             </div>
           </div>

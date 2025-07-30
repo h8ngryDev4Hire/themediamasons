@@ -137,6 +137,17 @@ html {
   }
 }
 
+@keyframes mobile-nav-item-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Add animation classes to Tailwind */
 @layer utilities {
   .animate-flicker {
@@ -145,5 +156,10 @@ html {
   
   .animate-scanline {
     animation: scanline 2s linear infinite;
+  }
+  
+  .animate-mobile-nav-item-fade-in {
+    animation: mobile-nav-item-fade-in 0.4s ease-out forwards;
+    opacity: 0;
   }
 }

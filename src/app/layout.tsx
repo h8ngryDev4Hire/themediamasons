@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { bangers, oswald, raleway } from "../lib/fonts";
 import "./globals.css";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 import Navigator from "../components/common/navigator/navigator";
 import Footer from "../components/footer/footer";
 import ModalProvider from "../components/modals/ModalProvider";
@@ -21,6 +22,18 @@ export default function RootLayout({
 }>) {
   return (
     <html id="root-html" lang="en" className="scroll-smooth overflow-x-hidden">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-L8M6Z41GM3"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-L8M6Z41GM3');
+        `}</Script>
+      </head>
       <body
         id="root-body"
         className={`${bangers.className} ${oswald.className} ${raleway.className} antialiased bg-black text-white min-h-screen flex flex-col`}
