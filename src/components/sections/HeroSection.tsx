@@ -57,9 +57,9 @@ export default function HeroSection() {
             fadeDelay={4000}
           />
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
           <div 
-            className="relative overflow-hidden backdrop-blur-md rounded-2xl transition-all duration-300 hover:shadow-lg bg-gradient-to-br from-black/40 to-black/20 border border-white/20 shadow-md"
+            className="relative overflow-hidden backdrop-blur-md rounded-2xl bg-gradient-to-br from-black/40 to-black/20 border border-white/20 shadow-md button-glow-hover hover:scale-125 transition-transform duration-300 inline-block"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/30 to-zinc-700/20 backdrop-blur-xl rounded-2xl" />
             <button 
@@ -67,12 +67,12 @@ export default function HeroSection() {
               onClick={handleContactClick}
               className={`${oswald.className} relative z-10 text-white font-bold py-3 px-8 transition duration-300 ease-in-out`}
             >
-              Get Started
+              <span className="button-text">Get Started</span>
             </button>
           </div>
           
           <div 
-            className="relative overflow-hidden backdrop-blur-md rounded-2xl transition-all duration-300 hover:shadow-lg bg-gradient-to-br from-black/40 to-black/20 border border-white/20 shadow-md"
+            className="relative overflow-hidden backdrop-blur-md rounded-2xl bg-gradient-to-br from-black/40 to-black/20 border border-white/20 shadow-md button-glow-hover hover:scale-125 transition-transform duration-300 inline-block"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/30 to-zinc-700/20 backdrop-blur-xl rounded-2xl" />
             <button 
@@ -80,7 +80,7 @@ export default function HeroSection() {
               onClick={handleScrollToPortfolio}
               className={`${oswald.className} relative z-10 text-white font-bold py-3 px-8 transition duration-300 ease-in-out`}
             >
-              View Our Portfolio
+              <span className="button-text">View Our Portfolio</span>
             </button>
           </div>
         </div>

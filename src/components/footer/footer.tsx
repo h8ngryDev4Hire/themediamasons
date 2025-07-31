@@ -13,21 +13,21 @@ const XLogo = ({ size = 22 }: { size?: number }) => (
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 )
 
 export default function Footer() {
   return (
-    <footer 
-      id="site-footer" 
+    <footer
+      id="site-footer"
       className="w-full text-white py-12 relative mt-12 z-20"
     >
       {/* Blurred gradient background */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none backdrop-blur-lg bg-gradient-to-b from-transparent via-black/90 to-black z-[-1]"
       />
-      
+
       {/* Top border with gradient glow */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-media-mason-purple/50 via-media-mason-orange/50 to-media-mason-purple/50 shadow-[0_0_5px_rgba(124,58,237,0.5)]" />
 
@@ -60,17 +60,17 @@ export default function Footer() {
           {/* Contact Information */}
           <div id="footer-contact" className="footer-section">
             <h3 className={`${oswald.className} font-bold text-xl mb-4`}>Connect With Us</h3>
-            
+
             {/* Email Contact */}
             <div className={`${bangers.className} mb-4`}>
-              <a 
-                href="mailto:letswork@themediamasons.com" 
+              <a
+                href="mailto:letswork@themediamasons.com"
                 className="text-white icon-glow-hover text-lg transition-transform duration-300 ease-in-out hover:scale-[1.1] inline-block"
               >
                 letswork@themediamasons.com
               </a>
             </div>
-            
+
             {/* Social Media Links */}
             <div id="social-links" className="flex space-x-4 mt-2">
               <a href="https://www.linkedin.com/company/themediamasons" target="_blank" rel="noopener noreferrer" className="text-white icon-glow-hover transition-transform duration-300 ease-in-out hover:scale-125 inline-block">
@@ -82,9 +82,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
+
         {/* Copyright */}
-        <div id="copyright" className={`${raleway.className} border-t border-gray-700 mt-10 pt-6 text-center text-white text-sm`}>
+        <div id="copyright" className={`${raleway.className} border-t border-zinc-700 mt-10 pt-6 text-center text-white text-sm`}>
           &copy; {new Date().getFullYear()} The Media Masons. All rights reserved.
         </div>
       </div>

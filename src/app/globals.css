@@ -97,6 +97,14 @@ html {
     text-shadow: 0 0 10px var(--media-mason-green), 0 0 20px var(--media-mason-purple);
     animation: icon-gradient-move 3s infinite alternate;
   }
+
+  .button-glow-hover:hover {
+    animation: button-shadow-gradient-move 3s infinite alternate;
+  }
+
+  .button-glow-hover:hover .button-text {
+    animation: icon-gradient-move 3s infinite alternate;
+  }
 }
 
 @keyframes gradient-border-move {
@@ -120,6 +128,18 @@ html {
   100% { 
     color: var(--media-mason-green);
     text-shadow: 0 0 10px var(--media-mason-green), 0 0 15px var(--media-mason-green);
+  }
+}
+
+@keyframes button-shadow-gradient-move {
+  0% { 
+    box-shadow: 0 0 20px var(--media-mason-purple), 0 0 40px var(--media-mason-purple);
+  }
+  50% { 
+    box-shadow: 0 0 20px var(--media-mason-orange), 0 0 40px var(--media-mason-orange);
+  }
+  100% { 
+    box-shadow: 0 0 20px var(--media-mason-green), 0 0 40px var(--media-mason-green);
   }
 }
 
