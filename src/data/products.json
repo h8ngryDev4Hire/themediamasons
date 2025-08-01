@@ -29,7 +29,7 @@
     "platforms": ["Web", "API"],
     "primaryColor": "from-orange-300 to-orange-600",
     "icon": "�",
-    "images": ["b2brilliant-1.jpg", "b2brilliant-2.jpg", "b2brilliant-3.jpg"]
+    "images": ["b2brilliant-1.jpg", "b2brilliant-2.jpg"]
   },
   {
     "id": "app-fittrack",

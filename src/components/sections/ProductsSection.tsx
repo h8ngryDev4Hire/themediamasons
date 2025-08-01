@@ -13,6 +13,7 @@ export default function ProductsSection() {
   const [displayedIndex, setDisplayedIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageTransitioning, setIsImageTransitioning] = useState(false);
   const [showNavigation, setShowNavigation] = useState({ left: false, right: false });
   const [animateSection, setAnimateSection] = useState(false);
   
@@ -80,19 +81,41 @@ export default function ProductsSection() {
     }
   };
 
-  // Image navigation
+  // Image navigation with transition
   const nextImage = () => {
-    const currentApp = appProducts[displayedIndex];
-    setCurrentImageIndex((prev) => 
-      prev === currentApp.images.length - 1 ? 0 : prev + 1
-    );
+    if (!isImageTransitioning) {
+      setIsImageTransitioning(true);
+      const currentApp = appProducts[displayedIndex];
+      
+      // Start fade out, then update image, then fade in
+      setTimeout(() => {
+        setCurrentImageIndex((prev) => 
+          prev === currentApp.images.length - 1 ? 0 : prev + 1
+        );
+      }, 150); // Half of transition duration for image change
+      
+      setTimeout(() => {
+        setIsImageTransitioning(false);
+      }, 300); // Full transition duration
+    }
   };
 
   const prevImage = () => {
-    const currentApp = appProducts[displayedIndex];
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? currentApp.images.length - 1 : prev - 1
-    );
+    if (!isImageTransitioning) {
+      setIsImageTransitioning(true);
+      const currentApp = appProducts[displayedIndex];
+      
+      // Start fade out, then update image, then fade in
+      setTimeout(() => {
+        setCurrentImageIndex((prev) => 
+          prev === 0 ? currentApp.images.length - 1 : prev - 1
+        );
+      }, 150); // Half of transition duration for image change
+      
+      setTimeout(() => {
+        setIsImageTransitioning(false);
+      }, 300); // Full transition duration
+    }
   };
 
   // Auto-rotate carousel
@@ -101,10 +124,21 @@ export default function ProductsSection() {
       if (isInView && !isTransitioning) {
         goToNext();
       }
-    }, 10000);
+    }, 12000);
     
     return () => clearInterval(interval);
   }, [isInView, isTransitioning]);
+
+  // Auto-shuffle product images every 5 seconds
+  useEffect(() => {
+    const imageInterval = setInterval(() => {
+      if (isInView && !isTransitioning) {
+        nextImage();
+      }
+    }, 5000);
+    
+    return () => clearInterval(imageInterval);
+  }, [isInView, isTransitioning, displayedIndex]);
 
   // Handle mouse movement for navigation arrows
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -131,7 +165,7 @@ export default function ProductsSection() {
         <div className="flex flex-col lg:flex-row justify-between items-start">
           <h2 
             id="products-title" 
-            className={`${oswald.className} text-3xl md:text-5xl font-bold mb-12 text-left transition-all duration-700 delay-100 ${animateSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`${oswald.className} text-3xl md:text-5xl font-bold mb-12 text-left mt-16 sm:mt-12 md:mt-8 lg:mt-0 transition-all duration-700 delay-100 ${animateSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >Products</h2>
           
                       <div className={`flex items-center mb-12 transition-all duration-700 delay-200 ${animateSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -166,7 +200,7 @@ export default function ProductsSection() {
         </div>
         
         {/* App showcase carousel - restructured layout */}
-        <div id="products-carousel" className="relative"
+        <div id="products-carousel" className="relative px-16"
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setShowNavigation({ left: false, right: false })}
         >
@@ -194,7 +228,9 @@ export default function ProductsSection() {
                               src={`/images/products/${appProducts[displayedIndex].images[currentImageIndex]}`}
                               alt={`${appProducts[displayedIndex].name} screenshot ${currentImageIndex + 1}`}
                               fill
-                              className="object-cover object-center"
+                              className={`object-cover object-center transition-all duration-300 ease-in-out ${
+                                isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+                              }`}
                               priority={currentImageIndex === 0}
                               onError={(e) => {
                                 // Handle image load error by showing the fallback
@@ -232,7 +268,9 @@ export default function ProductsSection() {
                             src={`/images/products/${appProducts[displayedIndex].images[currentImageIndex]}`}
                             alt={`${appProducts[displayedIndex].name} screenshot ${currentImageIndex + 1}`}
                             fill
-                            className="object-cover object-center"
+                            className={`object-cover object-center transition-all duration-300 ease-in-out ${
+                              isImageTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+                            }`}
                             priority={currentImageIndex === 0}
                             onError={(e) => {
                               // Handle image load error by showing the fallback
@@ -326,13 +364,13 @@ export default function ProductsSection() {
           
           {/* Left Navigation Arrow */}
           <button 
-            className={`absolute left-0 top-1/2 transform -translate-y-1/2 z-50 p-4 transition-all duration-300 ${
-              showNavigation.left ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
+            className={`absolute -left-16 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ${
+              showNavigation.left ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
             }`}
             onClick={goToPrevious}
             aria-label="Previous product"
           >
-            <div className="backdrop-blur-lg p-4 rounded-full bg-gradient-to-br from-zinc-800/40 to-zinc-700/30 border border-white/10 shadow-lg">
+            <div className="backdrop-blur-lg p-4 rounded-full bg-gradient-to-br from-zinc-800/40 to-zinc-700/30 border border-white/10 shadow-lg hover:shadow-xl transition-shadow">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -340,18 +378,18 @@ export default function ProductsSection() {
           </button>
 
           {/* Right Navigation Arrow */}
-              <button 
-            className={`absolute right-0 top-1/2 transform -translate-y-1/2 z-50 p-4 transition-all duration-300 ${
-              showNavigation.right ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
+          <button 
+            className={`absolute -right-16 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ${
+              showNavigation.right ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
             }`}
             onClick={goToNext}
             aria-label="Next product"
           >
-            <div className="backdrop-blur-lg p-4 rounded-full bg-gradient-to-br from-zinc-800/40 to-zinc-700/30 border border-white/10 shadow-lg">
+            <div className="backdrop-blur-lg p-4 rounded-full bg-gradient-to-br from-zinc-800/40 to-zinc-700/30 border border-white/10 shadow-lg hover:shadow-xl transition-shadow">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-          </div>
+            </div>
           </button>
         </div>
       </div>
