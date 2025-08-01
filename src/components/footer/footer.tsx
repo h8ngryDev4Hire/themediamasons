@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { bangers, oswald, raleway } from '../../lib/fonts'
-import { Linkedin } from 'lucide-react'
+import { LinkedinIcon } from 'lucide-react'
 
 // X (Twitter) Logo Component
 const XLogo = ({ size = 22 }: { size?: number }) => (
@@ -74,7 +74,7 @@ export default function Footer() {
             {/* Social Media Links */}
             <div id="social-links" className="flex space-x-4 mt-2">
               <a href="https://www.linkedin.com/company/themediamasons" target="_blank" rel="noopener noreferrer" className="text-white icon-glow-hover transition-transform duration-300 ease-in-out hover:scale-125 inline-block">
-                <Linkedin size={22} />
+                <LinkedinIcon size={22} />
               </a>
               <a href="https://x.com/TheMediaMasons" target="_blank" rel="noopener noreferrer" className="text-white icon-glow-hover transition-transform duration-300 ease-in-out hover:scale-125 inline-block">
                 <XLogo size={22} />

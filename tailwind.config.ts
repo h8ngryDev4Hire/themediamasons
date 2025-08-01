@@ -22,6 +22,7 @@ const config: Config = {
         'pulse': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'flicker': 'flicker 1s infinite',
         'slide-up': 'slideUp 0.6s ease-out',
+        'reverse': 'spin 1s linear infinite reverse',
       },
       keyframes: {
         flicker: {

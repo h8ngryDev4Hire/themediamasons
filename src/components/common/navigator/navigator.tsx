@@ -11,6 +11,8 @@ interface NavigatorProps {
 }
 
 export default function Navigator({ floating = true }: NavigatorProps) {
+  // Suppress unused parameter warning
+  void floating
   const [isAtTop, setIsAtTop] = useState(true)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('hero-section')
@@ -70,15 +72,22 @@ export default function Navigator({ floating = true }: NavigatorProps) {
   // Handle navigation
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault()
-    const section = document.getElementById(sectionId)
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
-    }
     
-    // Close mobile menu if open
+    // Close mobile menu first if open
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false)
     }
+    
+    // Temporarily restore body scroll for navigation
+    document.body.style.overflow = 'unset'
+    
+    // Navigate to section after a brief delay to allow menu to close
+    setTimeout(() => {
+      const section = document.getElementById(sectionId)
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 100)
   }
 
   // Handle scroll to top

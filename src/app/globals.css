@@ -20,23 +20,34 @@ html {
   scroll-snap-type: y mandatory;
 }
 
-/* Scrollbar styling for webkit browsers */
+/* Glassmorphism scrollbar styling for webkit browsers */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--media-mason-purple);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.8);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 @layer components {
@@ -181,5 +192,24 @@ html {
   .animate-mobile-nav-item-fade-in {
     animation: mobile-nav-item-fade-in 0.4s ease-out forwards;
     opacity: 0;
+  }
+
+  /* Mobile-specific utilities */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .scroll-lock {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* Improve touch targets on mobile */
+  @media (max-width: 768px) {
+    .portfolio-touch-target {
+      min-width: 44px;
+      min-height: 44px;
+    }
   }
 }

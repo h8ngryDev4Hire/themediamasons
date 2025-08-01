@@ -3,6 +3,73 @@
 import { useState, useEffect } from 'react'
 import Modal from '../common/modal/Modal'
 import { oswald, raleway } from '../../lib/fonts'
+import contactQAData from '../../data/contactQA.json'
+import { ContactQAData } from '../../definitions/types/contactQA'
+
+// Q&A Section Component
+function QASection() {
+  const [currentQAIndex, setCurrentQAIndex] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  // Import Q&A data from JSON file with type checking
+  const qaData: ContactQAData = contactQAData as ContactQAData
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true)
+      
+      setTimeout(() => {
+        setCurrentQAIndex((prevIndex) => 
+          prevIndex === qaData.length - 1 ? 0 : prevIndex + 1
+        )
+        setIsTransitioning(false)
+      }, 300) // Half of transition duration
+    }, 7000) // Change every 7 seconds
+
+    return () => clearInterval(interval)
+  }, [qaData.length])
+
+  const currentQA = qaData[currentQAIndex]
+
+  return (
+    <div id="contact-qa-panel" className="relative flex-1 rounded-lg border border-white/10">
+      {/* Glass overlay */}
+      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-zinc-800/30 to-zinc-700/20 backdrop-blur-xl"></div>
+      
+      {/* Content */}
+      <div className="relative z-10 p-6">
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className={`${oswald.className} text-xl text-white`}>Frequently Asked</h3>
+          <div className="flex space-x-1">
+            {qaData.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentQAIndex 
+                    ? 'bg-media-mason-purple w-4' 
+                    : 'bg-white/30'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+        
+        <div 
+          className={`transition-all duration-600 ease-in-out ${
+            isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
+          }`}
+        >
+          <h4 className={`${oswald.className} text-lg text-media-mason-purple mb-3`}>
+            {currentQA.question}
+          </h4>
+          <p className={`${raleway.className} text-white/80 leading-relaxed`}>
+            {currentQA.answer}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 type ContactView = 'calendly' | 'message' | 'success'
 
@@ -216,33 +283,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         </form>
       </div>
       
-      <div id="contact-info-panel" className="relative flex-1 rounded-lg border border-white/10">
-        {/* Glass overlay */}
-        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-zinc-800/30 to-zinc-700/20 backdrop-blur-xl"></div>
-        
-        {/* Content */}
-        <div className="relative z-10 p-6">
-          <h3 id="why-work-with-us-title" className={`${oswald.className} text-xl text-white mb-4`}>Why Work With Us</h3>
-          <ul className="space-y-3 text-white/80">
-            <li className="flex items-start">
-              <span className="mr-2 text-purple-400">✓</span>
-              <span>Expert web development and design services</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-purple-400">✓</span>
-              <span>Personalized solutions tailored to your business</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-purple-400">✓</span>
-              <span>Ongoing support and maintenance</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-purple-400">✓</span>
-              <span>Competitive pricing with flexible options</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <QASection />
     </div>
   )
 
