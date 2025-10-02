@@ -34,7 +34,7 @@ export default function AboutSection() {
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
             }`}
           >
-            Who We Are
+            Who I Am
           </h2>
         </div>
         
@@ -73,10 +73,10 @@ export default function AboutSection() {
                   <Target size={42} strokeWidth={1.5} />
                 </div>
                 <h3 className={`${oswald.className} text-2xl font-extrabold mb-4 text-white`}>
-                  Our Mission
+                  My Mission
                 </h3>
                 <p className={`${raleway.className} text-base font-semibold tracking-wide leading-relaxed text-white`}>
-                  Our mission is to get as many eyes on your site as possible! That means improving SEO, tailoring your site's design, and implementing effective content strategies that engage your audience and drive action.
+                  My mission is to get as many eyes on your site as possible! That means improving SEO, tailoring your site's design, and implementing effective content strategies that engage your audience and drive action.
                 </p>
               </div>
             </div>
@@ -96,10 +96,10 @@ export default function AboutSection() {
                   <Heart size={42} strokeWidth={1.5} />
                 </div>
                 <h3 className={`${oswald.className} text-2xl font-extrabold mb-4 text-white`}>
-                  Our Values
+                  My Values
                 </h3>
                 <p className={`${raleway.className} text-base font-semibold tracking-wide leading-relaxed text-white`}>
-                  User experience is our top priority. We believe that by prioritizing user experience, we can enhance customer satisfaction, loyalty, and boost your conversion rates. We're committed to creating digital experiences that users love.
+                  User experience is my top priority. I believe that by prioritizing user experience, I can enhance customer satisfaction, loyalty, and boost your conversion rates. I'm committed to creating digital experiences that users love.
                 </p>
               </div>
             </div>
@@ -119,10 +119,10 @@ export default function AboutSection() {
                   <Users size={42} strokeWidth={1.5} />
                 </div>
                 <h3 className={`${oswald.className} text-2xl font-extrabold mb-4 text-white`}>
-                  Our Approach
+                  My Approach
                 </h3>
                 <p className={`${raleway.className} text-base font-semibold tracking-wide leading-relaxed text-white`}>
-                  We develop comprehensive digital strategies that integrate seamless design, consistent messaging, and intuitive navigation to enhance your brand credibility and foster meaningful connections with your target audience.
+                  I develop comprehensive digital strategies that integrate seamless design, consistent messaging, and intuitive navigation to enhance your brand credibility and foster meaningful connections with your target audience.
                 </p>
               </div>
             </div>
@@ -137,7 +137,7 @@ export default function AboutSection() {
           style={{ transitionDelay: '750ms' }}
         >
           <p className={`${raleway.className} text-lg text-gray-300 mb-6 max-w-2xl mx-auto`}>
-            Ready to transform your digital presence with a team that understands your business needs?
+            Ready to transform your digital presence with someone who understands your business needs?
           </p>
           <div className="inline-block relative overflow-hidden backdrop-blur-lg rounded-xl transition-all duration-300 hover:shadow-lg bg-gradient-to-br from-zinc-800/40 to-zinc-700/30 border border-white/10 shadow-md">
             <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-xl rounded-xl" />

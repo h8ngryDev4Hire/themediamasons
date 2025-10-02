@@ -41,7 +41,7 @@ export default function Footer() {
               </span>
             </div>
             <p className={`${raleway.className} text-white mb-4`}>
-              Professional web development and digital solutions for businesses. We build custom websites and applications that drive growth.
+              Professional web development and digital solutions for businesses. I build custom websites and applications that drive growth.
             </p>
           </div>
 
@@ -52,14 +52,14 @@ export default function Footer() {
               <li><a href="#hero-section" className="text-white hover:text-media-mason-purple trans-ease">Home</a></li>
               <li><a href="#products" className="text-white hover:text-media-mason-purple trans-ease">Products</a></li>
               <li><a href="#services" className="text-white hover:text-media-mason-purple trans-ease">Services</a></li>
-              <li><a href="#about" className="text-white hover:text-media-mason-purple trans-ease">About Us</a></li>
+              <li><a href="#about" className="text-white hover:text-media-mason-purple trans-ease">About Me</a></li>
               <li><a href="#portfolio" className="text-white hover:text-media-mason-purple trans-ease">Portfolio</a></li>
             </ul>
           </div>
 
           {/* Contact Information */}
           <div id="footer-contact" className="footer-section">
-            <h3 className={`${oswald.className} font-bold text-xl mb-4`}>Connect With Us</h3>
+            <h3 className={`${oswald.className} font-bold text-xl mb-4`}>Connect With Me</h3>
 
             {/* Email Contact */}
             <div className={`${bangers.className} mb-4`}>

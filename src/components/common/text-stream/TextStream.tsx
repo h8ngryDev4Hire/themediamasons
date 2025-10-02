@@ -29,11 +29,11 @@ export default function TextStream({
   
   // If no texts array is provided but a single text is, convert to array
   const textArray = texts || (text ? [text] : [
-    "Need a website? We've got you covered.",
+    "Need a website? I've got you covered.",
     "Looking to increase your online presence?",
     "Want to attract more customers with a professional website?",
-    "Our team builds fast, beautiful, and functional websites.",
-    "We create digital solutions that help your business grow."
+    "I build fast, beautiful, and functional websites.",
+    "I create digital solutions that help your business grow."
   ]);
   
   const currentText = textArray[currentTextIndex];

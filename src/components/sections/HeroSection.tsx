@@ -8,12 +8,12 @@ import { useModal } from '../../hooks'
 export default function HeroSection() {
   // Phrases extracted and inspired from the old project
   const heroTexts = [
-    "Need a website? We've got you covered.",
+    "Need a website? I've got you covered.",
     "Looking to increase your online presence?",
-    "Our mission is to get as many eyes on your site as possible!",
-    "We create digital solutions that help your business grow.",
-    "We tailor your site's design to match your branding style.",
-    "Implementing effective content strategies that engage your audience."
+    "My mission is to get as many eyes on your site as possible!",
+    "I create digital solutions that help your business grow.",
+    "I tailor your site's design to match your branding style.",
+    "I implement effective content strategies that engage your audience."
   ]
 
   const { ref, isInView } = useInView(0.1);
@@ -80,7 +80,7 @@ export default function HeroSection() {
               onClick={handleScrollToPortfolio}
               className={`${oswald.className} relative z-10 text-white font-bold py-3 px-8 transition duration-300 ease-in-out`}
             >
-              <span className="button-text">View Our Portfolio</span>
+              <span className="button-text">View My Portfolio</span>
             </button>
           </div>
         </div>

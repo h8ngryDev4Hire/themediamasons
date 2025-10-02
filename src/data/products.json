@@ -39,7 +39,7 @@
     "features": [
       { "name": "Agentic AI", "description": "Intelligent AI agents that assist with your daily tasks" },
       { "name": "Web navigation", "description": "Smart tools to improve your browsing experience" },
-      { "name": "Navigation Partner", "description": "Enhance your workflow with our powerful navigation partner capabilities" }
+      { "name": "Navigation Partner", "description": "Enhance your workflow with my powerful navigation partner capabilities" }
     ],
     "platforms": ["Chrome", "Firefox", "Safari"],
     "primaryColor": "from-purple-300 to-red-600",

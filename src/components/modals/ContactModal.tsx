@@ -152,7 +152,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       
       <div className="mt-6 flex flex-col items-center">
         <p className={`${raleway.className} text-white/80 mb-3`}>
-          Prefer to send us a message instead?
+          Prefer to send me a message instead?
         </p>
         <button 
           id="switch-to-form-button"
@@ -182,7 +182,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           </div>
           <h3 className={`${oswald.className} text-2xl text-white mb-2`}>Message Sent!</h3>
           <p className={`${raleway.className} text-white/80 mb-6`}>
-            Thank you for reaching out. We'll get back to you soon!
+            Thank you for reaching out. I'll get back to you soon!
           </p>
         </div>
         <button
@@ -291,7 +291,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     switch (activeView) {
       case 'calendly': return 'Schedule a Meeting'
       case 'success': return 'Message Sent'
-      default: return 'Contact Us'
+      default: return 'Contact Me'
     }
   }
 

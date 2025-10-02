@@ -56,18 +56,18 @@ export default function NotFound() {
         {/* Additional Navigation Links */}
         <div className={`${raleway.className} text-gray-400 text-sm md:text-base`}>
           <p>
-            Lost? Try navigating back to our{' '}
+            Lost? Try navigating back to my{' '}
             <Link href="/" className="text-media-mason-purple hover:text-media-mason-orange trans-ease underline">
               homepage
             </Link>
             {', '}
-            check out our{' '}
+            check out my{' '}
             <Link href="/#portfolio" className="text-media-mason-purple hover:text-media-mason-orange trans-ease underline">
               portfolio
             </Link>
             {', or learn more '}
             <Link href="/#about" className="text-media-mason-purple hover:text-media-mason-orange trans-ease underline">
-              about us
+              about me
             </Link>
             .
           </p>

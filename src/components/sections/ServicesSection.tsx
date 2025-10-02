@@ -12,7 +12,7 @@ export default function ServicesSection() {
   const [resetKey, setResetKey] = useState(0);
   
   // Single subtitle text
-  const serviceSubtitle = "We are your trusted digital partner for all your web services needs.";
+  const serviceSubtitle = "I am your trusted digital partner for all your web service needs.";
   
   // Reset the animation when the section goes out of view and comes back
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function ServicesSection() {
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
             }`}
           >
-            What We Do
+            What I Do
           </h2>
         </div>
         
