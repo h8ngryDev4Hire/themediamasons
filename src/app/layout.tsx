@@ -1,19 +1,38 @@
-'use client'
+ 
 
 import type { Metadata } from "next";
 import { bangers, oswald, raleway } from "../lib/fonts";
 import "./globals.css";
-import dynamic from "next/dynamic";
 import Script from "next/script";
 import Navigator from "../components/common/navigator/navigator";
 import Footer from "../components/footer/footer";
 import ModalProvider from "../components/modals/ModalProvider";
 
-// Import Stagewise Toolbar dynamically to avoid SSR issues
-const StagewiseToolbar = dynamic(
-  () => import("@stagewise/toolbar-next").then((mod) => mod.StagewiseToolbar),
-  { ssr: false }
-);
+import StagewiseDevToolbar from "../components/StagewiseDevToolbar";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://themediamasons.com"),
+  title: "The Media Masons",
+  description:
+    "Professional web development and digital solutions for businesses. I build custom websites and web applications that drive growth.",
+  openGraph: {
+    title: "The Media Masons",
+    description:
+      "Professional web development and digital solutions for businesses. I build custom websites and web applications that drive growth.",
+    url: "https://themediamasons.com",
+    siteName: "The Media Masons",
+    images: [
+      { url: "/opengraph.png", width: 1200, height: 630, alt: "The Media Masons" },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Media Masons",
+    description:
+      "Professional web development and digital solutions for businesses. I build custom websites and web applications that drive growth.",
+    images: ["/opengraph.png"],
+  },
+};
 
 export default function RootLayout({
   children,
@@ -52,15 +71,7 @@ export default function RootLayout({
         </div>
         
         {/* Stagewise Toolbar - only loads in development */}
-        {process.env.NODE_ENV === "development" && (
-          <div id="stagewise-toolbar">
-            <StagewiseToolbar 
-              config={{
-                plugins: [],
-              }}
-            />
-          </div>
-        )}
+        {process.env.NODE_ENV === "development" && <StagewiseDevToolbar />}
       </body>
     </html>
   );
